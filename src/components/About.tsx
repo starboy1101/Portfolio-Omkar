@@ -66,7 +66,7 @@ const About: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-purple-600/20" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-purple-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
           </motion.div>
 
