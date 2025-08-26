@@ -63,10 +63,15 @@ const About: React.FC = () => {
                 src= {HeroImage}
                 alt="Profile"
                 className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{
+                  scale: 1.06,
+                  y: -8,
+                  rotate: 2,
+                  rotateY: 5,
+                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.5)"
+                }}
+                transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
               />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-purple-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
           </motion.div>
 
