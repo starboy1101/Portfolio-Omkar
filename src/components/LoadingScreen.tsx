@@ -40,11 +40,21 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         </motion.div>
         
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-2xl font-bold text-gray-900 dark:text-white mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mb-4"
         >
-          Loading Portfolio
+          {"Loading ...".split("").map((letter, index) => (
+            <motion.span
+              key={index}
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: index * 0.05 }}
+              className="inline-block"
+            >
+              {letter}
+            </motion.span>
+          ))}
         </motion.h1>
         
         <div className="w-64 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
