@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import HeroImage from '../assets/Image.jpg';
 
 const About: React.FC = () => {
   const ref = useRef(null);
@@ -59,7 +60,7 @@ const About: React.FC = () => {
           >
             <div className="relative">
               <motion.img
-                src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+                src= {HeroImage}
                 alt="Profile"
                 className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
                 whileHover={{ scale: 1.02 }}

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Heart, Coffee, Github, Linkedin, Twitter } from "lucide-react";
+import { Heart, Github, Linkedin, Twitter } from "lucide-react";
 
 const Footer: React.FC = () => {
   const links = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             </p>
           <div className="flex gap-6 mt-6">
             <motion.a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/omkar-mahabdi"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.3, rotate: 5 }}
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
             </motion.a>
 
             <motion.a
-              href="https://github.com/yourprofile"
+              href="https://github.com/starboy1101"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.3, rotate: 5 }}
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
             </motion.a>
 
             <motion.a
-              href="https://twitter.com/yourprofile"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.3, rotate: 5 }}
@@ -171,12 +171,10 @@ const Footer: React.FC = () => {
                 size={16}
                 fill="currentColor"
               />
-              and{" "}
-              <Coffee className="text-yellow-500" size={16} />
-              by Omkar Mahabdi
+              Omkar Mahabdi
             </motion.p>
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} All rights reserved.
+              © {new Date().getFullYear()} Omkar Mahabdi. All rights reserved.
             </p>
           </div>
         </motion.div>
