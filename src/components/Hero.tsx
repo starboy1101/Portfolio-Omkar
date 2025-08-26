@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import TypingEffect from './TypingEffect';
+import ResumePDF from '../assets/Resume.pdf';
+
 
 const Hero: React.FC = () => {
   const handleDownloadResume = () => {

@@ -12,8 +12,8 @@ const Projects: React.FC = () => {
       description: 'Responsive portfolio website with dark mode, animations, and contact form. Built with modern web technologies.',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg',
       technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/yourusername/portfolio',
-      liveUrl: 'https://your-portfolio.com',
+      githubUrl: 'https://github.com/starboy1101/Portfolio-Omkar',
+      liveUrl: 'https://omkar-mahabdi-portfolio.netlify.app',
       featured: true,
     },
     {

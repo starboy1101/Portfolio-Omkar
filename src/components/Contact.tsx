@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
     },
     {
       icon: Instagram,
-      href: 'https://twitter.com/yourusername',
+      href: 'https://www.instagram.com/_mfstar_boy/',
       label: 'Instagram'
     }
   ];
@@ -113,13 +113,6 @@ const Contact: React.FC = () => {
             variants={itemVariants}
             className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"
           />
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-6"
-          >
-            I'm always interested in new opportunities and exciting projects. 
-            Let's discuss how we can work together to bring your ideas to life.
-          </motion.p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -130,52 +123,72 @@ const Contact: React.FC = () => {
             animate={isInView ? "visible" : "hidden"}
             className="space-y-8"
           >
-            <motion.div variants={itemVariants}>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Get In Touch
-              </h3>
-              
-              <div className="space-y-4">
-                {contactInfo.map((info) => (
-                  <motion.a
-                    key={info.label}
-                    href={info.href}
-                    className="flex items-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 group"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50 transition-colors duration-200">
-                      <info.icon className="text-blue-600 dark:text-blue-400" size={20} />
-                    </div>
-                    <div className="ml-4">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {info.label}
-                      </p>
-                      <p className="text-gray-900 dark:text-white font-medium">
-                        {info.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
+          <motion.div variants={itemVariants} className="space-y-10"> 
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              Let's talk about{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                your project
+              </span>
+            </h3>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+            >
+              I'm always interested in new opportunities and exciting projects. 
+              Let's discuss how we can work together to bring your ideas to life.
+            </motion.p>
+
+            {/* Contacts block with spacing */}
+            <div className="space-y-6">
+              {contactInfo.map((info) => (
+                <motion.a
+                  key={info.label}
+                  href={info.href}
+                  className="flex items-center group relative"
+                  whileHover={{ x: 10, scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  {/* Icon */}
+                  <info.icon
+                    className="text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:rotate-12"
+                    size={22}
+                  />
+
+                  {/* Text */}
+                  <div className="ml-3">
+                    {/* Label always white */}
+                    <p className="text-sm font-medium text-white">{info.label}</p>
+
+                    {/* Value starts gray → white + glow on hover */}
+                    <p className="text-lg font-semibold text-gray-400 dark:text-gray-500 relative group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300">
+                      {info.value}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
 
             <motion.div variants={itemVariants}>
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Follow Me
               </h4>
               
-              <div className="flex space-x-4">
+              
+              <div className="flex gap-6 mt-6">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-md transition-all duration-200"
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ scale: 1.3, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors text-2xl"
                   >
-                    <social.icon size={20} />
+                    <social.icon />
                   </motion.a>
                 ))}
               </div>
@@ -206,7 +219,7 @@ const Contact: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Name
+                    Name <span className="text-red-500">*</span>   
                   </label>
                   <input
                     {...register('name', { required: 'Name is required' })}
@@ -220,7 +233,7 @@ const Contact: React.FC = () => {
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Email
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="email"
@@ -256,7 +269,7 @@ const Contact: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   {...register('message', { required: 'Message is required' })}
