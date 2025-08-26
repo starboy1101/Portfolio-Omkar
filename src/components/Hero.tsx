@@ -8,7 +8,7 @@ import ResumePDF from '../assets/Resume.pdf';
 const Hero: React.FC = () => {
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/sample-resume.pdf'; // Replace with your actual resume path
+    link.href = ResumePDF; 
     link.download = 'Omkar_Mahabdi_Resume.pdf';
     link.click();
   };
