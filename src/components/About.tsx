@@ -119,7 +119,7 @@ const About: React.FC = () => {
                 { label: 'Projects Completed', value: '15+' },
                 { label: 'Years Experience', value: '2+' },
                 { label: 'Technologies Worked With', value: '20+' },
-              ].map((stat, index) => (
+              ].map((stat) => (
                 <motion.div
                   key={stat.label}
                   className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
