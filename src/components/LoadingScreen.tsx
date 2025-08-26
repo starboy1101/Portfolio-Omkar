@@ -56,7 +56,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
             </motion.span>
           ))}
         </motion.h1>
-
         
         <div className="w-64 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
           <motion.div

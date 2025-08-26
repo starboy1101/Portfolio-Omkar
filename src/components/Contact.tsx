@@ -43,7 +43,7 @@ const Contact: React.FC = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+91 7028143066',
+      value: '+917028143066',
       href: 'tel:+917028143066'
     },
     {
@@ -219,7 +219,7 @@ const Contact: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Name <span className="text-red-500">*</span>
+                    Name <span className="text-red-500">*</span>   
                   </label>
                   <input
                     {...register('name', { required: 'Name is required' })}

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Heart, Github, Linkedin, Twitter } from "lucide-react";
+import { Heart, Coffee, Github, Linkedin, Twitter } from "lucide-react";
 
 const Footer: React.FC = () => {
   const links = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
@@ -57,6 +57,7 @@ const Footer: React.FC = () => {
             </motion.a>
 
             <motion.a
+
               href="https://github.com/starboy1101"
               target="_blank"
               rel="noopener noreferrer"
