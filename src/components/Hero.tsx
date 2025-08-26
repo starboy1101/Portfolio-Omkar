@@ -4,10 +4,11 @@ import { Download, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import TypingEffect from './TypingEffect';
 import ResumePDF from '../assets/Resume.pdf';
 
+
 const Hero: React.FC = () => {
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = ResumePDF; // Replace with your actual resume path
+    link.href = '/sample-resume.pdf'; // Replace with your actual resume path
     link.download = 'Omkar_Mahabdi_Resume.pdf';
     link.click();
   };
