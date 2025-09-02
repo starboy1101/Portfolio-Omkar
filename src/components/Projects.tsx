@@ -18,11 +18,11 @@ const Projects: React.FC = () => {
     },
     {
       title: 'Weather Dashboard',
-      description: 'A responsive weather dashboard with location-based forecasts, interactive maps, and historical weather data visualization.',
+      description: 'A modern, responsive weather application featuring live video backgrounds, day/night mode, and real-time weather forecasts. Users can search for any city and get dynamic weather updates with smooth animations, interactive UI, and subtle particle effects. Designed for an immersive experience with preloaded background videos to ensure instant, lag-free visuals.',
       image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg',
-      technologies: ['Vue.js', 'D3.js', 'OpenWeather API', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/yourusername/weather-dashboard',
-      liveUrl: 'https://your-weather-app.com',
+      technologies: ['React', 'TypeScript', 'Framer Motion', 'OpenWeather API', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/starboy1101/Weather-App',
+      liveUrl: 'https://omkar-weatherapp.netlify.app/',
       featured: false,
     },
     {
