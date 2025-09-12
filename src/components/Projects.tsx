@@ -137,10 +137,10 @@ const Projects: React.FC = () => {
               <div className="relative md:col-span-5 flex justify-center md:justify-start mb-6 md:mb-0">
                 <div className="    
                 absolute 
-                top-2 sm:top-1 md:top-[2%] 
+                top-1 sm:top-1 md:top-[2%] 
                 left-1/2 sm:left-4 md:left-[10%] 
-                w-[61%] sm:w-[80%] md:w-[81%] 
-                h-[72%] sm:h-[70%] md:h-[72%] 
+                w-[80%] sm:w-[82%] md:w-[81%] 
+                h-[74%] sm:h-[70%] md:h-[72%] 
                 -translate-x-1/2 sm:translate-x-0 
                 overflow-hidden 
                 rounded-md"
