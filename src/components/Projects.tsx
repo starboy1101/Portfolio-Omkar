@@ -1,6 +1,11 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Github, ExternalLink, Eye } from 'lucide-react';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import mockup from '../assets/mockup.png';
+import Porfolio from '../assets/Portfolioimg.png';
+import Weather from '../assets/Weatherimg.png';
+import Bike from '../assets/Bikeimg.png';
+import AIchat from '../assets/AIchat.jpg';
+import LOS from '../assets/LOS.png';
 
 const Projects: React.FC = () => {
   const ref = useRef(null);
@@ -8,73 +13,100 @@ const Projects: React.FC = () => {
 
   const projects = [
     {
-      title: 'Portfolio Website',
-      description: 'Responsive portfolio website with dark mode, animations, and contact form. Built with modern web technologies.',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg',
-      technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/starboy1101/Portfolio-Omkar',
-      liveUrl: 'https://omkar-mahabdi-portfolio.netlify.app',
-      featured: true,
+      title: "Portfolio Website",
+      description: [
+        "A responsive developer portfolio website with dark mode, smooth animations, and integrated contact form.",
+        "Built with React, TypeScript, and Tailwind CSS to highlight projects and professional experience in an elegant and modern UI."
+      ],
+      mockup: mockup,
+      screenshot: Porfolio,
+      technologies: ["React", "TypeScript", "Framer Motion", "Tailwind CSS"],
+      githubUrl: "https://github.com/starboy1101/Portfolio-Omkar",
+      liveUrl: "https://omkar-mahabdi-portfolio.netlify.app",
     },
     {
-      title: 'Weather Dashboard',
-      description: 'A modern, responsive weather application featuring live video backgrounds, day/night mode, and real-time weather forecasts. Users can search for any city and get dynamic weather updates with smooth animations, interactive UI, and subtle particle effects. Designed for an immersive experience with preloaded background videos to ensure instant, lag-free visuals.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg',
-      technologies: ['React', 'TypeScript', 'Framer Motion', 'OpenWeather API', 'Tailwind CSS'],
-      githubUrl: 'https://github.com/starboy1101/Weather-App',
-      liveUrl: 'https://omkar-weatherapp.netlify.app/',
-      featured: false,
+      title: "Weather Dashboard",
+      description: [
+        "A sleek and responsive weather application built using React and OpenWeather API.",
+        "It allows users to search for real-time weather updates by city, displaying temperature, humidity, and conditions with a clean, modern interface."
+      ],
+      mockup: mockup,
+      screenshot: Weather,
+      technologies: [
+        "React",
+        "TypeScript",
+        "Framer Motion",
+        "OpenWeather API",
+        "Tailwind CSS",
+      ],
+      githubUrl: "https://github.com/starboy1101/Weather-App",
+      liveUrl: "https://omkar-weatherapp.netlify.app",
     },
     {
-      title: 'Social Media Analytics',
-      description: 'Analytics platform for social media metrics with data visualization, automated reporting, and performance tracking.',
-      image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg',
-      technologies: ['Next.js', 'Python', 'Chart.js', 'Redis', 'Docker'],
-      githubUrl: 'https://github.com/yourusername/social-analytics',
-      liveUrl: 'https://your-analytics-platform.com',
-      featured: false,
+      title: "Loan Onboarding System",
+      description: [
+        "A full-stack loan onboarding system for managing applications, financial details, and user accounts across banks.",
+        "Designed with multi-tenant architecture, dynamic database routing, JWT authentication, and Google Cloud Storage integration for secure file management."
+      ],
+      mockup: mockup,
+      screenshot: LOS,
+      technologies: [
+        "Django",
+        "Django REST Framework",
+        "Google Cloud Storage",
+        "JWT Auth",
+        "PostgreSQL",
+      ],
+      githubUrl: "https://github.com/yourusername/loan-onboarding",
+      liveUrl: "https://your-loan-platform.com",
     },
     {
-      title: 'AI Chat Application',
-      description: 'Real-time chat application with AI integration, message encryption, file sharing, and multi-language support.',
-      image: 'https://images.pexels.com/photos/8849295/pexels-photo-8849295.jpeg',
+      title: "Bike Ride Booking App",
+      description: [
+        "Developed an online bike ride booking application to enhance urban transportation accessibility.",
+        "Implemented booking flows, payment integration, and ride tracking using a modern MERN stack architecture."
+      ],
+      mockup: mockup,
+      screenshot: Bike,
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      githubUrl: "https://github.com/yourusername/bike-ride-app",
+      liveUrl: "https://your-bikeride-app.com",
+    },
+    {
+      title: "AI Chat Application",
+      description: [
+        "Real-time chat application with AI integration, message encryption, file sharing, and multi-language support.",
+      ],
+      mockup: mockup,
+      screenshot: AIchat,
       technologies: ['React', 'WebSocket', 'OpenAI API', 'Firebase', 'Material-UI'],
       githubUrl: 'https://github.com/yourusername/ai-chat',
       liveUrl: 'https://your-ai-chat.com',
-      featured: true,
     },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Heading */}
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
@@ -88,104 +120,118 @@ const Projects: React.FC = () => {
           />
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {projects.map((project) => (
+        {/* Projects List */}
+        {projects.map((project, i) => (
+          <motion.div
+            key={i}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="mb-20 relative"
+          >
             <motion.div
-              key={project.title}
               variants={itemVariants}
-              className={`group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
-                project.featured ? 'md:col-span-2 lg:col-span-1' : ''
-              }`}
-              whileHover={{ y: -12, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="grid md:grid-cols-12 gap-10 items-start"
             >
-              <div className="relative overflow-hidden">
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-125"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="absolute top-4 right-4 flex gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                  <motion.a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-all duration-300 border border-white/30"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
+              {/* Laptop Column */}
+              <div className="relative md:col-span-5 flex justify-center md:justify-start mb-6 md:mb-0">
+                <div className="    
+                absolute 
+                top-2 sm:top-1 md:top-[2%] 
+                left-1/2 sm:left-4 md:left-[10%] 
+                w-[61%] sm:w-[80%] md:w-[81%] 
+                h-[72%] sm:h-[70%] md:h-[72%] 
+                -translate-x-1/2 sm:translate-x-0 
+                overflow-hidden 
+                rounded-md"
                   >
-                    <Github size={18} />
-                  </motion.a>
-                  <motion.a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/40 transition-all duration-300 border border-white/30"
-                    whileHover={{ scale: 1.2, rotate: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <ExternalLink size={18} />
-                  </motion.a>
+                  <img
+                    src={project.screenshot}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                
-                {project.featured && (
-                  <div className="absolute top-4 left-4">
-                    <motion.span 
-                      className="px-3 py-1 text-xs font-bold bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full shadow-lg"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Featured
-                    </motion.span>
-                  </div>
-                )}
+                <img
+                  src={project.mockup}
+                  alt="Laptop mockup"
+                  className="w-[450px] h-auto relative z-10 pointer-events-none select-none "
+                />
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              {/* Right Side Info */}
+              <div className="md:col-span-7 flex flex-col justify-start px-3 md:px-0">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   {project.title}
                 </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                  {project.description}
-                </p>
+                <ul className="list-disc list-outside pl-8 text-muted-foreground dark:text-gray-300 max-w-full text-lg mb-6 space-y-6">
+                  {project.description.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
 
-                <div className="flex flex-wrap gap-2 mb-4">
+                {/* Tech Stack Pills */}
+                <div className="flex flex-wrap gap-4 mb-7">
                   {project.technologies.map((tech) => (
-                    <motion.span
+                    <span
                       key={tech}
-                      className="px-3 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800/50 transition-colors duration-200 cursor-default"
-                      whileHover={{ scale: 1.05 }}
+                      className="px-7 py-3 text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full"
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <motion.a
+                {/* Action Buttons */}
+                <div className="flex gap-4">
+                  {/* View Live Button */}
+                  <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-all duration-200 hover:underline"
-                    whileHover={{ x: 8, scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="group/link text-base font-medium border-2 px-5 py-2.5 rounded-full transition-all flex justify-center items-center gap-2 hover:opacity-80 bg-black text-white dark:bg-white dark:text-black"
                   >
-                    <Eye size={16} />
-                    View Project
-                  </motion.a>
+                    {/* Fire Icon */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="shrink-0">
+                      <path d="M12 2C12 2 8 6 8 10a4 4 0 0 0 8 0c0-4-4-8-4-8zM6 14a6 6 0 0 0 12 0c0-3-3-6-3-6s1 3-3 6a6 6 0 0 1-6 0z"/>
+                    </svg>
+                    View Live
+                    {/* Arrow Icon with Hover Animation */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      className="lucide lucide-arrow-up-right group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-all shrink-0">
+                      <path d="M7 7h10v10"></path>
+                      <path d="M7 17 17 7"></path>
+                    </svg>
+                  </a>
+
+                  {/* View Code Button */}
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link text-base font-medium px-5 py-2.5 rounded-full transition-all flex justify-center items-center gap-2 hover:opacity-80 border-2 bg-white text-black dark:bg-black dark:text-white"
+                  >
+                    {/* GitHub Icon */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="shrink-0" viewBox="0 0 24 24">
+                      <path d="M12 .5C5.37.5 0 5.87 0 12.5a12 12 0 0 0 8.21 11.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.84 1.32 3.54 1.01.11-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.64.24 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.65-5.47 5.95.43.38.81 1.12.81 2.26v3.35c0 .32.22.7.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/>
+                    </svg>
+                    View Code
+                    {/* Arrow Icon with Hover Animation */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      className="lucide lucide-arrow-up-right group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-all shrink-0">
+                      <path d="M7 7h10v10"></path>
+                      <path d="M7 17 17 7"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
             </motion.div>
-          ))}
-        </motion.div>
+
+            {/* Separator Line */} 
+            {i < projects.length - 1 && ( <div className="border-t border-gray-200 dark:border-gray-700 mt-16"></div> )}
+          </motion.div>
+        ))}
       </div>
     </section>
   );

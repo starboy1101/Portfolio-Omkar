@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
             >
               I'm always interested in new opportunities and exciting projects. 
               Let's discuss how we can work together to bring your ideas to life.
@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
                   {/* Text */}
                   <div className="ml-3">
                     {/* Label always white */}
-                    <p className="text-sm font-medium text-white">{info.label}</p>
+                    <p className="text-muted-foreground dark:text-gray-300 max-w-full text-lg">{info.label}</p>
 
                     {/* Value starts gray → white + glow on hover */}
                     <p className="text-lg font-semibold text-gray-400 dark:text-gray-500 relative group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300">
@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
                     whileHover={{ scale: 1.3, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors text-2xl"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-600 transition-colors text-2xl"
                   >
                     <social.icon />
                   </motion.a>

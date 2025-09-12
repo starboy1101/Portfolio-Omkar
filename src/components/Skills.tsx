@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code, Server, Cloud, Database } from 'lucide-react';
+import { Code, Server, Database } from 'lucide-react';
 
 const skillsData = [
   {
@@ -53,7 +53,7 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -72,7 +72,7 @@ const Skills: React.FC = () => {
             variants={item}
             className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"
           />                  
-          <motion.p variants={item} className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <motion.p variants={item} className="text-muted-foreground dark:text-gray-300 max-w-full text-lg mt-6">
             I specialize in building scalable, high-performance web applications. Here's a quick look at my core competencies.
           </motion.p>
         </motion.div>
@@ -87,7 +87,7 @@ const Skills: React.FC = () => {
             <motion.div
               key={category.category}
               variants={item}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 group relative overflow-hidden"
+              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 group relative overflow-hidden"
             >
               {/* Decorative gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"></div>

@@ -93,7 +93,7 @@ const About: React.FC = () => {
             
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
             >
               I'm a dedicated Full Stack Developer with hands-on experience in creating dynamic and responsive web applications.
               Over the past year, I've collaborated with talented teams to deliver projects that are not only scalable but also intuitive and user-friendly.
@@ -101,7 +101,7 @@ const About: React.FC = () => {
             
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
             >
               My passion for development began during college, and since then, coding has become both a craft and a curiosity for me.
               I thrive on learning new frameworks, experimenting with innovative solutions, and staying ahead of industry trends.
@@ -109,7 +109,7 @@ const About: React.FC = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 dark:text-gray-300 leading-relaxed"
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
             >
               Outside of building apps, I enjoy reading books, listening to music, diving into open-source contributions, exploring emerging technologies, and 
               sharing insights with the developer community through tutorials and blog posts. 

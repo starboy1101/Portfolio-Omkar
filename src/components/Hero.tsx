@@ -16,10 +16,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center 
-                 bg-gradient-to-br from-blue-50 via-white to-indigo-50 
-                 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 
-                 overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto py-20 text-center">
         {/* Heading */}
@@ -63,24 +60,31 @@ const Hero: React.FC = () => {
           transition={{ delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
+          {/* Download Resume Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleDownloadResume}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white 
-                       px-8 py-3 rounded-full font-medium transition-colors duration-200"
+            className="flex items-center gap-2 
+                      bg-blue-600 hover:bg-blue-700 text-white 
+                      px-8 py-3 rounded-full font-medium transition-colors duration-200
+                      dark:border-2 dark:border-blue-600 dark:bg-transparent dark:text-blue-400
+                      dark:hover:bg-blue-600 dark:hover:text-white"
           >
             <Download size={20} />
             Download Resume
           </motion.button>
 
+          {/* Get In Touch Button */}
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="flex items-center gap-2 border-2 border-blue-600 text-blue-600 
-                       dark:text-blue-400 px-8 py-3 rounded-full font-medium 
-                       hover:bg-blue-600 hover:text-white dark:hover:text-white transition-colors duration-200"
+            className="flex items-center gap-2 
+                      bg-blue-600 hover:bg-blue-700 text-white 
+                      px-8 py-3 rounded-full font-medium transition-colors duration-200
+                      dark:border-2 dark:border-blue-600 dark:bg-transparent dark:text-blue-400
+                      dark:hover:bg-blue-600 dark:hover:text-white"
           >
             Get In Touch
             <ExternalLink size={20} />

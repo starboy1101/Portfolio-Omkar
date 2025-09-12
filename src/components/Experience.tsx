@@ -83,7 +83,7 @@ const itemVariants = {
 };
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Parallax background glow */}
       <motion.div
         style={{ y: yParallax }}
@@ -150,7 +150,7 @@ const itemVariants = {
                   index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                 }`}>
                   <motion.div
-                    className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform duration-300"
+                    className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform duration-300"
                     whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 1 : -1 }}
                   >
                     <div className="flex items-center mb-4">

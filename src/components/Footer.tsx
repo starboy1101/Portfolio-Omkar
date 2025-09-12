@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Heart, Coffee, Github, Linkedin, Twitter } from "lucide-react";
+import { Heart, Github, Linkedin, Twitter } from "lucide-react";
 
 const Footer: React.FC = () => {
   const links = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
 
   return (
-    <footer className="relative bg-gray-900 text-white py-16 overflow-hidden">
+    <footer className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0">
         <motion.div
@@ -34,12 +34,12 @@ const Footer: React.FC = () => {
         >
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">
+            <h3 className="text-2xl font-bold mb-4 dark:text-white">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                 Omkar Mahabdi
               </span>
             </h3>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-muted-foreground dark:text-gray-300">
               Passionate about creating exceptional digital experiences and
               solving complex problems with clean solutions.
             </p>
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
               whileHover={{ scale: 1.3, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors text-2xl"
+              className="text-muted-foreground dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-600 transition-colors text-2xl"
             >
               <Linkedin />
             </motion.a>
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               whileHover={{ scale: 1.3, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors text-2xl"
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg hover:text-blue-600 dark:hover:text-blue-600 transition-colors text-2xl"
             >
               <Github />
             </motion.a>
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
               whileHover={{ scale: 1.3, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="text-gray-600 dark:text-gray-300 hover:text-sky-500 transition-colors text-2xl"
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg hover:text-sky-500 dark:hover:text-sky-500 transition-colors text-2xl"
             >
               <Twitter />
             </motion.a>
@@ -87,13 +87,13 @@ const Footer: React.FC = () => {
           >
             {/* Quick Links */}
             <div className="flex-1 min-w-[150px]">
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <h4 className="text-muted-foreground dark:text-gray-300 mb-4">Quick Links</h4>
               <nav className="space-y-2">
                 {links.map((item) => (
                   <motion.a
                     key={item}
                     href={`#${item.toLowerCase()}`}
-                    className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300"
+                    className="group flex items-center text-muted-foreground dark:text-gray-300 hover: transition-colors duration-300"
                     whileHover={{ x: 4, scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 250 }}
                   >
@@ -108,14 +108,14 @@ const Footer: React.FC = () => {
 
             {/* Services */}
             <div className="flex-1 min-w-[150px]">
-              <h4 className="text-lg font-semibold mb-4">Services</h4>
+              <h4 className="text-muted-foreground dark:text-gray-300 mb-4">Services</h4>
               <nav className="space-y-3">
                 {["Web Development", "Mobile Development", "UI/UX Design", "Consulting"].map(
                   (service) => (
                     <motion.a
                       key={service}
                       href={`#`}
-                      className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300"
+                      className="group flex items-center text-muted-foreground dark:text-gray-300 hover: transition-colors duration-300"
                       whileHover={{ x: 6, scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 250 }}
                     >
@@ -131,13 +131,13 @@ const Footer: React.FC = () => {
 
             {/* Legal */}
             <div className="flex-1 min-w-[150px]">
-              <h4 className="text-lg font-semibold mb-4">Legal</h4>
+              <h4 className="text-muted-foreground dark:text-gray-300 mb-4">Legal</h4>
               <nav className="space-y-3">
                 {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((legal) => (
                   <motion.a
                     key={legal}
                     href={`#`}
-                    className="group flex items-center text-gray-400 hover:text-white transition-colors duration-300"
+                    className="group flex items-center text-muted-foreground dark:text-gray-300 hover: transition-colors duration-300"
                     whileHover={{ x: 6, scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 250 }}
                   >
@@ -164,7 +164,7 @@ const Footer: React.FC = () => {
             <motion.p
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-gray-400 flex items-center gap-2"
+              className="text-muted-foreground dark:text-gray-300 flex items-center gap-2"
             >
               Made with{" "}
               <Heart
@@ -174,7 +174,7 @@ const Footer: React.FC = () => {
               />
               Omkar Mahabdi
             </motion.p>
-            <p className="text-gray-500 text-sm">
+            <p className="text-muted-foreground dark:text-gray-300 text-sm">
               © {new Date().getFullYear()} Omkar Mahabdi. All rights reserved.
             </p>
           </div>
