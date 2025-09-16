@@ -95,7 +95,7 @@ const About: React.FC = () => {
               variants={itemVariants}
               className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
             >
-              I'm a dedicated Full Stack Developer with hands-on experience in creating dynamic and responsive web applications.
+              I'm a dedicated Python Developer with hands-on experience in creating dynamic and responsive web applications.
               Over the past year, I've collaborated with talented teams to deliver projects that are not only scalable but also intuitive and user-friendly.
             </motion.p>
             

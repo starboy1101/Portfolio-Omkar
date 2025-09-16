@@ -58,7 +58,7 @@ const Projects: React.FC = () => {
         "PostgreSQL",
       ],
       githubUrl: "https://github.com/yourusername/loan-onboarding",
-      liveUrl: "https://your-loan-platform.com",
+      liveUrl: "https://ajitbank.markytics.com/login",
     },
     {
       title: "Bike Ride Booking App",

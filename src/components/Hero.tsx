@@ -37,8 +37,7 @@ const Hero: React.FC = () => {
             <TypingEffect
               strings={[
                 'Software Engineer',
-                'Frontend Developer',
-                'Node.js Expert',
+                'Python Developer',
                 'Problem Solver',
                 'Tech Enthusiast',
               ]}

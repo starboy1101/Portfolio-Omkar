@@ -14,32 +14,48 @@ const Experience: React.FC = () => {
   const experiences = [
     {
       type: 'work',
-      title: 'Associate Software Engineer',
+      // title: 'Associate Software Engineer',
+      title: 'Python devloper',
       company: 'Einfochips',
       location: 'Pune, Maharashtra',
       period: 'Jan 2025 - Present',
+      // description: [
+      //   'Developed a real-time desktop audio recorder with live input level visualization.',
+      //   'Supported both default and raw capture modes using WASAPI.',
+      //   'Implemented loopback recording via IAudioClient3 and Core Audio APIs.',
+      //   'Integrated real-time audio device change detection for seamless operation.',
+      //   'Improved application performance by 40% through optimization'
+      // ],
       description: [
-        'Developed a real-time desktop audio recorder with live input level visualization.',
-        'Supported both default and raw capture modes using WASAPI.',
-        'Implemented loopback recording via IAudioClient3 and Core Audio APIs.',
-        'Integrated real-time audio device change detection for seamless operation.',
-        'Improved application performance by 40% through optimization'
+        'Engineered an AI-powered head tracking system using Python, OpenCV, and Mediapipe for real-time face and head movement detection.',
+        'Delivered immersive audio-visual experiences by integrating head tracking into music and movie applications.',
+        'Optimized Python modules for scalability, clean code practices, and high performance.',
+        'Integrated ML models with PyTorch/TensorFlow to enhance detection accuracy and responsiveness.',
+        'Showcased strong expertise in computer vision, applied AI, and real-time system development.'
       ],
-      technologies: ['C++', 'C#', 'WASAPI']
+      // technologies: ['C++', 'C#', 'WASAPI']
+      technologies: ['Python', 'PyTorch', 'OpenCV']
     },
     {
       type: 'work',
+      // title: 'Full Stack Developer',
       title: 'Full Stack Developer',
-      company: 'VidyarthiMitra.org',
+      company: 'Markytics.ai',
       location: 'Pune, Maharashtra',
       period: 'June 2024 - Dec 2024',
+      // description: [
+      //   'Built responsive web applications using React and Express.js',
+      //   'Collaborated with designers to implement pixel-perfect UI/UX',
+      //   'Integrated third-party APIs and payment processing systems',
+      //   'Participated in agile development processes and code reviews'
+      // ],
       description: [
-        'Built responsive web applications using React and Express.js',
-        'Collaborated with designers to implement pixel-perfect UI/UX',
-        'Integrated third-party APIs and payment processing systems',
-        'Participated in agile development processes and code reviews'
+        'Developed a full-stack web application using Django, HTML, and CSS for book listing and sales functionality.',
+        'Enhanced user experience by implementing features to buy, sell, and view books seamlessly.',
+        'Collaborated with cross-functional teams to integrate, test, and deploy the solution effectively.',
+        'Contributed to both backend logic and frontend design to deliver a polished and functional product.'
       ],
-      technologies: ['React', 'Express.js', 'MongoDB', 'Stripe', 'Heroku']
+      technologies: ['Python', 'Django', 'PostgreSQL', 'HTML', 'CSS']
     },
     {
       type: 'education',

@@ -9,6 +9,7 @@ const skillsData = [
     skills: [
       { name: 'HTML', level: 98, color: 'from-blue-500 to-cyan-500' },
       { name: 'CSS', level: 93, color: 'from-blue-700 to-cyan-700' },
+      { name: 'Django', level: 90, color: 'from-blue-700 to-cyan-700' },
       { name: 'Tailwind CSS', level: 92, color: 'from-cyan-800 to-blue-800' },
       { name: 'React', level: 85, color: 'from-blue-500 to-cyan-500' },
       { name: 'TypeScript', level: 80, color: 'from-blue-600 to-blue-800' },
