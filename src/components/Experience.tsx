@@ -15,7 +15,7 @@ const Experience: React.FC = () => {
     {
       type: 'work',
       // title: 'Associate Software Engineer',
-      title: 'Python devloper',
+      title: 'Python Developer',
       company: 'Einfochips',
       location: 'Pune, Maharashtra',
       period: 'Jan 2025 - Present',
