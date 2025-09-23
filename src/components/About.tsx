@@ -2,7 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import HeroImage from '../assets/Image.jpg';
+import DecryptedText from './DecryptedText';
+import ProfileCard from './ProfileCard';
+import PersonImg from "../assets/Person.png";
+import iconpattern from"../assets/iconpattern.png";
+import grain from"../assets/grain.webp";
+
+const navItems = [ { href: '#contact', label: 'Contact' }, ];
 
 const About: React.FC = () => {
   const ref = useRef(null);
@@ -53,26 +59,27 @@ const About: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="space-y-6"
+            className="flex justify-center"
           >
-            <div className="relative">
-              <motion.img
-                src= {HeroImage}
-                alt="Profile"
-                className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
-                whileHover={{
-                  scale: 1.06,
-                  y: -8,
-                  rotate: 2,
-                  rotateY: 5,
-                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.5)"
-                }}
-                transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
-              />
-            </div>
+            <ProfileCard
+              name="Omkar Mahabdi"
+              title="Software Engineer"
+              handle="Omkar"
+              status="Online"
+              contactText="Contact Me"
+              avatarUrl= {PersonImg}
+              iconUrl = {iconpattern}
+              grainUrl = {grain}
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={true}
+              onContactClick={() => {
+                const contactItem = navItems.find(item => item.label === 'Contact');
+                if (contactItem) {
+                  window.location.href = contactItem.href; // redirects to the contact section/page
+                }
+              }}
+            />
           </motion.div>
 
           <motion.div
@@ -90,31 +97,45 @@ const About: React.FC = () => {
                 Know Me!
               </span>
             </motion.h3>
-            
-            <motion.p
-              variants={itemVariants}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
-            >
-              I'm a dedicated Python Developer with hands-on experience in creating dynamic and responsive web applications.
-              Over the past year, I've collaborated with talented teams to deliver projects that are not only scalable but also intuitive and user-friendly.
-            </motion.p>
-            
-            <motion.p
-              variants={itemVariants}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
-            >
-              My passion for development began during college, and since then, coding has become both a craft and a curiosity for me.
-              I thrive on learning new frameworks, experimenting with innovative solutions, and staying ahead of industry trends.
-            </motion.p>
 
-            <motion.p
+            <motion.div
               variants={itemVariants}
               className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
             >
-              Outside of building apps, I enjoy reading books, listening to music, diving into open-source contributions, exploring emerging technologies, and 
-              sharing insights with the developer community through tutorials and blog posts. 
-              For me, every project is an opportunity to grow, create, and make an impact.
-            </motion.p>
+              <DecryptedText
+                text={"I'm a dedicated Python Developer with hands-on experience in creating dynamic and responsive web applications. Over the past year, I've collaborated with talented teams to deliver projects that are not only scalable but also intuitive and user-friendly."}
+                animateOn="view"
+                revealDirection="start"
+                speed={150}
+                maxIterations={10}
+              />
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
+            >
+              <DecryptedText
+                text={"My passion for development began during college, and since then, coding has become both a craft and a curiosity for me. I thrive on learning new frameworks, experimenting with innovative solutions, and staying ahead of industry trends."}
+                animateOn="view"
+                revealDirection="start"
+                speed={150}
+                maxIterations={10}
+              />
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
+            >
+              <DecryptedText
+                text={"Outside of building apps, I enjoy reading books, listening to music, diving into open-source contributions, exploring emerging technologies, and sharing insights with the developer community through tutorials and blog posts. For me, every project is an opportunity to grow, create, and make an impact."}
+                animateOn="view"
+                revealDirection="start"
+                speed={150}
+                maxIterations={10}
+              />
+            </motion.div>
 
             <motion.div
               variants={itemVariants}

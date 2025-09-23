@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Code, Server, Database } from 'lucide-react';
+import ElectricBorder from './ElectricBorder';
 
 const skillsData = [
   {
@@ -88,34 +89,43 @@ const Skills: React.FC = () => {
             <motion.div
               key={category.category}
               variants={item}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 group relative overflow-hidden"
+              className="relative"
             >
-              {/* Decorative gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"></div>
-
-              <div className="flex items-center gap-2 mb-6">
-                {category.icon}
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{category.category}</h3>
-              </div>
-
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1 text-gray-700 dark:text-gray-300 font-medium">
-                      <span>{skill.name}</span>
-                      <span>{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
-                      <motion.div
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                        transition={{ duration: 1, ease: 'easeOut' }}
-                      />
-                    </div>
+              <ElectricBorder
+                color="#7df9ff"
+                speed={1}
+                chaos={0.5}
+                thickness={2}
+                style={{ borderRadius: 28, padding: "6px" }} // gap + rounded border
+              >
+                <div className="relative bg-white dark:bg-gray-900 rounded-2xl p-8 z-10">
+                  <div className="flex items-center gap-2 mb-6">
+                    {category.icon}
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {category.category}
+                    </h3>
                   </div>
-                ))}
-              </div>
+
+                  <div className="space-y-4">
+                    {category.skills.map((skill) => (
+                      <div key={skill.name}>
+                        <div className="flex justify-between mb-1 text-gray-700 dark:text-gray-300 font-medium">
+                          <span>{skill.name}</span>
+                          <span>{skill.level}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                          <motion.div
+                            className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
+                            initial={{ width: 0 }}
+                            animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
+                            transition={{ duration: 1, ease: 'easeOut' }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ElectricBorder>
             </motion.div>
           ))}
         </motion.div>

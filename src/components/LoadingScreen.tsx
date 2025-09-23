@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code2 } from 'lucide-react';
+import SplitText from "./SplitText";
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -42,19 +43,22 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-2xl md:text-3xl font-extrabold text-gray-900 dark:text-white mb-4"
+          transition={{ duration: 0.4 }}
+          className="text-3xl font-semibold text-center text-gray-900 dark:text-white mb-4"
         >
-          {"Loading ...".split("").map((letter, index) => (
-            <motion.span
-              key={index}
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: index * 0.05 }}
-              className="inline-block"
-            >
-              {letter}
-            </motion.span>
-          ))}
+          <SplitText
+            text="Loading wait..."
+            className="inline-block"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+          />
         </motion.h1>
         
         <div className="w-64 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">

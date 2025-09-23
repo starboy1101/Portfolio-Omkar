@@ -18,7 +18,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ strings, className = '' }) 
       backDelay: 2000,
       loop: true,
       showCursor: true,
-      cursorChar: '|',
+      cursorChar: '_',
     };
 
     if (el.current) {

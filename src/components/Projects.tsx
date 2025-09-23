@@ -6,6 +6,7 @@ import Weather from '../assets/Weatherimg.png';
 import Bike from '../assets/Bikeimg.png';
 import AIchat from '../assets/AIchat.jpg';
 import LOS from '../assets/LOS.png';
+import SplitText from "./SplitText";
 
 const Projects: React.FC = () => {
   const ref = useRef(null);
@@ -160,8 +161,19 @@ const Projects: React.FC = () => {
 
               {/* Right Side Info */}
               <div className="md:col-span-7 flex flex-col justify-start px-3 md:px-0">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {project.title}
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <SplitText
+                text={project.title}
+                className="inline-block"
+                delay={100}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
                 </h3>
                 <ul className="list-disc list-outside pl-8 text-muted-foreground dark:text-gray-300 max-w-full text-lg mb-6 space-y-6">
                   {project.description.map((point, i) => (
