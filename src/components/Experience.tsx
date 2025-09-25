@@ -99,7 +99,7 @@ const itemVariants = {
 };
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="experience" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Parallax background glow */}
       <motion.div
         style={{ y: yParallax }}

@@ -104,11 +104,11 @@ const RollingGallery: React.FC<RollingGalleryProps> = ({ autoplay = false, pause
     <div className="relative h-[250px] w-full overflow-hidden">
       <div
         className="absolute top-0 left-0 h-full w-[100px] z-10 pointer-events-none 
-                  bg-gradient-to-l from-transparent to-gray-50 dark:to-gray-900"
+                  bg-gradient-to-l from-transparent to-white dark:to-gray-900"
       />
       <div
         className="absolute top-0 right-0 h-full w-[100px] z-10 pointer-events-none 
-                  bg-gradient-to-r from-transparent to-gray-50 dark:to-gray-900"
+                  bg-gradient-to-r from-transparent to-white dark:to-gray-900"
       />
       <div className="flex h-full items-center justify-center [perspective:1000px] [transform-style:preserve-3d]">
         <motion.div

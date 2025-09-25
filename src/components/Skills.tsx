@@ -2,7 +2,7 @@ import RollingGallery from "./RollingGallery";
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section id="skills" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">

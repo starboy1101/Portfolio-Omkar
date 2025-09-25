@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden"
+      className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto py-20 text-center">
         {/* Heading */}

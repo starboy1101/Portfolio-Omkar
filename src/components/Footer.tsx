@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   const links = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
 
   return (
-    <footer className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <footer className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0">
         <motion.div
