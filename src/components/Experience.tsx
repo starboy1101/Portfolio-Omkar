@@ -100,15 +100,6 @@ const itemVariants = {
 
   return (
     <section id="experience" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Parallax background glow */}
-      <motion.div
-        style={{ y: yParallax }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-        className="absolute top-20 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-blue-500 rounded-full blur-3xl"
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
