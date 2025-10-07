@@ -1,0 +1,106 @@
+/* Base card styles */
+.scroll-stack-card-demo {
+    font-size: clamp(0.7rem, 1.8vw, 3rem);
+    font-weight: 400;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; /* default column for mobile */
+    gap: 1rem;
+    white-space: nowrap;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1.5rem;
+}
+
+/* Wrapper for heading + description */
+.scroll-stack-card-demo .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Image container */
+.scroll-stack-card-demo .stack-img-container {
+    width: 100%;
+    height: 100%;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(4rem, 8vw, 8rem);
+    flex-shrink: 0;
+}
+
+/* Scroll stack inner padding */
+.scroll-stack-demo-container .scroll-stack-inner {
+    padding: 20vh 2rem 50rem;
+}
+
+/* Card background colors */
+.ssc-demo-1 { background-color: #5227ff; }
+.ssc-demo-2 { background-color: #f01e9c; }
+.ssc-demo-3 { background-color: #5227ff; }
+.ssc-demo-4 { background-color: #f01e9c; }
+
+/* Large screens: image left, heading + description right */
+@media only screen and (min-width: 1240px) {
+    .scroll-stack-card-demo {
+        flex-direction: row;
+        gap: 3rem;
+        text-align: left;
+        align-items: center;
+    }
+
+    .scroll-stack-demo-container .scroll-stack-inner {
+        padding: 20vh 5rem 50rem;
+    }
+
+    .scroll-stack-card-demo .stack-img-container {
+        width: 150px;
+        min-height: 120px;
+    }
+
+    .scroll-stack-card-demo h3, 
+    .scroll-stack-card-demo p {
+        white-space: normal; /* allow text to wrap */
+        overflow-wrap: break-word;
+    }
+}
+
+/* Small screens: stack vertically */
+@media only screen and (max-width: 650px) {
+    .scroll-stack-card-demo {
+        flex-direction: column; /* stack image above text */
+        align-items: center;    /* center everything horizontally */
+        justify-content: center; /* remove space-between effect */
+        padding: 1.5rem;
+        text-align: center;      /* center text */
+        gap: 0.5rem;
+    }
+
+    .scroll-stack-card-demo .stack-img-container {
+        width: 80px;       /* smaller image */
+        height: 80px;      /* smaller image */
+        min-height: auto;
+        font-size: 1rem;   /* smaller icon size if using icons */
+        margin: 0 auto;    /* center horizontally */
+    }
+
+    .scroll-stack-card-demo .card-content {
+        width: 120%;
+        text-align: left;      /* center text inside content */
+        margin: 0;               /* remove any default margins */
+        gap: 0.25rem;
+    }
+
+    .scroll-stack-card-demo h3, 
+    .scroll-stack-card-demo p {
+        white-space: normal; /* allow text to wrap */
+        overflow-wrap: break-word;
+    }
+}
+

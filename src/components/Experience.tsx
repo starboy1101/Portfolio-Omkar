@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { easeOut } from "framer-motion";
 import { Briefcase, GraduationCap, MapPin, Calendar } from 'lucide-react';
 
@@ -7,9 +7,6 @@ const Experience: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Scroll-based parallax
-  const { scrollY } = useScroll();
-  const yParallax = useTransform(scrollY, [0, 1000], [0, 150]); // Moves 150px down while scrolling
 
   const experiences = [
     {

@@ -13,6 +13,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SplashCursor from './components/SplashCursor'; 
+import Certification from "./components/Certification";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +38,7 @@ function App() {
               <Hero />
               <About />
               <Skills />
+              <Certification />
               <Projects />
               <Experience />
               <Contact />
