@@ -4,7 +4,7 @@ import mockup from '../assets/mockup.png';
 import Porfolio from '../assets/Portfolioimg.png';
 import Weather from '../assets/Weatherimg.png';
 import Bike from '../assets/Bikeimg.png';
-import AIchat from '../assets/AIchat.jpg';
+import AIchat from '../assets/AIchat.png';
 import LOS from '../assets/LOS.png';
 import SplitText from "./SplitText";
 
@@ -44,6 +44,19 @@ const Projects: React.FC = () => {
       liveUrl: "https://omkar-weatherapp.netlify.app",
     },
     {
+      title: "AI Chat Application",
+      description: [
+      'Built an AI-powered chat application using FastAPI and React with secure authentication, session management, and real-time streaming.',
+      'Developed a RAG pipeline using FAISS, SentenceTransformers, and Llama models for context-aware responses from domain data.',
+      'Implemented document processing, Supabase integration, and automated PDF report generation for end-to-end workflows.'
+      ],
+      mockup: mockup,
+      screenshot: AIchat,
+      technologies: ['Python', 'React', 'WebSocket/SSE', 'FastAPI', 'Supabase', 'RAG'],
+      githubUrl: 'https://github.com/starboy1101/AI_Chat_Bot_Backend',
+      liveUrl: 'https://swarai.netlify.app/',
+    },
+    {
       title: "Loan Onboarding System",
       description: [
         "A full-stack loan onboarding system for managing applications, financial details, and user accounts across banks.",
@@ -72,17 +85,6 @@ const Projects: React.FC = () => {
       technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
       githubUrl: "https://github.com/yourusername/bike-ride-app",
       liveUrl: "https://your-bikeride-app.com",
-    },
-    {
-      title: "AI Chat Application",
-      description: [
-        "Real-time chat application with AI integration, message encryption, file sharing, and multi-language support.",
-      ],
-      mockup: mockup,
-      screenshot: AIchat,
-      technologies: ['React', 'WebSocket', 'OpenAI API', 'Firebase', 'Material-UI'],
-      githubUrl: 'https://github.com/yourusername/ai-chat',
-      liveUrl: 'https://your-ai-chat.com',
     },
   ];
 

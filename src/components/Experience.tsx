@@ -11,8 +11,8 @@ const Experience: React.FC = () => {
   const experiences = [
     {
       type: 'work',
-      // title: 'Associate Software Engineer',
-      title: 'Python Developer',
+      title: 'Associate Software Engineer',
+      // title: 'Python Developer',
       company: 'Einfochips',
       location: 'Pune, Maharashtra',
       period: 'Jan 2025 - Present',
@@ -26,18 +26,19 @@ const Experience: React.FC = () => {
       description: [
         'Engineered an AI-powered head tracking system using Python, OpenCV, and Mediapipe for real-time face and head movement detection.',
         'Delivered immersive audio-visual experiences by integrating head tracking into music and movie applications.',
-        'Optimized Python modules for scalability, clean code practices, and high performance.',
         'Integrated ML models with PyTorch/TensorFlow to enhance detection accuracy and responsiveness.',
-        'Showcased strong expertise in computer vision, applied AI, and real-time system development.'
+        'Built and optimized an AI chat application using FastAPI and React, ensuring scalable architecture, secure authentication, and real-time response streaming.',
+        'Developed and integrated a RAG pipeline (FAISS, SentenceTransformers, Llama) for context-aware responses and improved system performance.',
+        'Implemented document processing, Supabase integration, and automated PDF reporting, demonstrating expertise in applied AI and end-to-end system development.'
       ],
       // technologies: ['C++', 'C#', 'WASAPI']
-      technologies: ['Python', 'PyTorch', 'OpenCV']
+      technologies: ['Python', 'PyTorch', 'FastAPI', 'OpenCV', 'FastAPI', 'Supabase', 'WebSockets/SSE']
     },
     {
       type: 'work',
       // title: 'Full Stack Developer',
-      title: 'Full Stack Developer',
-      company: 'Markytics.ai',
+      title: 'Data Analyst Intern ',
+      company: 'VidyarthiMitra.org',
       location: 'Pune, Maharashtra',
       period: 'June 2024 - Dec 2024',
       // description: [
@@ -47,12 +48,12 @@ const Experience: React.FC = () => {
       //   'Participated in agile development processes and code reviews'
       // ],
       description: [
-        'Developed a full-stack web application using Django, HTML, and CSS for book listing and sales functionality.',
-        'Enhanced user experience by implementing features to buy, sell, and view books seamlessly.',
-        'Collaborated with cross-functional teams to integrate, test, and deploy the solution effectively.',
-        'Contributed to both backend logic and frontend design to deliver a polished and functional product.'
+        'Cleaned, transformed, and analyzed large datasets using Python (Pandas) and SQL, creating reusable data pipelines and structured mappings.',
+        'Developed interactive Tableau dashboards to visualize KPIs, trends, and actionable business insights.',
+        'Performed exploratory data analysis (EDA) and data validation to improve data quality and support data-driven decision-making.',
+        'Collaborated with stakeholders to gather requirements, automate reporting, and deliver insights aligned with business objectives.'
       ],
-      technologies: ['Python', 'Django', 'PostgreSQL', 'HTML', 'CSS']
+      technologies: ['Python', 'PostgreSQL', 'SQL']
     },
     {
       type: 'education',
