@@ -1,70 +1,165 @@
-# 🚀 Omkar Mahabdi Portfolio
+# Omkar Portfolio with Ask Omkar AI
 
-Welcome to my personal portfolio!  
-Explore my journey, featured projects, and the skills I bring to web development.
+This repository deploys as three separate services:
 
----
+```text
+Visitor
+  -> Render Static Site (React/Vite portfolio)
+  -> Render Web Service (FastAPI, security, RAG, actions)
+  -> Hugging Face Gradio ZeroGPU Space (Qwen3-4B inference only)
+```
 
-## 👋 About Me
+The browser never calls Hugging Face directly. The FastAPI backend builds a
+bounded prompt from audited portfolio data, removes personal data, calls the
+named Gradio endpoint, and validates all UI actions itself. If ZeroGPU is
+sleeping, queued, out of quota, or unavailable, the backend returns an honest
+evidence-grounded response without running a local language model.
 
-Hi, I'm Omkar Mahabdi, Passionate about creating exceptional digital experiences and solving complex problems with clean solutions.
+## Deployment files
 
----
+- [`render.yaml`](render.yaml): Render Blueprint for both the static frontend
+  and FastAPI backend, including automatic URL/CORS wiring.
+- [`DEPLOYMENT.md`](DEPLOYMENT.md): start-to-finish deployment and
+  troubleshooting guide.
+- [`backend/huggingface-space/`](backend/huggingface-space): the three files to
+  copy into a separate Hugging Face Gradio ZeroGPU Space.
+- [`backend/.env.example`](backend/.env.example): all backend configuration.
 
-## 🖼️ Website Preview
+The previous llama.cpp/GGUF provider, direct Hugging Face Inference provider,
+and FastAPI-mounted Gradio console have been removed. Qwen inference now happens
+only in the dedicated ZeroGPU Space.
 
-### 🏠 Home Page
-![Screenshot 1](src/assets/Screenshot%202025-08-26%20171318.png)
-### 👤 About Section
-![Screenshot 2](src/assets/Screenshot%202025-08-26%20171346.png)
+## Main technology choices
 
----
+| Layer | Choice |
+| --- | --- |
+| Frontend | React 18, Vite, TypeScript, Tailwind CSS, Motion |
+| Backend | FastAPI, Pydantic, SSE, `gradio_client` |
+| Default retrieval | Lightweight lexical retrieval on Render |
+| Optional retrieval | BGE embeddings plus FAISS via a separate requirements file |
+| Generative model | `Qwen/Qwen3-4B-Instruct-2507` on Hugging Face ZeroGPU |
+| Failure path | Audited deterministic answers; no local LLM |
 
-## 🛠️ Skills
+`data/portfolio.json` is the shared audited content source. Resume facts govern
+employment and education, while portfolio-only project evidence stays clearly
+separate. Model text cannot execute code, select arbitrary URLs, or invent
+frontend actions.
 
-**Frontend**
-- HTML
-- CSS
-- Tailwind CSS
-- React
-- TypeScript
-- Next.js
+## Repository structure
 
-**Backend**
-- Node.js
-- Python
-- Express.js
+```text
+.
+|-- data/portfolio.json
+|-- src/                         # React portfolio and assistant UI
+|-- backend/
+|   |-- app/api/                 # FastAPI routes
+|   |-- app/services/            # chat, RAG, model gateway, email, security
+|   |-- huggingface-space/       # copy into the separate Gradio Space
+|   |-- requirements.txt         # lightweight Render dependencies
+|   |-- requirements-semantic-rag.txt
+|   `-- tests/
+|-- render.yaml                  # frontend + backend Blueprint
+|-- DEPLOYMENT.md
+`-- .env.example                 # frontend API origin
+```
 
-**Database & Cloud**
-- PostgreSQL
-- MongoDB
-- AWS
+## Local development
 
----
+Prerequisites: Node.js 18+ and Python 3.11.
 
-## 🌟 Featured Projects
+Backend, from the repository root:
 
-| Project                    | Description                        | Tech Stack    |
-|----------------------------|------------------------------------|---------------|
-| [Portfolio Website](https://omkar-mahabdi-portfolio.netlify.app/)         | Responsive portfolio website with dark mode, animations, and contact form. Built with modern web technologies.                  | React, TypeScript, Framer Motion, Tailwind CSS     |
-| Weather Dashboard          | A responsive weather dashboard with location-based forecasts, interactive maps, and historical weather data visualization.                  | Vue.js, D3.js, OpenWeather API, Tailwind CSS     |
+```bash
+python -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+# macOS/Linux: source .venv/bin/activate
+python -m pip install -r backend/requirements.txt
+```
 
----
+Copy `backend/.env.example` to `backend/.env`. For real Qwen answers, set:
 
-## 📫 Connect With Me
+```dotenv
+HF_GRADIO_SPACE_ID=YOUR_HF_USERNAME/YOUR_SPACE_NAME
+HF_GRADIO_API_NAME=/generate
+HF_TOKEN=hf_your_backend_only_read_token
+```
 
-- 🌐 [Portfolio Website](https://omkar-mahabdi-portfolio.netlify.app/)
-- 💼 [LinkedIn](www.linkedin.com/in/omkar-mahabdi)
-- 📧 [Email](omkarmahabdi007@gmail.com)
+Then start FastAPI:
 
----
+```bash
+uvicorn backend.app.main:app --reload --port 7860
+```
 
-## ✨ Fun Facts
+Frontend:
 
-- I love experimenting with new technologies every month and often challenge myself to build mini-projects with them.
-- Favorite Quote: ‘Code is like humor. When you have to explain it, it’s bad.’ – Cory House
+```bash
+npm install
+npm run dev
+```
 
----
+The frontend defaults to `http://localhost:7860` through `.env.example`. Useful
+backend URLs are `/docs`, `/health`, and `/ready`.
 
-Thank you for visiting my portfolio!  
-Feel free to explore my projects or connect with me for collaboration.
+The dedicated Qwen Space is not required for local correctness. Leave
+`HF_GRADIO_SPACE_ID` blank to exercise the no-model fallback. ZeroGPU itself is
+a Hugging Face runtime; deploy the files instead of trying to emulate ZeroGPU on
+a normal local CPU.
+
+## Backend variables
+
+| Variable | Purpose |
+| --- | --- |
+| `HF_GRADIO_SPACE_ID` | Hugging Face Space ID, such as `owner/space` |
+| `HF_GRADIO_API_NAME` | Stable named endpoint; keep `/generate` |
+| `HF_TOKEN` | Backend-only HF read token; never expose as `VITE_*` |
+| `HF_GRADIO_TIMEOUT_SECONDS` | Queue/network/job timeout |
+| `LLM_MAX_TOKENS`, `LLM_TEMPERATURE` | Bounded generation settings |
+| `CORS_ORIGINS` | Allowed Render frontend origin(s) |
+| `ENABLE_SEMANTIC_RAG` | Optional BGE + FAISS path; defaults to `false` |
+| `TRUST_PROXY_HEADERS` | Enabled by the Render Blueprint for per-client limits |
+
+For optional semantic retrieval locally or on a larger service:
+
+```bash
+python -m pip install -r backend/requirements-semantic-rag.txt
+```
+
+Then set `ENABLE_SEMANTIC_RAG=true`. Keep it disabled on Render's 512 MB free
+web service; lexical retrieval is always available.
+
+## API surface
+
+| Method | Route | Purpose |
+| --- | --- | --- |
+| `GET` | `/health`, `/ready` | Liveness and readiness |
+| `GET` | `/api/profile`, `/api/projects`, `/api/skills` | Audited portfolio data |
+| `POST` | `/api/chat` | Grounded response, sources, actions, suggestions |
+| `POST` | `/api/chat/stream` | SSE response stream with an early connection marker |
+| `POST` | `/api/jd/analyze` | Evidence-based job-description comparison |
+| `POST` | `/api/resume/email`, `/api/contact` | Validated delivery flows |
+
+## Verification
+
+```bash
+npm run check
+python -m pip install -r backend/requirements-dev.txt
+python -m pytest -c backend/pytest.ini backend/tests
+```
+
+Tests mock the Gradio client. They do not download Qwen or consume ZeroGPU
+quota.
+
+## Free-tier constraints
+
+- Render's free FastAPI service sleeps after inactivity, and a ZeroGPU Space may
+  also sleep or queue. The first response can therefore be noticeably slower.
+- Render's free web service is intentionally kept lightweight: no Qwen weights,
+  Torch, SentenceTransformers, full Gradio, or FAISS are installed there.
+- Authenticated server-to-Space calls share the Hugging Face token owner's
+  ZeroGPU quota. This design fits a low-traffic portfolio demo.
+- Render blocks outbound SMTP ports on free web services. The existing SMTP
+  endpoints need a paid backend or a future HTTPS email-provider adapter.
+- In-memory rate limits reset when the backend restarts and are intended for one
+  Uvicorn worker.
+
+See [`DEPLOYMENT.md`](DEPLOYMENT.md) before deploying.

@@ -1,187 +1,92 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Heart, Github, Linkedin, Twitter } from "lucide-react";
+import { Bot, Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import { openPortfolioAssistant } from '../data/assistantEvents';
+import { portfolio, SECTION_LINKS } from '../data/portfolio';
 
-const Footer: React.FC = () => {
-  const links = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
+const socialIcons = {
+  github: Github,
+  linkedin: Linkedin,
+  instagram: Instagram,
+} as const;
 
-  return (
-    <footer className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0">
-        <motion.div
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                     w-[160%] h-[160%] rounded-full bg-gradient-to-r 
-                     from-blue-600 via-purple-600 to-pink-600 blur-[200px]"
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="grid md:grid-cols-3 gap-12 mb-12"
-        >
-          {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4 dark:text-white">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Omkar Mahabdi
-              </span>
-            </h3>
-            <p className="text-muted-foreground dark:text-gray-300">
-              Passionate about creating exceptional digital experiences and
-              solving complex problems with clean solutions.
-            </p>
-          <div className="flex gap-6 mt-6">
-            <motion.a
-              href="https://www.linkedin.com/in/omkar-mahabdi"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.3, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="text-muted-foreground dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-600 transition-colors text-2xl"
-            >
-              <Linkedin />
-            </motion.a>
-
-            <motion.a
-
-              href="https://github.com/starboy1101"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.3, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg hover:text-blue-600 dark:hover:text-blue-600 transition-colors text-2xl"
-            >
-              <Github />
-            </motion.a>
-
-            <motion.a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.3, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg hover:text-sky-500 dark:hover:text-sky-500 transition-colors text-2xl"
-            >
-              <Twitter />
-            </motion.a>
-          </div>
-          </div>
-          <motion.div
-            className="flex flex-wrap md:flex-nowrap justify-between gap-24"
+const Footer = () => (
+  <footer className="border-t border-border bg-slate-950 py-14 text-slate-200">
+    <div className="section-shell">
+      <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div className="max-w-md">
+          <a href="#home" className="inline-flex min-h-11 items-center gap-3 rounded-xl font-bold text-white">
+            <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-violet-500 text-sm" aria-hidden="true">
+              OM
+            </span>
+            {portfolio.profile.display_name}
+          </a>
+          <p className="mt-4 text-sm leading-6 text-slate-300">{portfolio.profile.positioning}</p>
+          <button
+            type="button"
+            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-brand-50"
+            onClick={() =>
+              openPortfolioAssistant({
+                prompt: 'What should I explore next in Omkar’s portfolio?',
+                autoSend: true,
+              })
+            }
           >
-            {/* Quick Links */}
-            <div className="flex-1 min-w-[150px]">
-              <h4 className="text-muted-foreground dark:text-gray-300 mb-4">Quick Links</h4>
-              <nav className="space-y-2">
-                {links.map((item) => (
-                  <motion.a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="group flex items-center text-muted-foreground dark:text-gray-300 hover: transition-colors duration-300"
-                    whileHover={{ x: 4, scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 250 }}
+            <Bot className="size-4" aria-hidden="true" />
+            Ask Omkar AI
+          </button>
+        </div>
+
+        <nav aria-label="Footer navigation">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-white">Explore</h2>
+          <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 lg:grid-cols-1">
+            {SECTION_LINKS.map((link) => (
+              <li key={link.id}>
+                <a href={`#${link.id}`} className="inline-flex min-h-7 items-center text-sm text-slate-300 transition hover:text-white">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <h2 className="text-sm font-bold uppercase tracking-wider text-white">Connect</h2>
+          <ul className="mt-4 space-y-1">
+            {portfolio.profile.social_links.map((social) => {
+              const Icon = socialIcons[social.id as keyof typeof socialIcons];
+              if (!Icon) return null;
+              return (
+                <li key={social.id}>
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-11 items-center gap-2 text-sm text-slate-300 transition hover:text-white"
                   >
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-blue-500 mr-2">
-                      •
-                    </span>
-                    {item}
-                  </motion.a>
-                ))}
-              </nav>
-            </div>
-
-            {/* Services */}
-            <div className="flex-1 min-w-[150px]">
-              <h4 className="text-muted-foreground dark:text-gray-300 mb-4">Services</h4>
-              <nav className="space-y-3">
-                {["Web Development", "Mobile Development", "UI/UX Design", "Consulting"].map(
-                  (service) => (
-                    <motion.a
-                      key={service}
-                      href={`#`}
-                      className="group flex items-center text-muted-foreground dark:text-gray-300 hover: transition-colors duration-300"
-                      whileHover={{ x: 6, scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 250 }}
-                    >
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-blue-500 mr-2">
-                        •
-                      </span>
-                      {service}
-                    </motion.a>
-                  )
-                )}
-              </nav>
-            </div>
-
-            {/* Legal */}
-            <div className="flex-1 min-w-[150px]">
-              <h4 className="text-muted-foreground dark:text-gray-300 mb-4">Legal</h4>
-              <nav className="space-y-3">
-                {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((legal) => (
-                  <motion.a
-                    key={legal}
-                    href={`#`}
-                    className="group flex items-center text-muted-foreground dark:text-gray-300 hover: transition-colors duration-300"
-                    whileHover={{ x: 6, scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 250 }}
-                  >
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-blue-500 mr-2">
-                      •
-                    </span>
-                    {legal}
-                  </motion.a>
-                ))}
-              </nav>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="border-t border-gray-800 pt-8"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            {/* Animated Text */}
-            <motion.p
-              animate={{ y: [0, -3, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-muted-foreground dark:text-gray-300 flex items-center gap-2"
-            >
-              Made with{" "}
-              <Heart
-                className="text-red-500 animate-pulse"
-                size={16}
-                fill="currentColor"
-              />
-              Omkar Mahabdi
-            </motion.p>
-            <p className="text-muted-foreground dark:text-gray-300 text-sm">
-              © {new Date().getFullYear()} Omkar Mahabdi. All rights reserved.
-            </p>
-          </div>
-        </motion.div>
+                    <Icon className="size-4" aria-hidden="true" />
+                    {social.label}
+                  </a>
+                </li>
+              );
+            })}
+            <li>
+              <a
+                href={`mailto:${portfolio.profile.contact.email}`}
+                className="inline-flex min-h-11 items-center gap-2 text-sm text-slate-300 transition hover:text-white"
+              >
+                <Mail className="size-4" aria-hidden="true" />
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </footer>
-  );
-};
+
+      <div className="mt-10 flex flex-col gap-2 border-t border-slate-800 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} {portfolio.profile.display_name}. All rights reserved.</p>
+        <p>Built with React, TypeScript, Python, and an evidence-first AI assistant.</p>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

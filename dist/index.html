@@ -2,40 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Omkar Mahabdi - Software Engineer. Building exceptional digital experiences with modern technologies." />
-    <meta name="keywords" content="software engineer, full stack developer, react, node.js, portfolio" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta
+      name="description"
+      content="Omkar Mahabdi is a software engineer and Python developer building AI-enabled, RAG, backend, and modern web applications."
+    />
+    <meta
+      name="keywords"
+      content="Omkar Mahabdi, software engineer, Python developer, RAG, FastAPI, React, generative AI, portfolio"
+    />
     <meta name="author" content="Omkar Mahabdi" />
-    
-    <!-- Open Graph / Facebook -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://omkar-mahabdi-portfolio.netlify.app/" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-domain.com/" />
-    <meta property="og:title" content="Omkar Mahabdi - Software Engineer" />
-    <meta property="og:description" content="Building exceptional digital experiences with modern technologies." />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://your-domain.com/" />
-    <meta property="twitter:title" content="Omkar Mahabdi - Software Engineer" />
-    <meta property="twitter:description" content="Building exceptional digital experiences with modern technologies." />
-    
-    <title>Omkar Mahabdi | Software Engineer</title>
-    
-    <style>
-      html {
-        scroll-behavior: smooth;
+    <meta property="og:site_name" content="Omkar Mahabdi Portfolio" />
+    <meta property="og:url" content="https://omkar-mahabdi-portfolio.netlify.app/" />
+    <meta property="og:title" content="Omkar Mahabdi | AI Portfolio & Python Engineer" />
+    <meta
+      property="og:description"
+      content="Building AI-enabled and full-stack applications with Python, RAG, and modern web technologies."
+    />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Omkar Mahabdi | AI Portfolio & Python Engineer" />
+    <meta
+      name="twitter:description"
+      content="Building AI-enabled and full-stack applications with Python, RAG, and modern web technologies."
+    />
+
+    <title>Omkar Mahabdi | AI Portfolio & Python Engineer</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch {
+        // The app theme provider applies the fallback after hydration.
       }
-      
-      .line-clamp-3 {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-    </style>
-    <script type="module" crossorigin src="/assets/index-udcpPzMi.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CmXeiujp.css">
+    </script>
+    <script type="module" crossorigin src="/assets/index-Njv2dt3n.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-mxp4n91G.css">
   </head>
   <body>
     <div id="root"></div>

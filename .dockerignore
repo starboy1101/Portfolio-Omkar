@@ -1,0 +1,16 @@
+.git
+.env
+backend/.env
+.venv
+node_modules
+dist
+.agents
+.codex
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+backend/tests
+src/assets/*.png
+src/assets/*.jpg
+src/assets/*.jpeg
+src/assets/*.webp

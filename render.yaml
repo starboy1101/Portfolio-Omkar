@@ -1,0 +1,76 @@
+services:
+  - type: web
+    name: omkar-mahabdi-portfolio
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_AI_API_URL
+        fromService:
+          type: web
+          name: omkar-mahabdi-portfolio-api
+          envVarKey: RENDER_EXTERNAL_URL
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: "camera=(), microphone=(), geolocation=()"
+      - path: /*
+        name: Cross-Origin-Opener-Policy
+        value: same-origin-allow-popups
+      - path: /assets/*
+        name: Cache-Control
+        value: "public, max-age=31536000, immutable"
+
+  - type: web
+    name: omkar-mahabdi-portfolio-api
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: python -m pip install --upgrade pip && python -m pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.11"
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: CORS_ORIGINS
+        fromService:
+          type: web
+          name: omkar-mahabdi-portfolio
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: CORS_ALLOW_CREDENTIALS
+        value: "false"
+      - key: TRUST_PROXY_HEADERS
+        value: "true"
+      - key: PORTFOLIO_URL
+        fromService:
+          type: web
+          name: omkar-mahabdi-portfolio
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: ENABLE_SEMANTIC_RAG
+        value: "false"
+      - key: HF_GRADIO_SPACE_ID
+        sync: false
+      - key: HF_GRADIO_API_NAME
+        value: /generate
+      - key: HF_GRADIO_TIMEOUT_SECONDS
+        value: "180"
+      - key: LLM_MAX_TOKENS
+        value: "384"
+      - key: LLM_TEMPERATURE
+        value: "0.2"
+      - key: HF_TOKEN
+        sync: false

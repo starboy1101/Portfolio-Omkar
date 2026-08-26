@@ -61,7 +61,9 @@ const SplitText: React.FC<SplitTextProps> = ({
       if (el._rbsplitInstance) {
         try {
           el._rbsplitInstance.revert();
-        } catch (_) {}
+        } catch {
+          // GSAP can already have reverted the split during teardown.
+        }
         el._rbsplitInstance = undefined;
       }
 
@@ -126,7 +128,9 @@ const SplitText: React.FC<SplitTextProps> = ({
         });
         try {
           splitInstance.revert();
-        } catch (_) {}
+        } catch {
+          // GSAP can already have reverted the split during teardown.
+        }
         el._rbsplitInstance = undefined;
       };
     },

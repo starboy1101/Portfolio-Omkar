@@ -1,1 +1,22 @@
-node_modules
+node_modules/
+.agents/
+
+# Local environment and secrets
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# Python caches and optional index artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+backend/.cache/
+backend/data/index/
+*.tsbuildinfo
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db

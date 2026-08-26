@@ -1,103 +1,187 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Bot, Menu, Moon, Sun, X } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import { openPortfolioAssistant } from '../data/assistantEvents';
+import { portfolio, SECTION_LINKS } from '../data/portfolio';
 import GlassSurface from './GlassSurface';
 
-const Header: React.FC = () => {
+const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActiveSection(visible.target.id);
+      },
+      { rootMargin: '-28% 0px -62% 0px', threshold: [0, 0.1, 0.5] },
+    );
+
+    SECTION_LINKS.forEach(({ id }) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
-  const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
-  ];
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isMenuOpen]);
+
+  const askAi = () => {
+    setIsMenuOpen(false);
+    openPortfolioAssistant({
+      prompt: 'Give me a concise overview of Omkar’s experience and strongest projects.',
+      autoSend: true,
+      context: { sectionId: 'home' },
+    });
+  };
 
   return (
-    <header className="fixed top-2 w-full z-50">
-      <GlassSurface 
-        width="100%"
-        height={80}
-        borderRadius={40}
+    <header className="fixed inset-x-0 top-0 z-50 px-5 pt-3 sm:px-5" aria-label="Site header">
+      <a
+        href="#home"
+        className="sr-only rounded-lg bg-surface px-4 py-3 font-semibold text-foreground shadow-lg focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
       >
-        <div className="flex items-center h-16">
-          {/* Left: Name */}
-          <div className="absolute left-6">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold text-gray-900 dark:text-white"
+        Skip to portfolio content
+      </a>
+      <div className="mx-auto max-w-7xl">
+        <GlassSurface
+          width="100%"
+          height={76}
+          borderRadius={18}
+          darkMode={theme === 'dark'}
+          backgroundOpacity={theme === 'dark' ? 0.58 : 0.68}
+          saturation={1.35}
+          blur={12}
+          distortionScale={-90}
+          greenOffset={6}
+          blueOffset={12}
+          className="border border-white/50 shadow-lg shadow-slate-950/10 dark:border-white/15"
+        >
+          <div className="flex h-full w-full items-center gap-3 px-2 sm:px-3">
+            <a
+              href="#home"
+              className="flex min-h-11 min-w-0 items-center gap-3 rounded-xl font-semibold text-foreground"
+              aria-label={`${portfolio.profile.display_name}, home`}
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Omkar Mahabdi
-              </span>
-            </motion.div>
-          </div>
-
-          {/* Center: Navigation */}
-          <nav className="hidden lg:flex space-x-8 mx-auto">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+              <span
+                className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-violet-600 text-sm font-bold text-white"
+                aria-hidden="true"
               >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+                OM
+              </span>
+              <span className="hidden truncate sm:inline">{portfolio.profile.display_name}</span>
+            </a>
 
-          {/* Right: Theme + Menu */}
-          <div className="absolute right-6 flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-            >
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
-
-            <button
-              className="lg:hidden p-2 text-gray-700 dark:text-gray-300"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </GlassSurface>
-
-      {/* Mobile Navigation Dropdown (Glass) */}
-      {isMenuOpen && (
-        <div className="mt-2 lg:hidden">
-          <GlassSurface width="100%" height="auto" borderRadius={20}>
-            <div className="grid grid-cols-3 gap-4 px-6 py-4 text-center">
-              {navItems.map((item) => (
+            <nav className="mx-auto hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
+              {SECTION_LINKS.map((item) => (
                 <a
-                  key={item.href}
-                  href={item.href}
-                  className="py-2 px-3 text-gray-700 dark:text-gray-300 rounded-lg"
-                  onClick={() => setIsMenuOpen(false)}
+                  key={item.id}
+                  href={`#${item.id}`}
+                  aria-current={activeSection === item.id ? 'location' : undefined}
+                  className={`rounded-lg px-2.5 py-2 text-sm font-medium transition ${
+                    activeSection === item.id
+                      ? 'bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                  }`}
                 >
                   {item.label}
                 </a>
               ))}
+            </nav>
+
+            <div className="ml-auto flex items-center gap-2 xl:ml-0">
+              <button type="button" className="button-primary hidden lg:inline-flex" onClick={askAi}>
+                <Bot className="size-4" aria-hidden="true" />
+                Ask Omkar AI
+              </button>
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="grid size-11 place-items-center rounded-xl border border-border bg-surface text-muted-foreground transition hover:text-foreground"
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+              >
+                {theme === 'light' ? (
+                  <Moon className="size-5" aria-hidden="true" />
+                ) : (
+                  <Sun className="size-5" aria-hidden="true" />
+                )}
+              </button>
+              <button
+                type="button"
+                className="grid size-11 place-items-center rounded-xl border border-border bg-surface text-muted-foreground transition hover:text-foreground xl:hidden"
+                onClick={() => setIsMenuOpen((open) => !open)}
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-navigation"
+                aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              >
+                {isMenuOpen ? (
+                  <X className="size-5" aria-hidden="true" />
+                ) : (
+                  <Menu className="size-5" aria-hidden="true" />
+                )}
+              </button>
             </div>
+          </div>
+        </GlassSurface>
+
+        {isMenuOpen && (
+          <GlassSurface
+            width="100%"
+            height="auto"
+            borderRadius={18}
+            darkMode={theme === 'dark'}
+            backgroundOpacity={theme === 'dark' ? 0.64 : 0.74}
+            saturation={1.35}
+            blur={12}
+            distortionScale={-70}
+            greenOffset={5}
+            blueOffset={10}
+            className="mt-2 border border-white/50 shadow-lg shadow-slate-950/10 dark:border-white/15 xl:hidden"
+          >
+            <nav
+              id="mobile-navigation"
+              className="w-full px-1 py-1"
+              aria-label="Mobile navigation"
+            >
+              <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
+                {SECTION_LINKS.map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    aria-current={activeSection === item.id ? 'location' : undefined}
+                    className={`flex min-h-11 items-center rounded-xl px-3 py-2 text-sm font-medium ${
+                      activeSection === item.id
+                        ? 'bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+              <button type="button" className="button-primary mt-3 w-full lg:hidden" onClick={askAi}>
+                <Bot className="size-4" aria-hidden="true" />
+                Ask Omkar AI
+              </button>
+            </nav>
           </GlassSurface>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 };

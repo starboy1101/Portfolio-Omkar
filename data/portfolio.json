@@ -1,0 +1,479 @@
+{
+  "schema_version": "1.0.0",
+  "last_verified_from_sources": "2025-09-08",
+  "source_policy": {
+    "primary": "src/assets/Resume.pdf",
+    "secondary": [
+      "src/components/Projects.tsx",
+      "src/components/About.tsx",
+      "src/components/CertificationScrollStack.tsx",
+      "src/assets/Genai.png",
+      "src/assets/Datascience.png",
+      "src/assets/vector.png",
+      "src/assets/associate.jpeg"
+    ],
+    "rules": [
+      "Resume facts govern employment and education.",
+      "Portfolio-only work is labeled as portfolio evidence and is not attributed to an employer.",
+      "Role-positioning copy is based on verified skills and project evidence and is not presented as an employer title.",
+      "Placeholder links and unsupported metrics are excluded.",
+      "Present-tense employment is reported as stated in the September 2025 resume and should be reconfirmed before time-sensitive use."
+    ]
+  },
+  "profile": {
+    "id": "omkar-mahabdi",
+    "full_name": "Omkar Ganesh Mahabdi",
+    "display_name": "Omkar Mahabdi",
+    "headline": "AI/ML Developer & Python Engineer",
+    "positioning": "Building AI-enabled and full-stack applications with Python, RAG, and modern web technologies.",
+    "summary": "Omkar Ganesh Mahabdi is a Pune-based software engineer and Python developer. His resume documents C++ desktop-audio engineering, a prior MERN full-stack internship, and projects spanning React, TypeScript, Django, PostgreSQL, and cloud storage. His portfolio also demonstrates a RAG-based AI chat application built with FastAPI, FAISS, SentenceTransformers, Llama, React, and Supabase.",
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "postal_code": "411036",
+      "country": "India"
+    },
+    "contact": {
+      "email": "omkarmahabdi007@gmail.com",
+      "phone_display": "+91 70281 43066",
+      "phone_e164": "+917028143066"
+    },
+    "social_links": [
+      {
+        "id": "github",
+        "label": "GitHub",
+        "url": "https://github.com/starboy1101"
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/omkar-mahabdi"
+      },
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "url": "https://www.instagram.com/_mfstar_boy/",
+        "source_level": "portfolio_only"
+      }
+    ],
+    "portfolio_url": "https://omkar-mahabdi-portfolio.netlify.app"
+  },
+  "experience": [
+    {
+      "id": "einfochips-associate-engineer",
+      "employer": "EInfochips (An Arrow Company)",
+      "title": "Associate Engineer",
+      "location": "Pune, Maharashtra",
+      "work_mode": "On-site",
+      "start_date": "2025-01",
+      "end_date": null,
+      "period_label": "January 2025 – Present (as stated in the September 2025 resume)",
+      "status_note": "Current status after September 2025 has not been independently reconfirmed.",
+      "highlights": [
+        "Developed a real-time desktop audio recorder with input-level visualization and support for default and raw capture modes through WASAPI.",
+        "Integrated audio-device change detection and loopback recording using IAudioClient3 and Core Audio APIs."
+      ],
+      "technologies": [
+        "C++",
+        "MFC",
+        "WASAPI",
+        "IAudioClient3",
+        "Core Audio APIs"
+      ],
+      "source": "resume"
+    },
+    {
+      "id": "vidyarthimitra-full-stack-intern",
+      "employer": "Vidyarthimitra.org",
+      "title": "Full Stack Developer Intern",
+      "location": "Pune, Maharashtra",
+      "work_mode": "On-site",
+      "start_date": "2024-06",
+      "end_date": "2024-12",
+      "period_label": "June 2024 – December 2024",
+      "highlights": [
+        "Developed a MERN-stack website supporting student registration, college prediction, and exam enrollment.",
+        "Collaborated with cross-functional teams on integration, testing, and deployment."
+      ],
+      "technologies": [
+        "MongoDB",
+        "Express.js",
+        "React.js",
+        "Node.js"
+      ],
+      "source": "resume"
+    }
+  ],
+  "education": [
+    {
+      "id": "mit-wpu-btech-cse",
+      "institution": "MIT World Peace University",
+      "location": "Pune, Maharashtra",
+      "qualification": "BTech Computer Science Engineering",
+      "completion_year": 2025,
+      "score": "CGPA 8.5",
+      "source": "resume"
+    },
+    {
+      "id": "army-public-school-2020",
+      "institution": "Army Public School",
+      "location": "Pune, Maharashtra",
+      "qualification": "CBSE-X Science Stream (label reproduced exactly from the resume)",
+      "completion_year": 2020,
+      "score": "78%",
+      "needs_confirmation": true,
+      "note": "The resume labels both the 2020 and 2018 records CBSE-X. Do not infer that this record is Class XII without confirmation.",
+      "source": "resume"
+    },
+    {
+      "id": "army-public-school-2018",
+      "institution": "Army Public School",
+      "location": "Pune, Maharashtra",
+      "qualification": "CBSE-X Science Stream (label reproduced exactly from the resume)",
+      "completion_year": 2018,
+      "score": "81%",
+      "needs_confirmation": true,
+      "note": "The resume labels both the 2020 and 2018 records CBSE-X; the duplication needs confirmation.",
+      "source": "resume"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "hackmit-runner-up",
+      "title": "HackMIT runner-up",
+      "description": "Named as a runner-up in the HackMIT competition and as a hackathon participant in the resume.",
+      "source": "resume"
+    },
+    {
+      "id": "event-leadership",
+      "title": "Event organization leadership",
+      "description": "Spearheaded event-organization initiatives in HackMIT and RIDE, according to the resume.",
+      "source": "resume"
+    }
+  ],
+  "skill_categories": [
+    {
+      "id": "ai-ml-generative-ai",
+      "label": "AI, ML & Generative AI",
+      "skills": [
+        {
+          "name": "RAG",
+          "evidence": ["project:ai-chat-application"]
+        },
+        {
+          "name": "FAISS",
+          "evidence": ["project:ai-chat-application"]
+        },
+        {
+          "name": "SentenceTransformers",
+          "evidence": ["project:ai-chat-application"]
+        },
+        {
+          "name": "Llama",
+          "evidence": ["project:ai-chat-application"]
+        },
+        {
+          "name": "NLTK",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "NLP",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "GPT-3",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "OpenAI",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "Gemini Pro",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "Multimodal AI",
+          "evidence": ["resume:technical-skills"]
+        }
+      ]
+    },
+    {
+      "id": "python-backend",
+      "label": "Python & Backend",
+      "skills": [
+        {
+          "name": "Python",
+          "evidence": ["resume:technical-skills", "project:ai-chat-application"]
+        },
+        {
+          "name": "FastAPI",
+          "evidence": ["project:ai-chat-application"]
+        },
+        {
+          "name": "Django",
+          "evidence": ["resume:technical-skills", "project:loan-onboarding-system"]
+        },
+        {
+          "name": "Django REST Framework",
+          "evidence": ["project:loan-onboarding-system"]
+        },
+        {
+          "name": "Node.js",
+          "evidence": ["resume:technical-skills", "experience:vidyarthimitra-full-stack-intern"]
+        },
+        {
+          "name": "Express.js",
+          "evidence": ["resume:technical-skills", "experience:vidyarthimitra-full-stack-intern"]
+        },
+        {
+          "name": "REST APIs",
+          "evidence": ["project:loan-onboarding-system"]
+        },
+        {
+          "name": "WebSocket/SSE",
+          "evidence": ["project:ai-chat-application"]
+        }
+      ]
+    },
+    {
+      "id": "languages-frontend",
+      "label": "Languages & Frontend",
+      "skills": [
+        {
+          "name": "C++",
+          "evidence": ["resume:technical-skills", "experience:einfochips-associate-engineer"]
+        },
+        {
+          "name": "JavaScript",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "TypeScript",
+          "evidence": ["resume:technical-skills", "project:portfolio-website", "project:weather-dashboard"]
+        },
+        {
+          "name": "HTML5",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "CSS3",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "React.js",
+          "evidence": ["resume:technical-skills", "project:portfolio-website", "project:weather-dashboard", "project:ai-chat-application"]
+        },
+        {
+          "name": "React Native",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "Tailwind CSS",
+          "evidence": ["resume:technical-skills", "project:portfolio-website", "project:weather-dashboard", "project:rideasy-bike-booking"]
+        },
+        {
+          "name": "Framer Motion",
+          "evidence": ["project:portfolio-website", "project:weather-dashboard"]
+        }
+      ]
+    },
+    {
+      "id": "data-storage-cloud",
+      "label": "Data, Storage & Cloud",
+      "skills": [
+        {
+          "name": "MySQL",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "MongoDB",
+          "evidence": ["resume:technical-skills", "experience:vidyarthimitra-full-stack-intern", "project:rideasy-bike-booking"]
+        },
+        {
+          "name": "PostgreSQL",
+          "evidence": ["resume:technical-skills", "project:loan-onboarding-system"]
+        },
+        {
+          "name": "ChromaDB",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "Supabase",
+          "evidence": ["project:ai-chat-application"]
+        },
+        {
+          "name": "Google Cloud Storage",
+          "evidence": ["project:loan-onboarding-system"]
+        }
+      ]
+    },
+    {
+      "id": "systems-tools",
+      "label": "Systems & Tools",
+      "skills": [
+        {
+          "name": "MFC",
+          "evidence": ["experience:einfochips-associate-engineer"]
+        },
+        {
+          "name": "WASAPI",
+          "evidence": ["experience:einfochips-associate-engineer"]
+        },
+        {
+          "name": "Core Audio APIs",
+          "evidence": ["experience:einfochips-associate-engineer"]
+        },
+        {
+          "name": "Postman",
+          "evidence": ["resume:technical-skills"]
+        },
+        {
+          "name": "JWT",
+          "evidence": ["project:loan-onboarding-system"]
+        },
+        {
+          "name": "Netlify CI/CD",
+          "evidence": ["project:portfolio-website"]
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "ai-chat-application",
+      "title": "AI Chat Application",
+      "short_description": "A portfolio-backed AI chat application with authenticated sessions, streaming responses, document processing, and retrieval-augmented generation.",
+      "highlights": [
+        "Built with FastAPI and React, including secure authentication, session management, and real-time response streaming.",
+        "Uses a RAG pipeline with FAISS, SentenceTransformers, and Llama models for context-aware answers from domain data.",
+        "Includes document processing, Supabase integration, and automated PDF report generation."
+      ],
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "React.js",
+        "WebSocket/SSE",
+        "RAG",
+        "FAISS",
+        "SentenceTransformers",
+        "Llama",
+        "Supabase"
+      ],
+      "categories": ["AI/ML", "Generative AI", "RAG", "Python", "Full Stack"],
+      "links": {
+        "github": "https://github.com/starboy1101/AI_Chat_Bot_Backend",
+        "live": "https://swarai.netlify.app/"
+      },
+      "source": "portfolio",
+      "source_note": "Included as portfolio-backed project evidence; not attributed to an employer."
+    },
+    {
+      "id": "portfolio-website",
+      "title": "Portfolio Website",
+      "short_description": "A responsive developer portfolio with dark mode, motion, and an integrated contact form.",
+      "highlights": [
+        "Built with React, TypeScript, Framer Motion, and Tailwind CSS.",
+        "The resume reports optimization for performance, SEO, accessibility, and cross-browser compatibility through Netlify CI/CD."
+      ],
+      "technologies": ["React.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Netlify CI/CD"],
+      "categories": ["Frontend", "Full Stack"],
+      "links": {
+        "github": "https://github.com/starboy1101/Portfolio-Omkar",
+        "live": "https://omkar-mahabdi-portfolio.netlify.app"
+      },
+      "source": "resume_and_portfolio"
+    },
+    {
+      "id": "weather-dashboard",
+      "title": "Weather Dashboard",
+      "short_description": "A responsive weather application for real-time forecasts and city search.",
+      "highlights": [
+        "Displays real-time forecasts and supports city search through the OpenWeather API.",
+        "The resume describes dynamic day/night video backgrounds, smooth motion, and multi-device optimization."
+      ],
+      "technologies": ["React.js", "TypeScript", "Framer Motion", "OpenWeather API", "Tailwind CSS"],
+      "categories": ["Frontend", "Full Stack"],
+      "links": {
+        "github": "https://github.com/starboy1101/Weather-App",
+        "live": "https://omkar-weatherapp.netlify.app"
+      },
+      "source": "resume_and_portfolio"
+    },
+    {
+      "id": "rideasy-bike-booking",
+      "title": "RidEasy (Bike Booking)",
+      "aliases": ["Bike Ride Booking App"],
+      "short_description": "An online test-bike-ride booking application built around a MERN architecture.",
+      "highlights": [
+        "Developed a user-centered booking application with React, Tailwind CSS, Node.js, Express.js, and MongoDB.",
+        "The resume cites React Fiber for rendering and an agile, iterative development process."
+      ],
+      "technologies": ["Vite", "React.js", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "React Fiber"],
+      "categories": ["Full Stack"],
+      "links": {},
+      "source": "resume",
+      "source_note": "Placeholder GitHub and live URLs from the old component were excluded."
+    },
+    {
+      "id": "loan-onboarding-system",
+      "title": "Loan Onboarding System",
+      "short_description": "An internship project for secure, multi-tenant loan onboarding and file management.",
+      "highlights": [
+        "Built with Django and Django REST Framework using multi-tenant architecture and dynamic database routing.",
+        "Integrated PostgreSQL, Google Cloud Storage, and JWT authentication for secure files and sessions."
+      ],
+      "technologies": ["Python", "Django", "Django REST Framework", "PostgreSQL", "Google Cloud Storage", "JWT", "REST APIs"],
+      "categories": ["Python", "Backend", "Full Stack"],
+      "links": {
+        "live": "https://ajitbank.markytics.com/login"
+      },
+      "source": "resume_and_portfolio",
+      "source_note": "The placeholder GitHub URL from the old component was excluded."
+    }
+  ],
+  "certifications": [
+    {
+      "id": "oci-generative-ai-professional-2025",
+      "title": "Oracle Cloud Infrastructure Generative AI Professional",
+      "issuer": "Oracle",
+      "year": 2025,
+      "asset": "src/assets/Genai.png",
+      "verification_status": "portfolio_badge_asset",
+      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+    },
+    {
+      "id": "oci-data-science-professional-2025",
+      "title": "Oracle Cloud Infrastructure Data Science Professional",
+      "issuer": "Oracle",
+      "year": 2025,
+      "asset": "src/assets/Datascience.png",
+      "verification_status": "portfolio_badge_asset",
+      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+    },
+    {
+      "id": "oracle-ai-vector-search-professional-2025",
+      "title": "Oracle AI Vector Search Professional",
+      "issuer": "Oracle",
+      "year": 2025,
+      "asset": "src/assets/vector.png",
+      "verification_status": "portfolio_badge_asset",
+      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+    },
+    {
+      "id": "oci-ai-foundations-associate-2025",
+      "title": "Oracle Cloud Infrastructure AI Foundations Associate",
+      "issuer": "Oracle",
+      "year": 2025,
+      "asset": "src/assets/associate.jpeg",
+      "verification_status": "portfolio_badge_asset",
+      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+    }
+  ],
+  "known_unknowns": [
+    "The current status of the resume's January 2025–Present role after September 2025.",
+    "Whether the Army Public School 2020 qualification should be labeled CBSE-XII instead of the duplicated CBSE-X label.",
+    "Credential IDs and verification URLs for the certification badges.",
+    "Public repository links for RidEasy and the Loan Onboarding System."
+  ]
+}

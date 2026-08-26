@@ -1,167 +1,84 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import DecryptedText from './DecryptedText';
-import ProfileCard from './ProfileCard';
-import PersonImg from "../assets/Person.png";
-import iconpattern from"../assets/iconpattern.png";
-import grain from"../assets/grain.webp";
+import { ArrowRight, Award, CheckCircle2, MapPin } from 'lucide-react';
+import { openPortfolioAssistant } from '../data/assistantEvents';
+import { portfolio, PROFILE_PORTRAIT } from '../data/portfolio';
 
-const navItems = [ { href: '#contact', label: 'Contact' }, ];
-
-const About: React.FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
+const About = () => {
+  const { profile, achievements } = portfolio;
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
-        >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              About Me
-            </span>
-          </motion.h2>
-          <motion.div
-            variants={itemVariants}
-            className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"
-          />
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            className="flex justify-center"
-          >
-            <ProfileCard
-              name="Omkar Mahabdi"
-              title="Software Engineer"
-              handle="Omkar"
-              status="Online"
-              contactText="Contact Me"
-              avatarUrl= {PersonImg}
-              iconUrl = {iconpattern}
-              grainUrl = {grain}
-              showUserInfo={true}
-              enableTilt={true}
-              enableMobileTilt={true}
-              onContactClick={() => {
-                const contactItem = navItems.find(item => item.label === 'Contact');
-                if (contactItem) {
-                  window.location.href = contactItem.href; // redirects to the contact section/page
-                }
-              }}
+    <section id="about" className="bg-surface py-20 sm:py-28" aria-labelledby="about-heading">
+      <div className="section-shell">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="relative mx-auto w-full max-w-md">
+            <div
+              className="absolute inset-8 rounded-[2.5rem] bg-gradient-to-br from-brand-500/30 to-fuchsia-500/30 blur-3xl"
+              aria-hidden="true"
             />
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="space-y-6"
-          >
-            <motion.h3
-              variants={itemVariants}
-              className="text-2xl font-bold text-gray-900 dark:text-white"
-            >
-              Get to{' '} 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Know Me!
-              </span>
-            </motion.h3>
-
-            <motion.div
-              variants={itemVariants}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
-            >
-              <DecryptedText
-                text={"I'm a dedicated Python Developer with hands-on experience in creating dynamic and responsive web applications. Over the past year, I've collaborated with talented teams to deliver projects that are not only scalable but also intuitive and user-friendly."}
-                animateOn="view"
-                revealDirection="start"
-                speed={150}
-                maxIterations={10}
+            <div className="surface-card relative overflow-hidden bg-gradient-to-b from-brand-50 to-violet-100 p-5 dark:from-slate-800 dark:to-slate-900">
+              <img
+                src={PROFILE_PORTRAIT.src}
+                width={PROFILE_PORTRAIT.width}
+                height={PROFILE_PORTRAIT.height}
+                alt={`Portrait of ${profile.full_name}`}
+                loading="lazy"
+                decoding="async"
+                className="mx-auto h-auto w-full max-w-sm object-contain"
               />
-            </motion.div>
+              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/30 bg-slate-950/80 p-4 text-white shadow-xl backdrop-blur">
+                <p className="font-semibold">{profile.display_name}</p>
+                <p className="mt-1 text-sm text-slate-200">{profile.headline}</p>
+                <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-slate-300">
+                  <MapPin className="size-3.5" aria-hidden="true" />
+                  {profile.location.city}, {profile.location.state}
+                </p>
+              </div>
+            </div>
+          </div>
 
-            <motion.div
-              variants={itemVariants}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
-            >
-              <DecryptedText
-                text={"My passion for development began during college, and since then, coding has become both a craft and a curiosity for me. I thrive on learning new frameworks, experimenting with innovative solutions, and staying ahead of industry trends."}
-                animateOn="view"
-                revealDirection="start"
-                speed={150}
-                maxIterations={10}
-              />
-            </motion.div>
+          <div>
+            <p className="section-kicker">About</p>
+            <h2 id="about-heading" className="section-title">
+              Engineering experience first, applied AI evidence in context.
+            </h2>
+            <p className="section-copy">{profile.summary}</p>
 
-            <motion.div
-              variants={itemVariants}
-              className="text-muted-foreground dark:text-gray-300 max-w-full text-lg"
-            >
-              <DecryptedText
-                text={"Outside of building apps, I enjoy reading books, listening to music, diving into open-source contributions, exploring emerging technologies, and sharing insights with the developer community through tutorials and blog posts. For me, every project is an opportunity to grow, create, and make an impact."}
-                animateOn="view"
-                revealDirection="start"
-                speed={150}
-                maxIterations={10}
-              />
-            </motion.div>
+            <div className="mt-8 rounded-2xl border border-brand-200 bg-brand-50 p-5 dark:border-brand-500/30 dark:bg-brand-500/10">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-brand-600 dark:text-brand-400" aria-hidden="true" />
+                <div>
+                  <h3 className="font-semibold text-foreground">Résumé-first source policy</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                    Employment and education come from the résumé. Portfolio-only projects, including the AI chat application, are presented as project evidence and are not attributed to an employer.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-            <motion.div
-              variants={itemVariants}
-              className="grid grid-cols-2 gap-4"
-            >
-              {[
-                { label: 'Projects Completed', value: '15+' },
-                { label: 'Years Experience', value: '2+' },
-                { label: 'Technologies Worked With', value: '20+' },
-              ].map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                    {stat.label}
-                  </div>
-                </motion.div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {achievements.map((achievement) => (
+                <article key={achievement.id} className="rounded-2xl border border-border bg-background p-5">
+                  <Award className="size-5 text-brand-600 dark:text-brand-400" aria-hidden="true" />
+                  <h3 className="mt-3 font-semibold text-foreground">{achievement.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{achievement.description}</p>
+                </article>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+
+            <button
+              type="button"
+              className="button-secondary mt-8"
+              onClick={() =>
+                openPortfolioAssistant({
+                  prompt: 'Tell me about Omkar’s background using verified portfolio and résumé information.',
+                  autoSend: true,
+                  context: { sectionId: 'about' },
+                })
+              }
+            >
+              Ask AI about my background
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

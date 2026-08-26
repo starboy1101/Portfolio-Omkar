@@ -1,3 +1,120 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --color-background: 248 250 252;
+    --color-surface: 255 255 255;
+    --color-foreground: 15 23 42;
+    --color-muted: 241 245 249;
+    --color-muted-foreground: 71 85 105;
+    --color-border: 203 213 225;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    --color-background: 3 7 18;
+    --color-surface: 15 23 42;
+    --color-foreground: 241 245 249;
+    --color-muted: 30 41 59;
+    --color-muted-foreground: 203 213 225;
+    --color-border: 51 65 85;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
+
+  body {
+    @apply m-0 min-w-[320px] bg-background text-foreground antialiased;
+    font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  section {
+    scroll-margin-top: 6.5rem;
+  }
+
+  p,
+  li {
+    overflow-wrap: anywhere;
+  }
+
+  button,
+  a,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid #6366f1;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgb(99 102 241 / 0.25);
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-kicker {
+    @apply text-sm font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400;
+  }
+
+  .section-title {
+    @apply mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl;
+  }
+
+  .section-copy {
+    @apply mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg;
+  }
+
+  .surface-card {
+    @apply rounded-3xl border border-border/80 bg-surface/90 shadow-[0_18px_60px_-34px_rgba(15,23,42,0.45)] backdrop-blur;
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition hover:from-brand-700 hover:to-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-brand-400 hover:text-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:hover:text-brand-400;
+  }
+
+  .portfolio-highlight {
+    animation: portfolio-highlight 1.8s ease-out;
+  }
+}
+
+@keyframes portfolio-highlight {
+  0%,
+  35% {
+    box-shadow: 0 0 0 5px rgb(99 102 241 / 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(99 102 241 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

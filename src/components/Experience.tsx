@@ -1,216 +1,120 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { easeOut } from "framer-motion";
-import { Briefcase, GraduationCap, MapPin, Calendar } from 'lucide-react';
+import { Bot, BriefcaseBusiness, GraduationCap, MapPin } from 'lucide-react';
+import { openPortfolioAssistant } from '../data/assistantEvents';
+import { portfolio } from '../data/portfolio';
 
-const Experience: React.FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-
-  const experiences = [
-    {
-      type: 'work',
-      title: 'Associate Software Engineer',
-      // title: 'Python Developer',
-      company: 'Einfochips',
-      location: 'Pune, Maharashtra',
-      period: 'Jan 2025 - Present',
-      // description: [
-      //   'Developed a real-time desktop audio recorder with live input level visualization.',
-      //   'Supported both default and raw capture modes using WASAPI.',
-      //   'Implemented loopback recording via IAudioClient3 and Core Audio APIs.',
-      //   'Integrated real-time audio device change detection for seamless operation.',
-      //   'Improved application performance by 40% through optimization'
-      // ],
-      description: [
-        'Engineered an AI-powered head tracking system using Python, OpenCV, and Mediapipe for real-time face and head movement detection.',
-        'Delivered immersive audio-visual experiences by integrating head tracking into music and movie applications.',
-        'Integrated ML models with PyTorch/TensorFlow to enhance detection accuracy and responsiveness.',
-        'Built and optimized an AI chat application using FastAPI and React, ensuring scalable architecture, secure authentication, and real-time response streaming.',
-        'Developed and integrated a RAG pipeline (FAISS, SentenceTransformers, Llama) for context-aware responses and improved system performance.',
-        'Implemented document processing, Supabase integration, and automated PDF reporting, demonstrating expertise in applied AI and end-to-end system development.'
-      ],
-      // technologies: ['C++', 'C#', 'WASAPI']
-      technologies: ['Python', 'PyTorch', 'FastAPI', 'OpenCV', 'FastAPI', 'Supabase', 'WebSockets/SSE']
-    },
-    {
-      type: 'work',
-      // title: 'Full Stack Developer',
-      title: 'Data Analyst Intern ',
-      company: 'VidyarthiMitra.org',
-      location: 'Pune, Maharashtra',
-      period: 'June 2024 - Dec 2024',
-      // description: [
-      //   'Built responsive web applications using React and Express.js',
-      //   'Collaborated with designers to implement pixel-perfect UI/UX',
-      //   'Integrated third-party APIs and payment processing systems',
-      //   'Participated in agile development processes and code reviews'
-      // ],
-      description: [
-        'Cleaned, transformed, and analyzed large datasets using Python (Pandas) and SQL, creating reusable data pipelines and structured mappings.',
-        'Developed interactive Tableau dashboards to visualize KPIs, trends, and actionable business insights.',
-        'Performed exploratory data analysis (EDA) and data validation to improve data quality and support data-driven decision-making.',
-        'Collaborated with stakeholders to gather requirements, automate reporting, and deliver insights aligned with business objectives.'
-      ],
-      technologies: ['Python', 'PostgreSQL', 'SQL']
-    },
-    {
-      type: 'education',
-      title: 'Bachelor of Science in Computer Science',
-      company: 'MIT World Peace University',
-      location: 'Pune, Maharashtra',
-      period: '2021 - 2025',
-      description: [
-        'Graduated with 9.2 GPA',
-        'Relevant coursework: Data Structures, Algorithms, Database Systems',
-        'Completed capstone project on machine learning applications'
-      ],
-      technologies: ['Java', 'Python', 'C++', 'SQL', 'Machine Learning']
-    },
-    {
-      type: 'education',
-      title: '12th',
-      company: 'Army Public School',
-      location: 'Pune, Maharashtra',
-      period: '2019 - 2020',
-      description: ['Science Stream'],
-      technologies: ['']
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.3 },
-    },
-  };
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: easeOut },
-  },
-};
-
-  return (
-    <section id="experience" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+const Experience = () => (
+  <section id="experience" className="bg-background py-20 sm:py-28" aria-labelledby="experience-heading">
+    <div className="section-shell">
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-3xl">
+          <p className="section-kicker">Résumé-backed timeline</p>
+          <h2 id="experience-heading" className="section-title">
+            Professional experience and education.
+          </h2>
+          <p className="section-copy">
+            Role and education facts below follow the résumé source directly; uncertainty is called out instead of inferred.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="button-secondary w-fit"
+          onClick={() =>
+            openPortfolioAssistant({
+              prompt: 'Summarize Omkar’s verified professional experience and connect it to relevant projects.',
+              autoSend: true,
+              context: { sectionId: 'experience' },
+            })
+          }
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              Experience & Education
+          <Bot className="size-4" aria-hidden="true" />
+          Ask AI about experience
+        </button>
+      </div>
+
+      <div className="mt-12 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <h3 className="flex items-center gap-3 text-xl font-bold text-foreground">
+            <span className="grid size-11 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
+              <BriefcaseBusiness className="size-5" aria-hidden="true" />
             </span>
-          </motion.h2>
-          <motion.div
-            variants={itemVariants}
-            className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"
-          />
-        </motion.div>
-
-        <div className="relative">
-          {/* Timeline line with glowing animation */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute left-8 md:left-1/2 transform md:-translate-x-0.5 w-0.5 h-full bg-gradient-to-b from-blue-600 to-purple-600 shadow-[0_0_20px_rgba(59,130,246,0.7)]"
-          />
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="space-y-12"
-          >
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Timeline dot with glow + pulse */}
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-600 rounded-full shadow-[0_0_25px_rgba(59,130,246,1)] z-10 border-4 border-white dark:border-gray-900"
-                />
-
-                {/* Content Card */}
-                <div className={`ml-16 md:ml-0 md:w-1/2 ${
-                  index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
-                }`}>
-                  <motion.div
-                    className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-transform duration-300"
-                    whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 1 : -1 }}
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className={`p-2 rounded-full mr-3 ${
-                        exp.type === 'work' 
-                          ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
-                          : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
-                      }`}>
-                        {exp.type === 'work' ? <Briefcase size={20} /> : <GraduationCap size={20} />}
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {exp.title}
-                        </h3>
-                        <p className="text-blue-600 dark:text-blue-400 font-medium">
-                          {exp.company}
-                        </p>
-                      </div>
+            Experience
+          </h3>
+          <ol className="relative mt-7 space-y-6 border-l border-border pl-6 sm:pl-8">
+            {portfolio.experience.map((experience) => (
+              <li key={experience.id} id={`experience-${experience.id}`} className="relative">
+                <span className="absolute -left-[1.86rem] top-7 size-3 rounded-full border-2 border-background bg-brand-500 ring-4 ring-brand-500/15 sm:-left-[2.36rem]" aria-hidden="true" />
+                <article className="surface-card p-6 sm:p-7">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h4 className="text-xl font-bold text-foreground">{experience.title}</h4>
+                      <p className="mt-1 font-semibold text-brand-600 dark:text-brand-400">{experience.employer}</p>
                     </div>
+                    <span className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
+                      Résumé source
+                    </span>
+                  </div>
+                  <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                    <MapPin className="size-4" aria-hidden="true" />
+                    {experience.location} · {experience.work_mode}
+                  </p>
+                  <p className="mt-2 text-sm font-medium text-foreground">{experience.period_label}</p>
 
-                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                      <MapPin size={16} className="mr-2" />
-                      {exp.location}
-                      <Calendar size={16} className="ml-4 mr-2" />
-                      {exp.period}
-                    </div>
+                  <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
+                    {experience.highlights.map((highlight) => (
+                      <li key={highlight} className="flex gap-3">
+                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
 
-                    <ul className="space-y-2 mb-4">
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="text-gray-600 dark:text-gray-300 flex items-start">
-                          <span className="w-2 h-2 bg-blue-600 rounded-full mr-3 mt-2 flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
+                  <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${experience.title} technologies`}>
+                    {experience.technologies.map((technology) => (
+                      <li key={technology} className="rounded-lg bg-muted px-2.5 py-1 text-xs font-medium text-foreground">
+                        {technology}
+                      </li>
+                    ))}
+                  </ul>
 
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
+                  {experience.status_note && <p className="mt-5 text-xs leading-5 text-muted-foreground">{experience.status_note}</p>}
+                </article>
+              </li>
             ))}
-          </motion.div>
+          </ol>
+        </div>
+
+        <div>
+          <h3 className="flex items-center gap-3 text-xl font-bold text-foreground">
+            <span className="grid size-11 place-items-center rounded-2xl bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-400">
+              <GraduationCap className="size-5" aria-hidden="true" />
+            </span>
+            Education
+          </h3>
+          <div className="mt-7 space-y-5">
+            {portfolio.education.map((education) => (
+              <article key={education.id} id={`education-${education.id}`} className="surface-card p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h4 className="font-bold text-foreground">{education.qualification}</h4>
+                    <p className="mt-1 text-sm font-semibold text-violet-600 dark:text-violet-400">{education.institution}</p>
+                  </div>
+                  <span className="shrink-0 text-sm font-semibold text-muted-foreground">{education.completion_year}</span>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  {education.location} · {education.score}
+                </p>
+                {education.needs_confirmation && education.note && (
+                  <p className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-3 text-xs leading-5 text-amber-900 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-100">
+                    Source note: {education.note}
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Experience;

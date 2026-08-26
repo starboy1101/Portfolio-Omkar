@@ -1,54 +1,37 @@
-import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { ThemeProvider } from './contexts/ThemeContext';
-import LoadingScreen from './components/LoadingScreen';
-import ScrollProgress from './components/ScrollProgress';
-import FloatingNav from './components/FloatingNav';
+import About from './components/About';
+import Certification from './components/Certification';
+import Contact from './components/Contact';
+import Experience from './components/Experience';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import SplashCursor from './components/SplashCursor'; 
-import Certification from "./components/Certification";
+import Resume from './components/Resume';
+import Skills from './components/Skills';
+import { AssistantLayer } from './components/ai';
+import { AssistantProvider } from './contexts/AssistantContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
-
-  return (
-    <ThemeProvider>
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
-        ) : (
-          <div key="main" className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
-            <SplashCursor />
-
-            <ScrollProgress />
-            <FloatingNav />
-            <Header />
-            <main>
-              <Hero />
-              <About />
-              <Skills />
-              <Certification />
-              <Projects />
-              <Experience />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
-        )}
-      </AnimatePresence>
-    </ThemeProvider>
-  );
-}
+const App = () => (
+  <ThemeProvider>
+    <AssistantProvider>
+      <div className="min-h-screen overflow-x-hidden bg-background text-foreground transition-colors duration-300">
+        <Header />
+        <main id="portfolio-content">
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Certification />
+          <Resume />
+          <Contact />
+        </main>
+        <Footer />
+        <AssistantLayer />
+      </div>
+    </AssistantProvider>
+  </ThemeProvider>
+);
 
 export default App;
