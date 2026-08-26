@@ -83,19 +83,36 @@ const findSkill = (query: string, context?: ChatRequest['context']) => {
     .find((skill) => normalizedQuery.includes(normalize(skill.name)));
 };
 
-const describeEvidence = (evidence: string[]) =>
-  evidence
+const describeEvidence = (skill: (typeof allSkills)[number]) => {
+  const specificEvidence = skill.evidence.filter((item) => !item.startsWith('resume:'));
+  const evidence = specificEvidence.length ? specificEvidence : skill.evidence;
+
+  return evidence
     .map((item) => {
       const [kind, id] = item.split(':');
-      if (kind === 'project') return portfolio.projects.find((project) => project.id === id)?.title;
+      if (kind === 'project') {
+        const project = portfolio.projects.find((entry) => entry.id === id);
+        if (!project) return undefined;
+        const detail =
+          project.highlights.find((highlight) =>
+            normalize(highlight).includes(normalize(skill.name)),
+          ) ?? project.highlights[0];
+        return `${project.title}, where ${detail.charAt(0).toLowerCase()}${detail.slice(1)}`;
+      }
       if (kind === 'experience') {
         const experience = portfolio.experience.find((entry) => entry.id === id);
-        return experience ? `${experience.title} at ${experience.employer}` : undefined;
+        if (!experience) return undefined;
+        const detail =
+          experience.highlights.find((highlight) =>
+            normalize(highlight).includes(normalize(skill.name)),
+          ) ?? experience.highlights[0];
+        return `${experience.title} at ${experience.employer}, where ${detail.charAt(0).toLowerCase()}${detail.slice(1)}`;
       }
-      if (kind === 'resume') return 'his resume’s technical-skills section';
+      if (kind === 'resume') return 'the supplied core technical-skills list; no specific project mapping is recorded yet';
       return undefined;
     })
     .filter((item): item is string => Boolean(item));
+};
 
 const projectResponse = (
   project: (typeof portfolio.projects)[number],
@@ -113,14 +130,32 @@ const projectResponse = (
 };
 
 const skillResponse = (skill: (typeof allSkills)[number]) => {
-  const evidence = describeEvidence(skill.evidence);
+  const evidence = describeEvidence(skill);
   const evidenceText = evidence.length
-    ? `The portfolio documents it in ${evidence.join(' and ')}.`
-    : 'It is listed in his verified skills data.';
+    ? `Documented use includes ${evidence
+        .slice(0, 3)
+        .map((item) => item.replace(/\.+$/, ''))
+        .join('. It also appears in ')}.`
+    : 'It is listed in his supplied skills data, but no specific project mapping is recorded yet.';
+  const supportingSources = skill.evidence
+    .map((item) => {
+      const [kind, id] = item.split(':');
+      if (kind === 'project') {
+        const project = portfolio.projects.find((entry) => entry.id === id);
+        return project ? source('project', project.id, project.title) : undefined;
+      }
+      if (kind === 'experience') {
+        const experience = portfolio.experience.find((entry) => entry.id === id);
+        return experience ? source('experience', experience.id, experience.title) : undefined;
+      }
+      if (kind === 'resume') return source('resume', 'resume', 'Résumé');
+      return undefined;
+    })
+    .filter((item): item is SourceReference => Boolean(item));
 
   return response(
     `${skill.name} is part of Omkar’s documented skill set. ${evidenceText}`,
-    [source('skill', getSkillId(skill.name), skill.name)],
+    [source('skill', getSkillId(skill.name), skill.name), ...supportingSources.slice(0, 3)],
     [action('HIGHLIGHT_SKILL', getSkillId(skill.name))],
     ['Where has he used this?', 'Show his AI project', 'What are his Python skills?'],
   );
@@ -237,6 +272,7 @@ export const getLocalAssistantResponse = (
     'what technologies',
     'where has he used this',
     'where did he use this',
+    'where has omkar used',
   ]);
   if (!hasGlobalIntent && isContextFollowUp && contextProject) return projectResponse(contextProject);
   if (!hasGlobalIntent && isContextFollowUp && contextSkill) return skillResponse(contextSkill);
@@ -249,7 +285,7 @@ export const getLocalAssistantResponse = (
   if (asksForProject) {
     if (includesAny(query, ['computer vision', 'opencv'])) {
       return response(
-        'Computer-vision or OpenCV project evidence is not included in Omkar’s audited portfolio, so I won’t imply that it is. I can show his verified RAG, Python backend, frontend, and full-stack projects instead.',
+        'OpenCV is listed in Omkar’s supplied technical skills, but a specific OpenCV project is not mapped yet. I can show his documented RAG, Python backend, frontend, and full-stack projects instead.',
         [],
         [action('NAVIGATE', 'projects')],
         ['Show his RAG project', 'Which project demonstrates Python?', 'Show all projects'],
@@ -312,9 +348,8 @@ export const getLocalAssistantResponse = (
     const experienceSummary = portfolio.experience
       .map((entry) => `${entry.title} at ${entry.employer} (${entry.period_label})`)
       .join('; ');
-    const currentStatusNote = portfolio.experience.find((entry) => entry.status_note)?.status_note;
     return response(
-      `His resume documents ${experienceSummary}. ${currentStatusNote ?? ''}`.trim(),
+      `His current portfolio documents ${experienceSummary}.`,
       portfolio.experience.map((entry) => source('experience', entry.id, entry.title)),
       [action('SHOW_EXPERIENCE')],
       ['What technologies did he use?', 'Show his projects', 'How does he match an AI role?'],
@@ -322,9 +357,11 @@ export const getLocalAssistantResponse = (
   }
 
   if (includesAny(query, ['certification', 'certified', 'oracle credential'])) {
-    const certifications = portfolio.certifications.map((item) => `${item.title} (${item.year})`).join('; ');
+    const certifications = portfolio.certifications
+      .map((item) => `${item.title}${item.year ? ` (${item.year})` : ''}`)
+      .join('; ');
     return response(
-      `The portfolio contains badge assets for ${certifications}. Credential IDs and public verification URLs are not included, so I won’t claim independent verification.`,
+      `Omkar’s listed certifications are ${certifications}.`,
       portfolio.certifications.map((item) => source('certification', item.id, item.title)),
       [action('SHOW_CERTIFICATIONS')],
       ['Show his AI skills', 'Explain his RAG project', 'View resume'],
@@ -522,7 +559,7 @@ const toEvidence = (label: string): MatchEvidence => {
     )
     .map((project) => project.id);
   const evidence = [
-    ...skills.flatMap((skill) => describeEvidence(skill.evidence)),
+    ...skills.flatMap((skill) => describeEvidence(skill)),
     ...projectEvidence.map((projectId) => {
       const project = portfolio.projects.find((item) => item.id === projectId);
       return project ? `${project.title} project data` : projectId;

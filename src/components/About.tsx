@@ -38,7 +38,7 @@ const About = () => {
           <div>
             <p className="section-kicker">About</p>
             <h2 id="about-heading" className="section-title">
-              Engineering experience first, applied AI evidence in context.
+              Production-oriented AI engineering from document ingestion to real-time answers.
             </h2>
             <p className="section-copy">{profile.summary}</p>
 
@@ -46,9 +46,10 @@ const About = () => {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-brand-600 dark:text-brand-400" aria-hidden="true" />
                 <div>
-                  <h3 className="font-semibold text-foreground">Résumé-first source policy</h3>
+                  <h3 className="font-semibold text-foreground">Measured AI outcomes</h3>
                   <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                    Employment and education come from the résumé. Portfolio-only projects, including the AI chat application, are presented as project evidence and are not attributed to an employer.
+                    Document retrieval latency was reduced from 45 seconds to under 500 milliseconds,
+                    with semantic retrieval accuracy improved to 92%+ through embedding and vector-search optimization.
                   </p>
                 </div>
               </div>

@@ -7,7 +7,7 @@ import {
 } from '../data/assistantEvents';
 import { getSkillId, portfolio } from '../data/portfolio';
 
-const categoryIcons = [BrainCircuit, Code2, Braces, Database, Wrench];
+const categoryIcons = [Code2, BrainCircuit, Braces, Database, Braces, Code2, Database, Wrench];
 
 const Skills = () => {
   const [highlightedSkillId, setHighlightedSkillId] = useState<string | null>(null);
@@ -47,7 +47,7 @@ const Skills = () => {
             Skills organized by the work they support.
           </h2>
           <p className="section-copy">
-            Every skill below is tied to résumé or portfolio evidence. Select one to ask where and how it appears in Omkar’s work.
+            Select any skill to ask how Omkar used it and which experience or project supports it.
           </p>
         </div>
 

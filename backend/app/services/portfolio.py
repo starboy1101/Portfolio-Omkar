@@ -178,14 +178,12 @@ class PortfolioRepository:
                 url=project["links"].get("live") or project["links"].get("github"),
             )
         for item in data["certifications"]:
+            year = f", {item['year']}" if item.get("year") else ""
             yield KnowledgeDocument(
                 id=item["id"],
                 kind="certification",
                 title=item["title"],
-                text=(
-                    f"{item['title']}, {item['issuer']}, {item['year']}. "
-                    f"Verification status: {item['verification_status']}. {item['verification_note']}"
-                ),
+                text=f"{item['title']}, {item['issuer']}{year}.",
             )
         for item in data["achievements"]:
             yield KnowledgeDocument(

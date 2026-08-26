@@ -6,10 +6,10 @@ import { SECTION_LINKS, TOUR_SECTION_IDS, type PortfolioSectionId } from '../../
 const TOUR_COPY: Record<PortfolioSectionId, string> = {
   home: 'Start with Omkar’s AI/ML and Python engineering focus.',
   about: 'Review the verified profile, education, and working style.',
-  skills: 'Explore skills grouped by AI, backend, frontend, data, and systems evidence.',
+  skills: 'Explore programming, AI/ML, data, database, application, processing, and developer-tool skills.',
   projects: 'See the strongest hands-on evidence, led by the RAG-based AI Chat Application.',
-  experience: 'Review the employment history exactly as documented in the resume.',
-  certifications: 'Inspect the Oracle AI badge assets and their transparent verification notes.',
+  experience: 'Review selected AI engineering and data-analysis outcomes from the professional timeline.',
+  certifications: 'Browse certifications across AI, data, Python, and cloud technologies.',
   resume: 'Open the verified resume or ask the assistant to email it securely.',
   contact: 'Finish with trusted ways to contact Omkar and view his social profiles.',
 };

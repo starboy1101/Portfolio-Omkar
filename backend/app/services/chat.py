@@ -17,7 +17,7 @@ from backend.app.services.tools import PortfolioToolRegistry
 
 UNKNOWN_RESPONSE = (
     "That information isn’t included in Omkar’s audited portfolio. I can tell you about his projects, skills, "
-    "experience, education, certification badges, resume, or contact details."
+    "experience, education, certifications, resume, or contact details."
 )
 
 
@@ -141,7 +141,7 @@ class ChatService:
             )
         if any(term in folded for term in ("guided tour", "portfolio tour", "start tour", "show me around")):
             return (
-                "I can guide you through Omkar's introduction, experience, skills, projects, certification badges, "
+                "I can guide you through Omkar's introduction, experience, skills, projects, certifications, "
                 "resume, and contact section. You can stop the tour at any time."
             )
         if any(term in folded for term in ("contact", "email address", "phone", "reach him", "get in touch")):
@@ -157,31 +157,41 @@ class ChatService:
             return "Omkar’s audited resume is available to view or download using the resume action."
         if (
             re.search(r"\b(?:rag|faiss|sentence\s*transformers?)\b", folded)
-            and any(term in folded for term in ("einfochips", "vidyarthimitra"))
-        ):
-            return (
-                "The resume does not attribute RAG, FAISS, or SentenceTransformers work to either employer. "
-                "That evidence belongs to the separate portfolio-backed AI Chat Application project; the "
-                "employment timeline remains resume-governed."
+            and any(
+                term in folded
+                for term in ("experience", "used", "built", "explain", "einfochips", "vidyarthimitra")
             )
-        if (
-            re.search(r"\b(?:rag|faiss|sentence\s*transformers?)\b", folded)
-            and any(term in folded for term in ("experience", "used", "built", "explain"))
-            and not any(term in folded for term in ("einfochips", "vidyarthimitra"))
         ):
+            current_role = next(
+                (item for item in data["experience"] if item["id"] == "einfochips-software-engineer-ai-ml"),
+                None,
+            )
             project = self.repository.get_project("ai-chat-application")
-            if project:
+            if "vidyarthi" in folded and "einfochips" not in folded:
                 return (
-                    f"{project['title']}: {project['short_description']} "
-                    f"Key evidence: {' '.join(project['highlights'])} "
-                    f"Technologies: {', '.join(project['technologies'])}."
+                    "RAG, FAISS, and Sentence Transformers are not mapped to the Data Analyst internship. "
+                    "They are documented in Omkar's current AI/ML engineering role and AI Chat Application project."
                 )
+            evidence: list[str] = []
+            if current_role:
+                evidence.append(
+                    f"In {current_role['title']} at {current_role['employer']}, "
+                    f"{current_role['highlights'][0]} {current_role['highlights'][1]}"
+                )
+            if project:
+                evidence.append(
+                    f"The {project['title']} project applies the same stack: "
+                    f"{project['highlights'][1]}"
+                )
+            if evidence:
+                return " ".join(evidence)
         if any(term in folded for term in ("experience", "employment", "work history", "worked at")):
             first, second = data["experience"]
             return (
-                f"The resume lists Omkar as {first['title']} at {first['employer']} from {first['period_label']}. "
+                f"The portfolio lists Omkar as {first['title']} at {first['employer']} from {first['period_label']}. "
+                f"A key outcome: {first['highlights'][0]} "
                 f"It also lists a {second['title']} role at {second['employer']} from {second['period_label']}. "
-                "The AI Chat Application is portfolio project evidence and is not attributed to either employer."
+                f"That role includes {second['highlights'][0]}"
             )
         if any(term in folded for term in ("education", "degree", "college", "university", "cgpa", "gpa")):
             degree = data["education"][0]
@@ -190,12 +200,15 @@ class ChatService:
                 f"{degree['completion_year']} with {degree['score']}. The duplicated CBSE-X labels for the 2018 and "
                 "2020 school records remain marked for confirmation."
             )
-        if any(term in folded for term in ("certification", "certificate", "badge", "oracle")):
-            names = "; ".join(f"{item['title']} ({item['year']})" for item in data["certifications"])
-            return (
-                f"The portfolio contains badge assets for: {names}. These are portfolio badge claims; the repository "
-                "does not include recipient-bearing credential pages or verification URLs."
+        if any(
+            term in folded
+            for term in ("certification", "certificate", "badge", "oracle", "cisco", "ibm", "deloitte", "freecodecamp")
+        ):
+            names = "; ".join(
+                f"{item['title']} ({item['year']})" if item.get("year") else item["title"]
+                for item in data["certifications"]
             )
+            return f"Omkar's listed certifications are: {names}."
         if any(term in folded for term in ("achievement", "hackmit", "hackathon", "award")):
             return " ".join(item["description"] for item in data["achievements"])
 
@@ -211,8 +224,8 @@ class ChatService:
         if "project" in folded:
             if any(term in folded for term in ("computer vision", "opencv")):
                 return (
-                    "Computer-vision or OpenCV project evidence is not included in Omkar's audited portfolio. "
-                    "I can show his verified RAG, Python backend, frontend, and full-stack projects instead."
+                    "OpenCV is listed in Omkar's supplied technical skills, but a specific OpenCV project is not "
+                    "mapped yet. I can show his documented RAG, Python backend, frontend, and full-stack projects."
                 )
             category = self.tools.mentioned_project_category(message)
             if category:
@@ -231,9 +244,31 @@ class ChatService:
             for category in data["skill_categories"]:
                 for skill in category["skills"]:
                     if skill["name"] in mentioned_skills:
-                        evidence_lines.append(
-                            f"{skill['name']} is supported by {', '.join(skill['evidence'])}"
-                        )
+                        references: list[str] = []
+                        specific = [item for item in skill["evidence"] if not item.startswith("resume:")]
+                        for reference in specific or skill["evidence"]:
+                            kind, _, reference_id = reference.partition(":")
+                            if kind == "project":
+                                project = self.repository.get_project(reference_id)
+                                if project:
+                                    references.append(
+                                        f"{project['title']}, where {project['highlights'][0].lower()}"
+                                    )
+                            elif kind == "experience":
+                                experience = next(
+                                    (item for item in data["experience"] if item["id"] == reference_id),
+                                    None,
+                                )
+                                if experience:
+                                    references.append(
+                                        f"{experience['title']} at {experience['employer']}, where "
+                                        f"{experience['highlights'][0].lower()}"
+                                    )
+                            elif kind == "resume":
+                                references.append(
+                                    "the supplied technical-skills list; no specific project is mapped yet"
+                                )
+                        evidence_lines.append(f"{skill['name']}: {'; '.join(references[:3])}")
             return "Verified portfolio evidence: " + "; ".join(evidence_lines[:6]) + "."
         if "skill" in folded or "technology" in folded or "tech stack" in folded:
             categories = "; ".join(
@@ -287,6 +322,18 @@ class ChatService:
             for project in self.repository.projects
             if category and category in project["categories"]
         }
+        required_ids = {project_id} if project_id else set()
+        required_ids.update(category_ids)
+        present_ids = {result.document.id for result in results}
+        for document in self.repository.documents:
+            if document.id in required_ids and document.id not in present_ids:
+                results.append(
+                    RetrievedDocument(
+                        document=document,
+                        score=0.0,
+                        lexical_score=0.0,
+                    )
+                )
 
         def priority(result: RetrievedDocument) -> tuple[int, float, str]:
             if project_id and result.document.id == project_id:

@@ -20,7 +20,7 @@ const Resume = () => (
               Open or download the résumé, ask a focused question about it, or request a copy through the portfolio assistant.
             </p>
             <p className="mt-5 text-xs leading-5 text-muted-foreground">
-              Portfolio facts were last verified from repository sources on {portfolio.last_verified_from_sources}. Time-sensitive employment status should be reconfirmed directly.
+              Portfolio content was last updated from the supplied sources on {portfolio.last_verified_from_sources}.
             </p>
           </div>
 

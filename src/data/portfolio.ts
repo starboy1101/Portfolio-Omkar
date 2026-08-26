@@ -105,10 +105,8 @@ export interface PortfolioCertification {
   id: string;
   title: string;
   issuer: string;
-  year: number;
+  year: number | null;
   asset: string;
-  verification_status: string;
-  verification_note: string;
 }
 
 export interface PortfolioData {

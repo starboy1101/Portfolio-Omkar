@@ -29,9 +29,9 @@ class PortfolioToolRegistry:
             "get_project_details": ToolDefinition(
                 "get_project_details", "Return one allowlisted project", self.get_project_details
             ),
-            "get_experience": ToolDefinition("get_experience", "Return resume-governed experience", self.get_experience),
+            "get_experience": ToolDefinition("get_experience", "Return supplied professional experience", self.get_experience),
             "get_certifications": ToolDefinition(
-                "get_certifications", "Return badge-backed certification claims", self.get_certifications
+                "get_certifications", "Return listed certification records", self.get_certifications
             ),
             "get_contact_information": ToolDefinition(
                 "get_contact_information", "Return public contact details", self.get_contact_information
@@ -161,7 +161,10 @@ class PortfolioToolRegistry:
             actions.append(PortfolioAction(type="OPEN_GITHUB", target="github", label="Open GitHub", url=url))
         if any(term in folded for term in ("contact", "get in touch", "reach him", "email address", "phone")):
             actions.append(PortfolioAction(type="OPEN_CONTACT", target="contact", label="Open contact"))
-        if any(term in folded for term in ("certification", "certifications", "certificate", "badges")):
+        if any(
+            term in folded
+            for term in ("certification", "certifications", "certificate", "badges", "oracle", "cisco", "ibm")
+        ):
             actions.append(
                 PortfolioAction(type="SHOW_CERTIFICATIONS", target="certifications", label="Show certifications")
             )

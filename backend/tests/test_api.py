@@ -22,8 +22,8 @@ def test_profile_uses_resume_governed_employment_and_education(client):
     assert response.status_code == 200
     payload = response.json()
     assert payload["profile"]["full_name"] == "Omkar Ganesh Mahabdi"
-    assert payload["experience"][0]["title"] == "Associate Engineer"
-    assert payload["experience"][1]["title"] == "Full Stack Developer Intern"
+    assert payload["experience"][0]["title"] == "Software Engineer — Python, AI/ML & LLM Workflows"
+    assert payload["experience"][1]["title"] == "Data Analyst Intern"
     assert payload["education"][0]["qualification"] == "BTech Computer Science Engineering"
     assert payload["education"][0]["score"] == "CGPA 8.5"
 
@@ -69,7 +69,7 @@ def test_chat_accepts_context_and_bounded_history(client):
 
 def test_recruiter_smoke_prompts_cover_core_portfolio_flows(client):
     cases = (
-        ("Who is Omkar?", "Pune", None),
+        ("Who is Omkar?", "AI/ML Engineer", None),
         ("What AI/ML skills does he have?", "RAG", None),
         ("What Python technologies does he know?", "Python", "HIGHLIGHT_SKILL"),
         ("Show me his projects", "portfolio", "NAVIGATE"),
@@ -161,7 +161,7 @@ def test_unsupported_project_category_is_not_invented(client):
         json={"message": "Show projects related to computer vision"},
     )
     assert response.status_code == 200
-    assert "not included" in response.json()["message"]
+    assert "not mapped" in response.json()["message"]
     assert "OpenCV" in response.json()["message"]
 
 
@@ -189,8 +189,8 @@ def test_job_description_analysis_is_evidence_based(client):
     assert response.status_code == 200
     payload = response.json()
     strong = {item["requirement"] for item in payload["strongMatches"]}
-    assert {"Python", "FastAPI", "RAG", "FAISS", "React"}.issubset(strong)
-    assert {"Docker", "Kubernetes"}.issubset(set(payload["notFound"]))
+    assert {"Python", "FastAPI", "RAG", "FAISS", "React", "Docker"}.issubset(strong)
+    assert "Kubernetes" in payload["notFound"]
     assert "AI Chat Application" in payload["relevantProjects"]
     assert 0 < payload["overallMatch"] < 100
 

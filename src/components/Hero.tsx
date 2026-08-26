@@ -7,7 +7,7 @@ const socialIcons = {
   linkedin: Linkedin,
 } as const;
 
-const focusAreas = ['Python', 'RAG', 'FastAPI', 'C++', 'React.js'];
+const focusAreas = ['Python', 'RAG', 'FAISS', 'FastAPI', 'PyTorch'];
 
 const Hero = () => {
   const { profile } = portfolio;
@@ -39,7 +39,7 @@ const Hero = () => {
           <h1 className="mt-7 max-w-4xl text-balance text-4xl font-bold tracking-[-0.04em] text-foreground sm:text-6xl lg:text-7xl">
             Building intelligent applications with{' '}
             <span className="bg-gradient-to-r from-brand-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
-              Python, RAG and modern web technology.
+              Python, RAG and real-time LLM workflows.
             </span>
           </h1>
 
@@ -109,9 +109,10 @@ const Hero = () => {
         <aside className="surface-card relative overflow-hidden p-6 sm:p-8" aria-label="Recruiter quick scan">
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-500 via-violet-500 to-fuchsia-500" />
           <p className="section-kicker">Recruiter quick scan</p>
-          <h2 className="mt-3 text-2xl font-bold text-foreground">A full-stack foundation with applied AI evidence.</h2>
+          <h2 className="mt-3 text-2xl font-bold text-foreground">Production AI delivery with measurable retrieval performance.</h2>
           <p className="mt-4 leading-7 text-muted-foreground">
-            Resume-backed experience covers desktop audio engineering and MERN development. The featured AI chat project demonstrates RAG, FastAPI, streaming, FAISS, and SentenceTransformers.
+            Hands-on work spans document ingestion, semantic search, model improvement, FastAPI applications,
+            Supabase-backed sessions, and real-time LLM response streaming.
           </p>
           <ul className="mt-6 flex flex-wrap gap-2" aria-label="Focus technologies">
             {focusAreas.map((area) => (

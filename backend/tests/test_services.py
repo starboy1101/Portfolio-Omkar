@@ -34,10 +34,11 @@ def test_jd_with_no_detected_technology_does_not_invent_match(services):
     assert "No supported technical requirements" in result.summary
 
 
-def test_certification_documents_keep_verification_caveat(services):
+def test_certification_documents_match_the_supplied_list_without_warning_copy(services):
     documents = [doc for doc in services.repository.documents if doc.kind == "certification"]
-    assert len(documents) == 4
-    assert all("no recipient-bearing credential" in doc.text for doc in documents)
+    assert len(documents) == 10
+    assert any(doc.title == "Python Essentials 2" for doc in documents)
+    assert all("recipient-bearing credential" not in doc.text for doc in documents)
 
 
 def test_optional_llm_prompt_redacts_email_and_phone(services):

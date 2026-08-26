@@ -1,32 +1,26 @@
 {
   "schema_version": "1.0.0",
-  "last_verified_from_sources": "2025-09-08",
+  "last_verified_from_sources": "2026-08-26",
   "source_policy": {
-    "primary": "src/assets/Resume.pdf",
+    "primary": "User-provided portfolio content (August 2026)",
     "secondary": [
-      "src/components/Projects.tsx",
-      "src/components/About.tsx",
-      "src/components/CertificationScrollStack.tsx",
-      "src/assets/Genai.png",
-      "src/assets/Datascience.png",
-      "src/assets/vector.png",
-      "src/assets/associate.jpeg"
+      "src/assets/Resume.pdf",
+      "src/components/Projects.tsx"
     ],
     "rules": [
-      "Resume facts govern employment and education.",
-      "Portfolio-only work is labeled as portfolio evidence and is not attributed to an employer.",
-      "Role-positioning copy is based on verified skills and project evidence and is not presented as an employer title.",
-      "Placeholder links and unsupported metrics are excluded.",
-      "Present-tense employment is reported as stated in the September 2025 resume and should be reconfirmed before time-sensitive use."
+      "The latest user-provided profile, skills, experience, and certification details govern this portfolio.",
+      "Project-specific claims remain linked to the project or experience evidence supplied for them.",
+      "Missing certification images remain blank until assets are supplied.",
+      "Placeholder links and unsupported claims are excluded."
     ]
   },
   "profile": {
     "id": "omkar-mahabdi",
     "full_name": "Omkar Ganesh Mahabdi",
     "display_name": "Omkar Mahabdi",
-    "headline": "AI/ML Developer & Python Engineer",
-    "positioning": "Building AI-enabled and full-stack applications with Python, RAG, and modern web technologies.",
-    "summary": "Omkar Ganesh Mahabdi is a Pune-based software engineer and Python developer. His resume documents C++ desktop-audio engineering, a prior MERN full-stack internship, and projects spanning React, TypeScript, Django, PostgreSQL, and cloud storage. His portfolio also demonstrates a RAG-based AI chat application built with FastAPI, FAISS, SentenceTransformers, Llama, React, and Supabase.",
+    "headline": "AI/ML Engineer & Python Developer",
+    "positioning": "Building production-oriented AI systems with Python, RAG, semantic search, and real-time LLM workflows.",
+    "summary": "AI/ML Engineer with hands-on experience in Python development, artificial intelligence, machine learning, generative AI, large language models (LLMs), retrieval-augmented generation (RAG), semantic search, vector search, NLP workflows, and AI application development. Experienced in building production-oriented AI solutions using Python, PyTorch, FAISS, Sentence Transformers, Llama 2, FastAPI, Supabase, WebSockets, and LLM workflows. Developed AI-powered document search and retrieval systems that reduced document search latency from 45 seconds to under 500 milliseconds and improved semantic retrieval accuracy to 92%+. Strong experience in document ingestion, text processing, embeddings, vector databases, model fine-tuning, conversational AI, OCR fallback processing, real-time AI response streaming, and AI-driven experimentation.",
     "location": {
       "city": "Pune",
       "state": "Maharashtra",
@@ -60,48 +54,61 @@
   },
   "experience": [
     {
-      "id": "einfochips-associate-engineer",
-      "employer": "EInfochips (An Arrow Company)",
-      "title": "Associate Engineer",
+      "id": "einfochips-software-engineer-ai-ml",
+      "employer": "eInfochips (An Arrow Company)",
+      "title": "Software Engineer — Python, AI/ML & LLM Workflows",
       "location": "Pune, Maharashtra",
-      "work_mode": "On-site",
+      "work_mode": "Hybrid",
       "start_date": "2025-01",
       "end_date": null,
-      "period_label": "January 2025 – Present (as stated in the September 2025 resume)",
-      "status_note": "Current status after September 2025 has not been independently reconfirmed.",
+      "period_label": "January 2025 – Present",
       "highlights": [
-        "Developed a real-time desktop audio recorder with input-level visualization and support for default and raw capture modes through WASAPI.",
-        "Integrated audio-device change detection and loopback recording using IAudioClient3 and Core Audio APIs."
+        "Develop and optimize AI-powered document search and retrieval systems using Python, FAISS, Sentence Transformers, and Llama 2, reducing search latency from 45 seconds to under 500 milliseconds.",
+        "Improved semantic retrieval accuracy to 92%+ through vector-search optimization, embedding improvements, retrieval-failure analysis, and domain-specific model training.",
+        "Design and develop full-stack AI chat applications using Python, FastAPI, React, FAISS, Supabase, WebSockets, and LLM workflows for document-based question answering.",
+        "Build end-to-end PDF ingestion and document-processing workflows covering text extraction, semantic search, OCR fallback, and automated report generation.",
+        "Implement real-time WebSocket streaming with Supabase-backed authentication and session management for responsive multi-turn AI conversations."
       ],
       "technologies": [
-        "C++",
-        "MFC",
-        "WASAPI",
-        "IAudioClient3",
-        "Core Audio APIs"
+        "Python",
+        "FAISS",
+        "Sentence Transformers",
+        "Llama 2",
+        "RAG",
+        "FastAPI",
+        "React.js",
+        "Supabase",
+        "WebSockets",
+        "OCR",
+        "PDF Processing"
       ],
-      "source": "resume"
+      "source": "user_provided_resume"
     },
     {
-      "id": "vidyarthimitra-full-stack-intern",
+      "id": "vidyarthimitra-data-analyst-intern",
       "employer": "Vidyarthimitra.org",
-      "title": "Full Stack Developer Intern",
+      "title": "Data Analyst Intern",
       "location": "Pune, Maharashtra",
       "work_mode": "On-site",
       "start_date": "2024-06",
       "end_date": "2024-12",
       "period_label": "June 2024 – December 2024",
       "highlights": [
-        "Developed a MERN-stack website supporting student registration, college prediction, and exam enrollment.",
-        "Collaborated with cross-functional teams on integration, testing, and deployment."
+        "Cleaned, transformed, and analyzed large datasets using Python, Pandas, and SQL, creating reusable data pipelines and structured mappings.",
+        "Developed interactive Tableau dashboards to visualize KPIs, trends, and actionable business insights.",
+        "Performed exploratory data analysis and data validation to improve data quality and support data-driven decision-making.",
+        "Collaborated with stakeholders to gather requirements, automate reporting, and deliver insights aligned with business objectives."
       ],
       "technologies": [
-        "MongoDB",
-        "Express.js",
-        "React.js",
-        "Node.js"
+        "Python",
+        "Pandas",
+        "PostgreSQL",
+        "SQL",
+        "Tableau",
+        "Exploratory Data Analysis (EDA)",
+        "Data Pipelines"
       ],
-      "source": "resume"
+      "source": "user_provided_resume"
     }
   ],
   "education": [
@@ -153,189 +160,113 @@
   ],
   "skill_categories": [
     {
-      "id": "ai-ml-generative-ai",
-      "label": "AI, ML & Generative AI",
+      "id": "programming",
+      "label": "Programming",
       "skills": [
-        {
-          "name": "RAG",
-          "evidence": ["project:ai-chat-application"]
-        },
-        {
-          "name": "FAISS",
-          "evidence": ["project:ai-chat-application"]
-        },
-        {
-          "name": "SentenceTransformers",
-          "evidence": ["project:ai-chat-application"]
-        },
-        {
-          "name": "Llama",
-          "evidence": ["project:ai-chat-application"]
-        },
-        {
-          "name": "NLTK",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "NLP",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "GPT-3",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "OpenAI",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "Gemini Pro",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "Multimodal AI",
-          "evidence": ["resume:technical-skills"]
-        }
+        { "name": "Python", "evidence": ["experience:einfochips-software-engineer-ai-ml", "experience:vidyarthimitra-data-analyst-intern", "project:ai-chat-application", "project:loan-onboarding-system"] },
+        { "name": "SQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:loan-onboarding-system"] },
+        { "name": "C++", "evidence": ["resume:technical-skills"] },
+        { "name": "JavaScript", "evidence": ["project:rideasy-bike-booking"] },
+        { "name": "TypeScript", "evidence": ["project:portfolio-website", "project:weather-dashboard"] }
       ]
     },
     {
-      "id": "python-backend",
-      "label": "Python & Backend",
+      "id": "ai-machine-learning",
+      "label": "AI & Machine Learning",
       "skills": [
-        {
-          "name": "Python",
-          "evidence": ["resume:technical-skills", "project:ai-chat-application"]
-        },
-        {
-          "name": "FastAPI",
-          "evidence": ["project:ai-chat-application"]
-        },
-        {
-          "name": "Django",
-          "evidence": ["resume:technical-skills", "project:loan-onboarding-system"]
-        },
-        {
-          "name": "Django REST Framework",
-          "evidence": ["project:loan-onboarding-system"]
-        },
-        {
-          "name": "Node.js",
-          "evidence": ["resume:technical-skills", "experience:vidyarthimitra-full-stack-intern"]
-        },
-        {
-          "name": "Express.js",
-          "evidence": ["resume:technical-skills", "experience:vidyarthimitra-full-stack-intern"]
-        },
-        {
-          "name": "REST APIs",
-          "evidence": ["project:loan-onboarding-system"]
-        },
-        {
-          "name": "WebSocket/SSE",
-          "evidence": ["project:ai-chat-application"]
-        }
+        { "name": "Generative AI", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Deep Learning", "evidence": ["experience:einfochips-software-engineer-ai-ml"] },
+        { "name": "Scikit-learn", "evidence": ["resume:technical-skills"] },
+        { "name": "TensorFlow", "evidence": ["resume:technical-skills"] },
+        { "name": "PyTorch", "evidence": ["experience:einfochips-software-engineer-ai-ml"] },
+        { "name": "Prompt Engineering", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Large Language Models (LLMs)", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Retrieval-Augmented Generation (RAG)", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "LangChain", "evidence": ["resume:technical-skills"] },
+        { "name": "LlamaIndex", "evidence": ["resume:technical-skills"] },
+        { "name": "Llama 2", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Llama 3", "evidence": ["resume:technical-skills"] },
+        { "name": "Sentence Transformers", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "FAISS", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Llama.cpp", "evidence": ["resume:technical-skills"] }
       ]
     },
     {
-      "id": "languages-frontend",
-      "label": "Languages & Frontend",
+      "id": "data-science-analysis",
+      "label": "Data Science & Analysis",
       "skills": [
-        {
-          "name": "C++",
-          "evidence": ["resume:technical-skills", "experience:einfochips-associate-engineer"]
-        },
-        {
-          "name": "JavaScript",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "TypeScript",
-          "evidence": ["resume:technical-skills", "project:portfolio-website", "project:weather-dashboard"]
-        },
-        {
-          "name": "HTML5",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "CSS3",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "React.js",
-          "evidence": ["resume:technical-skills", "project:portfolio-website", "project:weather-dashboard", "project:ai-chat-application"]
-        },
-        {
-          "name": "React Native",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "Tailwind CSS",
-          "evidence": ["resume:technical-skills", "project:portfolio-website", "project:weather-dashboard", "project:rideasy-bike-booking"]
-        },
-        {
-          "name": "Framer Motion",
-          "evidence": ["project:portfolio-website", "project:weather-dashboard"]
-        }
+        { "name": "Pandas", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "NumPy", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Exploratory Data Analysis (EDA)", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Statistical Analysis", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Hypothesis Testing", "evidence": ["resume:technical-skills"] }
       ]
     },
     {
-      "id": "data-storage-cloud",
-      "label": "Data, Storage & Cloud",
+      "id": "sql-databases",
+      "label": "SQL & Databases",
       "skills": [
-        {
-          "name": "MySQL",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "MongoDB",
-          "evidence": ["resume:technical-skills", "experience:vidyarthimitra-full-stack-intern", "project:rideasy-bike-booking"]
-        },
-        {
-          "name": "PostgreSQL",
-          "evidence": ["resume:technical-skills", "project:loan-onboarding-system"]
-        },
-        {
-          "name": "ChromaDB",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "Supabase",
-          "evidence": ["project:ai-chat-application"]
-        },
-        {
-          "name": "Google Cloud Storage",
-          "evidence": ["project:loan-onboarding-system"]
-        }
+        { "name": "MySQL", "evidence": ["resume:technical-skills"] },
+        { "name": "PostgreSQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:loan-onboarding-system"] },
+        { "name": "MongoDB", "evidence": ["project:rideasy-bike-booking"] },
+        { "name": "DuckDB", "evidence": ["resume:technical-skills"] },
+        { "name": "Advanced SQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Query Optimization", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Common Table Expressions (CTEs)", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Window Functions", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Ranking Functions", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Percentiles", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Data Aggregation", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] }
       ]
     },
     {
-      "id": "systems-tools",
-      "label": "Systems & Tools",
+      "id": "data-visualization-bi",
+      "label": "Data Visualization & BI",
       "skills": [
-        {
-          "name": "MFC",
-          "evidence": ["experience:einfochips-associate-engineer"]
-        },
-        {
-          "name": "WASAPI",
-          "evidence": ["experience:einfochips-associate-engineer"]
-        },
-        {
-          "name": "Core Audio APIs",
-          "evidence": ["experience:einfochips-associate-engineer"]
-        },
-        {
-          "name": "Postman",
-          "evidence": ["resume:technical-skills"]
-        },
-        {
-          "name": "JWT",
-          "evidence": ["project:loan-onboarding-system"]
-        },
-        {
-          "name": "Netlify CI/CD",
-          "evidence": ["project:portfolio-website"]
-        }
+        { "name": "Tableau", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Power BI", "evidence": ["resume:technical-skills"] },
+        { "name": "Streamlit", "evidence": ["resume:technical-skills"] },
+        { "name": "Advanced Excel", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "KPI Analysis", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] }
+      ]
+    },
+    {
+      "id": "backend-application-development",
+      "label": "Backend & Application Development",
+      "skills": [
+        { "name": "FastAPI", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "REST APIs", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:loan-onboarding-system"] },
+        { "name": "WebSockets", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Server-Sent Events (SSE)", "evidence": ["project:ai-chat-application"] },
+        { "name": "React.js", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:portfolio-website", "project:weather-dashboard", "project:ai-chat-application"] },
+        { "name": "React Native", "evidence": ["resume:technical-skills"] },
+        { "name": "Real-Time Streaming", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] }
+      ]
+    },
+    {
+      "id": "document-data-processing",
+      "label": "Document & Data Processing",
+      "skills": [
+        { "name": "PDF Processing", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Document Ingestion", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "OCR", "evidence": ["experience:einfochips-software-engineer-ai-ml"] },
+        { "name": "Unstructured Data Extraction", "evidence": ["experience:einfochips-software-engineer-ai-ml"] },
+        { "name": "Text Processing Pipelines", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] }
+      ]
+    },
+    {
+      "id": "developer-tools",
+      "label": "Developer Tools",
+      "skills": [
+        { "name": "Git", "evidence": ["resume:technical-skills"] },
+        { "name": "GitHub", "evidence": ["project:portfolio-website", "project:weather-dashboard", "project:ai-chat-application"] },
+        { "name": "Docker", "evidence": ["resume:technical-skills"] },
+        { "name": "Linux", "evidence": ["resume:technical-skills"] },
+        { "name": "Supabase", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "OpenCV", "evidence": ["resume:technical-skills"] },
+        { "name": "MediaPipe", "evidence": ["resume:technical-skills"] },
+        { "name": "Jupyter Notebook", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Netlify CI/CD", "evidence": ["project:portfolio-website"] }
       ]
     }
   ],
@@ -434,46 +365,78 @@
   ],
   "certifications": [
     {
-      "id": "oci-generative-ai-professional-2025",
-      "title": "Oracle Cloud Infrastructure Generative AI Professional",
+      "id": "oci-certified-data-science-professional",
+      "title": "OCI Certified Data Science Professional",
       "issuer": "Oracle",
-      "year": 2025,
-      "asset": "src/assets/Genai.png",
-      "verification_status": "portfolio_badge_asset",
-      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+      "year": null,
+      "asset": ""
     },
     {
-      "id": "oci-data-science-professional-2025",
-      "title": "Oracle Cloud Infrastructure Data Science Professional",
-      "issuer": "Oracle",
-      "year": 2025,
-      "asset": "src/assets/Datascience.png",
-      "verification_status": "portfolio_badge_asset",
-      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+      "id": "python-essentials-2",
+      "title": "Python Essentials 2",
+      "issuer": "Cisco",
+      "year": null,
+      "asset": ""
     },
     {
-      "id": "oracle-ai-vector-search-professional-2025",
+      "id": "data-analysis-with-python",
+      "title": "Data Analysis with Python",
+      "issuer": "freeCodeCamp",
+      "year": null,
+      "asset": ""
+    },
+    {
+      "id": "data-science-essentials-with-python",
+      "title": "Data Science Essentials With Python",
+      "issuer": "Cisco",
+      "year": null,
+      "asset": ""
+    },
+    {
+      "id": "data-analytics-essentials",
+      "title": "Data Analytics Essentials",
+      "issuer": "Cisco",
+      "year": null,
+      "asset": ""
+    },
+    {
+      "id": "artificial-intelligence-fundamentals",
+      "title": "Artificial Intelligence Fundamentals",
+      "issuer": "IBM",
+      "year": null,
+      "asset": ""
+    },
+    {
+      "id": "oci-generative-ai-professional",
+      "title": "OCI Generative AI Professional",
+      "issuer": "Oracle",
+      "year": null,
+      "asset": ""
+    },
+    {
+      "id": "oracle-ai-vector-search-professional",
       "title": "Oracle AI Vector Search Professional",
       "issuer": "Oracle",
-      "year": 2025,
-      "asset": "src/assets/vector.png",
-      "verification_status": "portfolio_badge_asset",
-      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+      "year": null,
+      "asset": ""
     },
     {
-      "id": "oci-ai-foundations-associate-2025",
-      "title": "Oracle Cloud Infrastructure AI Foundations Associate",
-      "issuer": "Oracle",
-      "year": 2025,
-      "asset": "src/assets/associate.jpeg",
-      "verification_status": "portfolio_badge_asset",
-      "verification_note": "The repository contains a matching 2025 badge image but no recipient-bearing credential or verification URL."
+      "id": "deloitte-australia-data-analytics-job-simulation",
+      "title": "Deloitte Australia — Data Analytics Job Simulation",
+      "issuer": "Deloitte Australia",
+      "year": null,
+      "asset": ""
+    },
+    {
+      "id": "programming-with-python-3x",
+      "title": "Programming with Python 3.X",
+      "issuer": "SkillUp",
+      "year": null,
+      "asset": ""
     }
   ],
   "known_unknowns": [
-    "The current status of the resume's January 2025–Present role after September 2025.",
     "Whether the Army Public School 2020 qualification should be labeled CBSE-XII instead of the duplicated CBSE-X label.",
-    "Credential IDs and verification URLs for the certification badges.",
     "Public repository links for RidEasy and the Loan Onboarding System."
   ]
 }

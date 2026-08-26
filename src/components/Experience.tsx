@@ -7,12 +7,13 @@ const Experience = () => (
     <div className="section-shell">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <p className="section-kicker">Résumé-backed timeline</p>
+          <p className="section-kicker">Professional timeline</p>
           <h2 id="experience-heading" className="section-title">
             Professional experience and education.
           </h2>
           <p className="section-copy">
-            Role and education facts below follow the résumé source directly; uncertainty is called out instead of inferred.
+            Selected highlights focus on measurable AI engineering outcomes, production workflows,
+            and data-analysis impact.
           </p>
         </div>
         <button
@@ -50,7 +51,7 @@ const Experience = () => (
                       <p className="mt-1 font-semibold text-brand-600 dark:text-brand-400">{experience.employer}</p>
                     </div>
                     <span className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
-                      Résumé source
+                      Experience
                     </span>
                   </div>
                   <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
