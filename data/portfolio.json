@@ -1,10 +1,11 @@
 {
   "schema_version": "1.0.0",
-  "last_verified_from_sources": "2026-08-26",
+  "last_verified_from_sources": "2026-08-31",
   "source_policy": {
-    "primary": "User-provided portfolio content (August 2026)",
+    "primary": "User-provided portfolio content and updated AI/ML and Data Analyst resumes (August 2026)",
     "secondary": [
-      "src/assets/Resume.pdf",
+      "public/resumes/OmkarMahabdi_AIML.pdf",
+      "public/resumes/OmkarMahabdi_Data_Analyst_Resume.pdf",
       "src/components/Projects.tsx"
     ],
     "rules": [
@@ -18,9 +19,9 @@
     "id": "omkar-mahabdi",
     "full_name": "Omkar Ganesh Mahabdi",
     "display_name": "Omkar Mahabdi",
-    "headline": "AI/ML Engineer & Python Developer",
-    "positioning": "Building production-oriented AI systems with Python, RAG, semantic search, and real-time LLM workflows.",
-    "summary": "AI/ML Engineer with hands-on experience in Python development, artificial intelligence, machine learning, generative AI, large language models (LLMs), retrieval-augmented generation (RAG), semantic search, vector search, NLP workflows, and AI application development. Experienced in building production-oriented AI solutions using Python, PyTorch, FAISS, Sentence Transformers, Llama 2, FastAPI, Supabase, WebSockets, and LLM workflows. Developed AI-powered document search and retrieval systems that reduced document search latency from 45 seconds to under 500 milliseconds and improved semantic retrieval accuracy to 92%+. Strong experience in document ingestion, text processing, embeddings, vector databases, model fine-tuning, conversational AI, OCR fallback processing, real-time AI response streaming, and AI-driven experimentation.",
+    "headline": "AI/ML Engineer & Python Developer | Data Analytics",
+    "positioning": "Building production-oriented AI systems with Python, RAG, semantic search, and real-time LLM workflows, with a secondary focus on SQL-led data analysis and business intelligence.",
+    "summary": "AI/ML Engineer with hands-on experience in Python, generative AI, large language models (LLMs), retrieval-augmented generation (RAG), semantic search, vector search, NLP workflows, and production-oriented AI application development. Built document search and retrieval systems with PyTorch, FAISS, Sentence Transformers, Llama 2, FastAPI, Supabase, and WebSockets, reducing search latency from 45 seconds to under 500 milliseconds and improving semantic retrieval accuracy to 92%+. Alongside AI/ML delivery, applies Python, SQL, Pandas, DuckDB, Tableau, and Streamlit to clean and validate data, perform exploratory analysis, and turn findings into decision-ready dashboards and reports.",
     "location": {
       "city": "Pune",
       "state": "Maharashtra",
@@ -67,7 +68,7 @@
         "Improved semantic retrieval accuracy to 92%+ through vector-search optimization, embedding improvements, retrieval-failure analysis, and domain-specific model training.",
         "Design and develop full-stack AI chat applications using Python, FastAPI, React, FAISS, Supabase, WebSockets, and LLM workflows for document-based question answering.",
         "Build end-to-end PDF ingestion and document-processing workflows covering text extraction, semantic search, OCR fallback, and automated report generation.",
-        "Implement real-time WebSocket streaming with Supabase-backed authentication and session management for responsive multi-turn AI conversations."
+        "Structure and validate unstructured document data for reusable reporting workflows while translating stakeholder requirements into business-readable outputs."
       ],
       "technologies": [
         "Python",
@@ -80,7 +81,10 @@
         "Supabase",
         "WebSockets",
         "OCR",
-        "PDF Processing"
+        "PDF Processing",
+        "Pandas",
+        "SQL",
+        "Data Validation"
       ],
       "source": "user_provided_resume"
     },
@@ -125,37 +129,45 @@
       "id": "army-public-school-2020",
       "institution": "Army Public School",
       "location": "Pune, Maharashtra",
-      "qualification": "CBSE-X Science Stream (label reproduced exactly from the resume)",
+      "qualification": "CBSE Class XII — Science Stream",
       "completion_year": 2020,
       "score": "78%",
-      "needs_confirmation": true,
-      "note": "The resume labels both the 2020 and 2018 records CBSE-X. Do not infer that this record is Class XII without confirmation.",
-      "source": "resume"
+      "source": "updated_resume"
     },
     {
       "id": "army-public-school-2018",
       "institution": "Army Public School",
       "location": "Pune, Maharashtra",
-      "qualification": "CBSE-X Science Stream (label reproduced exactly from the resume)",
+      "qualification": "CBSE Class X",
       "completion_year": 2018,
       "score": "81%",
-      "needs_confirmation": true,
-      "note": "The resume labels both the 2020 and 2018 records CBSE-X; the duplication needs confirmation.",
       "source": "resume"
     }
   ],
   "achievements": [
     {
-      "id": "hackmit-runner-up",
-      "title": "HackMIT runner-up",
-      "description": "Named as a runner-up in the HackMIT competition and as a hackathon participant in the resume.",
-      "source": "resume"
+      "id": "tcs-codevita-rank",
+      "title": "TCS CodeVita global rank 872",
+      "description": "Ranked 872 among more than 445,000 participants across 94 countries in the TCS CodeVita Global Coding Challenge.",
+      "source": "updated_resume"
     },
     {
-      "id": "event-leadership",
-      "title": "Event organization leadership",
-      "description": "Spearheaded event-organization initiatives in HackMIT and RIDE, according to the resume.",
-      "source": "resume"
+      "id": "merit-scholarship",
+      "title": "Merit Scholarship",
+      "description": "Awarded a merit scholarship valued at INR 77,500.",
+      "source": "updated_resume"
+    },
+    {
+      "id": "hackmit-finalist",
+      "title": "HackMIT finalist",
+      "description": "Recognized as a finalist in HackMIT.",
+      "source": "updated_resume"
+    },
+    {
+      "id": "mercor-hackathon-participant",
+      "title": "Mercor Hackathon participant",
+      "description": "Participated in the Mercor Hackathon.",
+      "source": "updated_resume"
     }
   ],
   "skill_categories": [
@@ -163,8 +175,8 @@
       "id": "programming",
       "label": "Programming",
       "skills": [
-        { "name": "Python", "evidence": ["experience:einfochips-software-engineer-ai-ml", "experience:vidyarthimitra-data-analyst-intern", "project:ai-chat-application", "project:loan-onboarding-system"] },
-        { "name": "SQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:loan-onboarding-system"] },
+        { "name": "Python", "evidence": ["experience:einfochips-software-engineer-ai-ml", "experience:vidyarthimitra-data-analyst-intern", "project:ai-chat-application", "project:llm-powered-sql-query-generator", "project:llm-evaluation-red-teaming-framework", "project:multimodal-image-text-classifier", "project:loan-onboarding-system", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
+        { "name": "SQL", "evidence": ["experience:einfochips-software-engineer-ai-ml", "experience:vidyarthimitra-data-analyst-intern", "project:llm-powered-sql-query-generator", "project:loan-onboarding-system", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
         { "name": "C++", "evidence": ["resume:technical-skills"] },
         { "name": "JavaScript", "evidence": ["project:rideasy-bike-booking"] },
         { "name": "TypeScript", "evidence": ["project:portfolio-website", "project:weather-dashboard"] }
@@ -174,31 +186,42 @@
       "id": "ai-machine-learning",
       "label": "AI & Machine Learning",
       "skills": [
-        { "name": "Generative AI", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
-        { "name": "Deep Learning", "evidence": ["experience:einfochips-software-engineer-ai-ml"] },
+        { "name": "Generative AI", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application", "project:llm-powered-sql-query-generator", "project:llm-evaluation-red-teaming-framework"] },
+        { "name": "Deep Learning", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:multimodal-image-text-classifier"] },
         { "name": "Scikit-learn", "evidence": ["resume:technical-skills"] },
         { "name": "TensorFlow", "evidence": ["resume:technical-skills"] },
         { "name": "PyTorch", "evidence": ["experience:einfochips-software-engineer-ai-ml"] },
-        { "name": "Prompt Engineering", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
-        { "name": "Large Language Models (LLMs)", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "Prompt Engineering", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application", "project:llm-evaluation-red-teaming-framework"] },
+        { "name": "Large Language Models (LLMs)", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application", "project:llm-powered-sql-query-generator", "project:llm-evaluation-red-teaming-framework"] },
         { "name": "Retrieval-Augmented Generation (RAG)", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
         { "name": "LangChain", "evidence": ["resume:technical-skills"] },
         { "name": "LlamaIndex", "evidence": ["resume:technical-skills"] },
         { "name": "Llama 2", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
         { "name": "Llama 3", "evidence": ["resume:technical-skills"] },
+        { "name": "CodeLlama-7B", "evidence": ["project:llm-powered-sql-query-generator"] },
+        { "name": "QLoRA", "evidence": ["project:llm-powered-sql-query-generator"] },
+        { "name": "Text-to-SQL", "evidence": ["project:llm-powered-sql-query-generator"] },
         { "name": "Sentence Transformers", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
         { "name": "FAISS", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
-        { "name": "Llama.cpp", "evidence": ["resume:technical-skills"] }
+        { "name": "Llama.cpp", "evidence": ["resume:technical-skills"] },
+        { "name": "LLM Evaluation", "evidence": ["project:llm-evaluation-red-teaming-framework"] },
+        { "name": "Red-Teaming", "evidence": ["project:llm-evaluation-red-teaming-framework"] },
+        { "name": "Hallucination Detection", "evidence": ["project:llm-evaluation-red-teaming-framework"] },
+        { "name": "DeepEval", "evidence": ["project:llm-evaluation-red-teaming-framework"] },
+        { "name": "LangSmith", "evidence": ["project:llm-evaluation-red-teaming-framework"] },
+        { "name": "CLIP", "evidence": ["project:multimodal-image-text-classifier"] },
+        { "name": "Computer Vision", "evidence": ["project:multimodal-image-text-classifier"] },
+        { "name": "Multimodal Learning", "evidence": ["project:multimodal-image-text-classifier"] }
       ]
     },
     {
       "id": "data-science-analysis",
       "label": "Data Science & Analysis",
       "skills": [
-        { "name": "Pandas", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Pandas", "evidence": ["experience:einfochips-software-engineer-ai-ml", "experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
         { "name": "NumPy", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Exploratory Data Analysis (EDA)", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Statistical Analysis", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Exploratory Data Analysis (EDA)", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
+        { "name": "Statistical Analysis", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis"] },
         { "name": "Hypothesis Testing", "evidence": ["resume:technical-skills"] }
       ]
     },
@@ -209,23 +232,23 @@
         { "name": "MySQL", "evidence": ["resume:technical-skills"] },
         { "name": "PostgreSQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:loan-onboarding-system"] },
         { "name": "MongoDB", "evidence": ["project:rideasy-bike-booking"] },
-        { "name": "DuckDB", "evidence": ["resume:technical-skills"] },
-        { "name": "Advanced SQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Query Optimization", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Common Table Expressions (CTEs)", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Window Functions", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Ranking Functions", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Percentiles", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Data Aggregation", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] }
+        { "name": "DuckDB", "evidence": ["project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
+        { "name": "Advanced SQL", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
+        { "name": "Query Optimization", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
+        { "name": "Common Table Expressions (CTEs)", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:supply-chain-inventory-analytics"] },
+        { "name": "Window Functions", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
+        { "name": "Ranking Functions", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis"] },
+        { "name": "Percentiles", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis"] },
+        { "name": "Data Aggregation", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] }
       ]
     },
     {
       "id": "data-visualization-bi",
       "label": "Data Visualization & BI",
       "skills": [
-        { "name": "Tableau", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
+        { "name": "Tableau", "evidence": ["experience:vidyarthimitra-data-analyst-intern", "project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
         { "name": "Power BI", "evidence": ["resume:technical-skills"] },
-        { "name": "Streamlit", "evidence": ["resume:technical-skills"] },
+        { "name": "Streamlit", "evidence": ["project:flipkart-price-analysis", "project:supply-chain-inventory-analytics"] },
         { "name": "Advanced Excel", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
         { "name": "KPI Analysis", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] }
       ]
@@ -234,7 +257,7 @@
       "id": "backend-application-development",
       "label": "Backend & Application Development",
       "skills": [
-        { "name": "FastAPI", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
+        { "name": "FastAPI", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application", "project:llm-powered-sql-query-generator", "project:portfolio-website"] },
         { "name": "REST APIs", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:loan-onboarding-system"] },
         { "name": "WebSockets", "evidence": ["experience:einfochips-software-engineer-ai-ml", "project:ai-chat-application"] },
         { "name": "Server-Sent Events (SSE)", "evidence": ["project:ai-chat-application"] },
@@ -266,7 +289,8 @@
         { "name": "OpenCV", "evidence": ["resume:technical-skills"] },
         { "name": "MediaPipe", "evidence": ["resume:technical-skills"] },
         { "name": "Jupyter Notebook", "evidence": ["experience:vidyarthimitra-data-analyst-intern"] },
-        { "name": "Netlify CI/CD", "evidence": ["project:portfolio-website"] }
+        { "name": "Netlify CI/CD", "evidence": ["project:weather-dashboard"] },
+        { "name": "Render", "evidence": ["project:portfolio-website"] }
       ]
     }
   ],
@@ -300,20 +324,66 @@
       "source_note": "Included as portfolio-backed project evidence; not attributed to an employer."
     },
     {
+      "id": "llm-powered-sql-query-generator",
+      "title": "LLM-Powered SQL Query Generator",
+      "aliases": ["Text-to-SQL Generator", "SQL Query Generator"],
+      "short_description": "A fine-tuned text-to-SQL system that converts natural-language questions into executable SQL through a FastAPI inference service.",
+      "highlights": [
+        "Fine-tuned CodeLlama-7B on 80,000 natural-language and SQL pairs using QLoRA.",
+        "Achieved 79% execution accuracy on the Spider benchmark.",
+        "Served more than 500 queries per day through a FastAPI inference API with average latency under 900 milliseconds."
+      ],
+      "technologies": ["Python", "LLM", "CodeLlama-7B", "QLoRA", "Text-to-SQL", "FastAPI", "SQL"],
+      "categories": ["AI/ML", "Generative AI", "Python", "Backend", "SQL"],
+      "links": {},
+      "source": "updated_ai_ml_resume"
+    },
+    {
+      "id": "llm-evaluation-red-teaming-framework",
+      "title": "LLM Evaluation & Red-Teaming Framework",
+      "aliases": ["LLM Evaluation Framework", "Red-Teaming Framework"],
+      "short_description": "An automated evaluation framework for measuring hallucination, bias, failure modes, and unsafe behavior in LLM responses.",
+      "highlights": [
+        "Built an evaluation workflow with DeepEval and LangSmith for repeatable LLM quality and safety testing.",
+        "Created more than 500 adversarial prompts across six failure categories.",
+        "Identified a 23% hallucination rate on edge cases and used targeted fine-tuning to reduce violations by 61%."
+      ],
+      "technologies": ["Python", "DeepEval", "LangSmith", "LLM Evaluation", "Red-Teaming", "Prompt Engineering"],
+      "categories": ["AI/ML", "Generative AI", "Python", "LLM Evaluation"],
+      "links": {},
+      "source": "updated_ai_ml_resume"
+    },
+    {
+      "id": "multimodal-image-text-classifier",
+      "title": "Multimodal Image + Text Classifier",
+      "aliases": ["Multimodal Classifier", "Image and Text Classifier", "Computer Vision Classifier"],
+      "short_description": "A CLIP-based multimodal classification system that combines image and text signals to categorize product listings and flag low-quality content.",
+      "highlights": [
+        "Trained and evaluated the classifier on 100,000 product listings, reaching 89% classification accuracy.",
+        "Combined visual and textual representations to improve product categorization.",
+        "Reduced manual tagging effort by 64% and flagged low-quality listings four times faster."
+      ],
+      "technologies": ["Python", "CLIP", "Computer Vision", "NLP", "Image Classification", "Text Classification"],
+      "categories": ["AI/ML", "Computer Vision", "NLP", "Python"],
+      "links": {},
+      "source": "updated_ai_ml_resume"
+    },
+    {
       "id": "portfolio-website",
       "title": "Portfolio Website",
-      "short_description": "A responsive developer portfolio with dark mode, motion, and an integrated contact form.",
+      "short_description": "An AI/ML-first recruiter portfolio that also surfaces data analytics evidence through a grounded assistant and role-aware project discovery.",
       "highlights": [
-        "Built with React, TypeScript, Framer Motion, and Tailwind CSS.",
-        "The resume reports optimization for performance, SEO, accessibility, and cross-browser compatibility through Netlify CI/CD."
+        "Built a responsive, accessible interface with React, TypeScript, Framer Motion, Tailwind CSS, dark mode, project filters, and role-specific resume access.",
+        "Connected a FastAPI backend to a Hugging Face-hosted Qwen assistant with audited portfolio retrieval, streamed responses, and evidence-based recruiter matching.",
+        "Presents AI/ML work first while keeping SQL, dashboard, and analytics evidence easy for Data Analyst recruiters to find."
       ],
-      "technologies": ["React.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Netlify CI/CD"],
-      "categories": ["Frontend", "Full Stack"],
+      "technologies": ["React.js", "TypeScript", "Framer Motion", "Tailwind CSS", "FastAPI", "Python", "RAG", "Hugging Face", "Gradio", "Render"],
+      "categories": ["Frontend", "Full Stack", "AI/ML", "Python"],
       "links": {
         "github": "https://github.com/starboy1101/Portfolio-Omkar",
-        "live": "https://omkar-mahabdi-portfolio.netlify.app"
+        "live": "https://omkar-mahabdi-portfolio.onrender.com"
       },
-      "source": "resume_and_portfolio"
+      "source": "current_portfolio"
     },
     {
       "id": "weather-dashboard",
@@ -332,6 +402,22 @@
       "source": "resume_and_portfolio"
     },
     {
+      "id": "loan-onboarding-system",
+      "title": "Loan Onboarding System",
+      "short_description": "An internship project for secure, multi-tenant loan onboarding and file management.",
+      "highlights": [
+        "Built with Django and Django REST Framework using multi-tenant architecture and dynamic database routing.",
+        "Integrated PostgreSQL, Google Cloud Storage, and JWT authentication for secure files and sessions."
+      ],
+      "technologies": ["Python", "Django", "Django REST Framework", "PostgreSQL", "Google Cloud Storage", "JWT", "REST APIs"],
+      "categories": ["Python", "Backend", "Full Stack"],
+      "links": {
+        "live": "https://ajitbank.markytics.com/login"
+      },
+      "source": "resume_and_portfolio",
+      "source_note": "The placeholder GitHub URL from the old component was excluded."
+    },
+    {
       "id": "rideasy-bike-booking",
       "title": "RidEasy (Bike Booking)",
       "aliases": ["Bike Ride Booking App"],
@@ -347,20 +433,34 @@
       "source_note": "Placeholder GitHub and live URLs from the old component were excluded."
     },
     {
-      "id": "loan-onboarding-system",
-      "title": "Loan Onboarding System",
-      "short_description": "An internship project for secure, multi-tenant loan onboarding and file management.",
+      "id": "flipkart-price-analysis",
+      "title": "Flipkart Price Analysis",
+      "aliases": ["Flipkart Analysis"],
+      "short_description": "Pricing and discount analysis using advanced SQL, Python, and interactive dashboards to surface product and customer-rating trends.",
       "highlights": [
-        "Built with Django and Django REST Framework using multi-tenant architecture and dynamic database routing.",
-        "Integrated PostgreSQL, Google Cloud Storage, and JWT authentication for secure files and sessions."
+        "Analyzed product pricing, discounts, customer ratings, and product segments using Python, Pandas, SQL, and DuckDB.",
+        "Applied window functions, percentiles, ranking functions, aggregations, and comparative analysis to identify meaningful business trends.",
+        "Developed Tableau and Streamlit dashboards to evaluate pricing strategies and competitive-pricing opportunities."
       ],
-      "technologies": ["Python", "Django", "Django REST Framework", "PostgreSQL", "Google Cloud Storage", "JWT", "REST APIs"],
-      "categories": ["Python", "Backend", "Full Stack"],
-      "links": {
-        "live": "https://ajitbank.markytics.com/login"
-      },
-      "source": "resume_and_portfolio",
-      "source_note": "The placeholder GitHub URL from the old component was excluded."
+      "technologies": ["SQL", "Python", "DuckDB", "Pandas", "Tableau", "Streamlit"],
+      "categories": ["Data Analytics", "SQL", "Python", "Business Intelligence"],
+      "links": {},
+      "source": "updated_data_analyst_resume"
+    },
+    {
+      "id": "supply-chain-inventory-analytics",
+      "title": "Supply Chain and Inventory Analytics",
+      "aliases": ["Supply Chain Analytics", "Inventory Analytics"],
+      "short_description": "Operational analysis of inventory, suppliers, shipping, and order fulfillment using SQL, Python, and interactive dashboards.",
+      "highlights": [
+        "Analyzed inventory levels, supplier performance, delivery performance, shipping modes, and order fulfillment.",
+        "Used SQL aggregations, CTEs, and window functions to identify operational trends, bottlenecks, and performance gaps.",
+        "Created Tableau and Streamlit dashboards and identified First Class as the least reliable shipping mode in the analyzed dataset."
+      ],
+      "technologies": ["Python", "SQL", "Pandas", "DuckDB", "Tableau", "Streamlit"],
+      "categories": ["Data Analytics", "SQL", "Python", "Business Intelligence"],
+      "links": {},
+      "source": "updated_data_analyst_resume"
     }
   ],
   "certifications": [
@@ -436,7 +536,7 @@
     }
   ],
   "known_unknowns": [
-    "Whether the Army Public School 2020 qualification should be labeled CBSE-XII instead of the duplicated CBSE-X label.",
+    "Public repository or live links for the three updated AI/ML resume projects and two updated Data Analyst resume projects.",
     "Public repository links for RidEasy and the Loan Onboarding System."
   ]
 }

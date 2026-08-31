@@ -125,6 +125,21 @@ class ChatService:
         if any(
             phrase in folded
             for phrase in (
+                "data analyst role",
+                "data analytics role",
+                "business intelligence role",
+                "analytics role",
+            )
+        ) and any(phrase in folded for phrase in ("suitable for", "fit for", "good fit", "role")):
+            return (
+                "Data analytics is Omkar's secondary track. Direct evidence includes a Data Analyst internship plus "
+                "Python, SQL, Pandas, DuckDB, Tableau, and Streamlit work in the Flipkart Price Analysis and Supply "
+                "Chain and Inventory Analytics projects. Recruiter mode can compare this evidence with the role's "
+                "exact requirements without overstating his primary AI/ML experience."
+            )
+        if any(
+            phrase in folded
+            for phrase in (
                 "suitable for",
                 "fit for",
                 "good fit",
@@ -134,10 +149,11 @@ class ChatService:
             )
         ):
             return (
-                "The audited portfolio provides direct evidence in Python, RAG, FastAPI, React, and the AI Chat "
-                "Application, alongside resume-backed software engineering experience. A responsible role-fit "
-                "assessment depends on the job's explicit requirements; Recruiter mode compares those requirements "
-                "without inferring missing skills."
+                "The audited portfolio provides direct evidence across the AI Chat Application, a fine-tuned "
+                "text-to-SQL system, an LLM evaluation and red-teaming framework, and a multimodal classifier, "
+                "alongside Python, RAG, FastAPI, and resume-backed software engineering experience. A responsible "
+                "role-fit assessment depends on the job's explicit requirements; Recruiter mode compares those "
+                "requirements without inferring missing skills."
             )
         if any(term in folded for term in ("guided tour", "portfolio tour", "start tour", "show me around")):
             return (
@@ -154,7 +170,10 @@ class ChatService:
         if "resume" in folded or re.search(r"\bcv\b", folded):
             if any(term in folded for term in ("send", "email", "mail")):
                 return "I can help send Omkar’s resume. Enter the recipient email in the secure resume-request flow."
-            return "Omkar’s audited resume is available to view or download using the resume action."
+            return (
+                "Omkar's role-specific AI/ML and Data Analyst resumes are available in the portfolio. "
+                "The AI/ML resume is the primary copy used by the resume action and secure email flow."
+            )
         if (
             re.search(r"\b(?:rag|faiss|sentence\s*transformers?)\b", folded)
             and any(
@@ -197,8 +216,8 @@ class ChatService:
             degree = data["education"][0]
             return (
                 f"Omkar’s resume lists a {degree['qualification']} from {degree['institution']} in "
-                f"{degree['completion_year']} with {degree['score']}. The duplicated CBSE-X labels for the 2018 and "
-                "2020 school records remain marked for confirmation."
+                f"{degree['completion_year']} with {degree['score']}. The updated education section also lists "
+                "CBSE Class XII in the Science stream and CBSE Class X at Army Public School."
             )
         if any(
             term in folded
@@ -222,11 +241,6 @@ class ChatService:
                     f"Technologies: {', '.join(project['technologies'])}."
                 )
         if "project" in folded:
-            if any(term in folded for term in ("computer vision", "opencv")):
-                return (
-                    "OpenCV is listed in Omkar's supplied technical skills, but a specific OpenCV project is not "
-                    "mapped yet. I can show his documented RAG, Python backend, frontend, and full-stack projects."
-                )
             category = self.tools.mentioned_project_category(message)
             if category:
                 matching = [item for item in data["projects"] if category in item["categories"]]
@@ -371,6 +385,9 @@ class ChatService:
                 "good fit",
                 "ai engineer role",
                 "python engineer role",
+                "data analyst role",
+                "data analytics role",
+                "business intelligence role",
                 "guided tour",
                 "portfolio tour",
                 "start tour",
@@ -418,5 +435,5 @@ class ChatService:
         if "experience" in folded:
             return ["What did he build with C++?", "Tell me about his internship", "Show his resume"]
         if "project" in folded:
-            return ["Which project best shows Python?", "Explain his RAG project", "Open GitHub"]
-        return ["What AI/ML projects has he built?", "Explain his Python experience", "How can I contact him?"]
+            return ["Which project best shows Python?", "Show his data analytics projects", "Explain his RAG project"]
+        return ["What AI/ML projects has he built?", "Show his data analytics projects", "How can I contact him?"]

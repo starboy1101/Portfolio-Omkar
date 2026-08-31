@@ -47,7 +47,7 @@ const downloadTrustedResume = () => {
   if (typeof document === 'undefined') return false;
   const link = document.createElement('a');
   link.href = RESUME_URL;
-  link.download = 'Omkar_Mahabdi_Resume.pdf';
+  link.download = 'OmkarMahabdi_AIML.pdf';
   link.rel = 'noopener';
   document.body.appendChild(link);
   link.click();

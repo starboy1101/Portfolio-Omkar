@@ -31,6 +31,10 @@ REQUIREMENTS = (
     Requirement("REST APIs", (r"\brest(?:ful)?\s+apis?\b", r"\brest\b")),
     Requirement("WebSockets", (r"\bwebsockets?\b", r"\bsse\b")),
     Requirement("SQL", (r"\bsql\b",)),
+    Requirement("Advanced SQL", (r"advanced sql",)),
+    Requirement("DuckDB", (r"\bduckdb\b",)),
+    Requirement("Common Table Expressions (CTEs)", (r"\bctes?\b", r"common table expressions?")),
+    Requirement("Window Functions", (r"window functions?",)),
     Requirement("PostgreSQL", (r"\bpostgres(?:ql)?\b",)),
     Requirement("MySQL", (r"\bmysql\b",)),
     Requirement("MongoDB", (r"\bmongodb\b",)),
@@ -48,6 +52,12 @@ REQUIREMENTS = (
     Requirement("PyTorch", (r"\bpytorch\b",)),
     Requirement("TensorFlow", (r"\btensorflow\b",)),
     Requirement("OpenCV", (r"\bopencv\b",)),
+    Requirement("CLIP", (r"\bclip\b",)),
+    Requirement("QLoRA", (r"\bqlora\b",)),
+    Requirement("Text-to-SQL", (r"text[- ]to[- ]sql",)),
+    Requirement("LLM Evaluation", (r"llm evaluation",)),
+    Requirement("DeepEval", (r"\bdeepeval\b",)),
+    Requirement("LangSmith", (r"\blangsmith\b",)),
     Requirement("AWS", (r"\baws\b", r"amazon web services")),
     Requirement("Azure", (r"\bazure\b",)),
     Requirement("Google Cloud", (r"google cloud", r"\bgcp\b")),
@@ -60,6 +70,13 @@ REQUIREMENTS = (
     Requirement("Linux", (r"\blinux\b",)),
     Requirement("Tableau", (r"\btableau\b",)),
     Requirement("Pandas", (r"\bpandas\b",)),
+    Requirement("Power BI", (r"\bpower\s*bi\b",)),
+    Requirement("Streamlit", (r"\bstreamlit\b",)),
+    Requirement("Advanced Excel", (r"\bexcel\b",)),
+    Requirement("Exploratory Data Analysis (EDA)", (r"exploratory data analysis", r"\beda\b")),
+    Requirement("Statistical Analysis", (r"statistical analysis",)),
+    Requirement("Data Analytics", (r"data analytics", r"data analyst")),
+    Requirement("Business Intelligence", (r"business intelligence", r"\bbi\b")),
     Requirement("MFC", (r"\bmfc\b",)),
     Requirement("WASAPI", (r"\bwasapi\b",)),
 )
@@ -199,4 +216,3 @@ class JobDescriptionAnalyzer:
                 "1, adjacent technologies score 0.5, and absent technologies score 0. This is not a hiring decision."
             ),
         )
-

@@ -57,7 +57,7 @@ class EmailService:
             resume_path.read_bytes(),
             maintype="application",
             subtype="pdf",
-            filename="Omkar_Mahabdi_Resume.pdf",
+            filename="OmkarMahabdi_AIML.pdf",
         )
         await asyncio.to_thread(self._deliver, message)
 

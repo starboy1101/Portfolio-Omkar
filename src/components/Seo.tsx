@@ -35,7 +35,7 @@ const Seo = ({
   description,
   path,
   noIndex = false,
-  imageAlt = 'Omkar Mahabdi — AI/ML Engineer, Python and RAG portfolio',
+  imageAlt = 'Omkar Mahabdi — AI/ML engineering and data analytics portfolio',
 }: SeoProps) => {
   useEffect(() => {
     const configuredSiteUrl = (import.meta.env.VITE_SITE_URL as string | undefined)?.trim();

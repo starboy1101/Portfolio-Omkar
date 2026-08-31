@@ -9,7 +9,6 @@ import portfolioImage480 from '../assets/Portfolioimg-480.webp';
 import portfolioImage960 from '../assets/Portfolioimg-960.webp';
 import profilePortrait426 from '../assets/Person-426.webp';
 import profilePortrait768 from '../assets/Person-768.webp';
-import resumeUrl from '../assets/Resume.pdf';
 import weatherImage480 from '../assets/Weatherimg-480.webp';
 import weatherImage960 from '../assets/Weatherimg-960.webp';
 
@@ -181,7 +180,11 @@ export const PROJECT_CATEGORIES = [
   ...Array.from(new Set(portfolio.projects.flatMap((project) => project.categories))),
 ];
 
-export const RESUME_URL = resumeUrl;
+export const RESUME_URLS = {
+  aiMl: '/resumes/OmkarMahabdi_AIML.pdf',
+  dataAnalyst: '/resumes/OmkarMahabdi_Data_Analyst_Resume.pdf',
+} as const;
+export const RESUME_URL = RESUME_URLS.aiMl;
 export const PROFILE_PORTRAIT: ImageAsset = {
   src: profilePortrait426,
   srcSet: `${profilePortrait426} 426w, ${profilePortrait768} 768w`,

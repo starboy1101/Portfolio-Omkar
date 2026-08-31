@@ -7,7 +7,7 @@ const socialIcons = {
   linkedin: Linkedin,
 } as const;
 
-const focusAreas = ['Python', 'RAG', 'FAISS', 'FastAPI', 'PyTorch'];
+const focusAreas = ['Python', 'RAG', 'FastAPI', 'SQL', 'Tableau'];
 
 const Hero = () => {
   const { profile } = portfolio;
@@ -53,7 +53,7 @@ const Hero = () => {
               className="button-primary"
               onClick={() =>
                 openPortfolioAssistant({
-                  prompt: 'Tell me about Omkar and the work most relevant to an AI or Python engineering role.',
+                  prompt: 'Tell me about Omkar and the work most relevant to an AI/ML, Python engineering, or Data Analyst role.',
                   autoSend: true,
                   context: { sectionId: 'home' },
                 })
@@ -109,10 +109,11 @@ const Hero = () => {
         <aside className="surface-card relative overflow-hidden p-6 sm:p-8" aria-label="Recruiter quick scan">
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-500 via-violet-500 to-fuchsia-500" />
           <p className="section-kicker">Recruiter quick scan</p>
-          <h2 className="mt-3 text-2xl font-bold text-foreground">Production AI delivery with measurable retrieval performance.</h2>
+          <h2 className="mt-3 text-2xl font-bold text-foreground">Production AI delivery with a practical analytics foundation.</h2>
           <p className="mt-4 leading-7 text-muted-foreground">
-            Hands-on work spans document ingestion, semantic search, model improvement, FastAPI applications,
-            Supabase-backed sessions, and real-time LLM response streaming.
+            Primary experience spans document ingestion, semantic search, model improvement, FastAPI applications,
+            and real-time LLM streaming. Secondary evidence covers SQL analysis, data validation, and Tableau and
+            Streamlit dashboards.
           </p>
           <ul className="mt-6 flex flex-wrap gap-2" aria-label="Focus technologies">
             {focusAreas.map((area) => (

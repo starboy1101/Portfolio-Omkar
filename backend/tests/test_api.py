@@ -26,6 +26,7 @@ def test_profile_uses_resume_governed_employment_and_education(client):
     assert payload["experience"][1]["title"] == "Data Analyst Intern"
     assert payload["education"][0]["qualification"] == "BTech Computer Science Engineering"
     assert payload["education"][0]["score"] == "CGPA 8.5"
+    assert payload["education"][1]["qualification"] == "CBSE Class XII — Science Stream"
 
 
 def test_projects_exclude_placeholders_and_keep_ai_chat_separate(client):
@@ -37,6 +38,21 @@ def test_projects_exclude_placeholders_and_keep_ai_chat_separate(client):
     assert "employer" not in by_id["ai-chat-application"]
     assert by_id["rideasy-bike-booking"]["links"] == {}
     assert "github" not in by_id["loan-onboarding-system"]["links"]
+    assert [project["id"] for project in projects] == [
+        "ai-chat-application",
+        "llm-powered-sql-query-generator",
+        "llm-evaluation-red-teaming-framework",
+        "multimodal-image-text-classifier",
+        "portfolio-website",
+        "weather-dashboard",
+        "loan-onboarding-system",
+        "rideasy-bike-booking",
+        "flipkart-price-analysis",
+        "supply-chain-inventory-analytics",
+    ]
+    assert by_id["multimodal-image-text-classifier"]["links"] == {}
+    assert by_id["flipkart-price-analysis"]["links"] == {}
+    assert by_id["portfolio-website"]["links"]["live"].endswith("onrender.com")
     assert "yourusername" not in json.dumps(projects)
 
 
@@ -111,7 +127,16 @@ def test_filter_project_action_uses_canonical_category(client):
     assert "AI Chat Application" in response.json()["message"]
     assert "Loan Onboarding System" in response.json()["message"]
     assert "Weather Dashboard" not in response.json()["message"]
-    assert response.json()["sources"][0]["id"] in {"ai-chat-application", "loan-onboarding-system"}
+    assert response.json()["sources"][0]["id"] in {
+        "ai-chat-application",
+        "llm-powered-sql-query-generator",
+        "llm-evaluation-red-teaming-framework",
+        "multimodal-image-text-classifier",
+        "portfolio-website",
+        "loan-onboarding-system",
+        "flipkart-price-analysis",
+        "supply-chain-inventory-analytics",
+    }
     assert any(
         action["type"] == "FILTER_PROJECTS" and action["target"] == "Python"
         for action in response.json()["actions"]
@@ -155,14 +180,44 @@ def test_role_fit_and_rag_experience_offer_the_relevant_workflow(client):
     )
 
 
-def test_unsupported_project_category_is_not_invented(client):
+def test_computer_vision_project_is_grounded_in_updated_resume(client):
     response = client.post(
         "/api/chat",
         json={"message": "Show projects related to computer vision"},
     )
     assert response.status_code == 200
-    assert "not mapped" in response.json()["message"]
-    assert "OpenCV" in response.json()["message"]
+    payload = response.json()
+    assert "Multimodal Image + Text Classifier" in payload["message"]
+    assert any(source["id"] == "multimodal-image-text-classifier" for source in payload["sources"])
+    assert any(
+        action["type"] == "FILTER_PROJECTS" and action["target"] == "Computer Vision"
+        for action in payload["actions"]
+    )
+
+
+def test_data_analyst_role_and_projects_keep_analytics_secondary(client):
+    fit = client.post(
+        "/api/chat",
+        json={"message": "Is Omkar a good fit for a Data Analyst role?"},
+    )
+    assert fit.status_code == 200
+    assert "secondary track" in fit.json()["message"]
+    assert "Flipkart Price Analysis" in fit.json()["message"]
+    assert any(action["type"] == "ANALYZE_JD" for action in fit.json()["actions"])
+
+    projects = client.post(
+        "/api/chat",
+        json={"message": "Show his data analytics projects"},
+    )
+    assert projects.status_code == 200
+    payload = projects.json()
+    assert "Flipkart Price Analysis" in payload["message"]
+    assert "Supply Chain and Inventory Analytics" in payload["message"]
+    assert "AI Chat Application" not in payload["message"]
+    assert any(
+        action["type"] == "FILTER_PROJECTS" and action["target"] == "Data Analytics"
+        for action in payload["actions"]
+    )
 
 
 def test_sse_stream_matches_frontend_delta_complete_contract(client):
@@ -193,6 +248,35 @@ def test_job_description_analysis_is_evidence_based(client):
     assert "Kubernetes" in payload["notFound"]
     assert "AI Chat Application" in payload["relevantProjects"]
     assert 0 < payload["overallMatch"] < 100
+
+
+def test_data_analyst_job_description_maps_to_data_projects(client):
+    response = client.post(
+        "/api/jd/analyze",
+        json={
+            "jobDescription": (
+                "Data Analyst role requiring Python, SQL, Pandas, DuckDB, Tableau, Streamlit, "
+                "CTEs, window functions, and Power BI."
+            )
+        },
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    strong = {item["requirement"] for item in payload["strongMatches"]}
+    assert {
+        "Python",
+        "SQL",
+        "Pandas",
+        "DuckDB",
+        "Tableau",
+        "Streamlit",
+        "Common Table Expressions (CTEs)",
+        "Window Functions",
+        "Power BI",
+        "Data Analytics",
+    }.issubset(strong)
+    assert "Flipkart Price Analysis" in payload["relevantProjects"]
+    assert "Supply Chain and Inventory Analytics" in payload["relevantProjects"]
 
 
 def test_email_validation_and_unconfigured_delivery(client):
@@ -243,7 +327,7 @@ def test_configured_resume_email_attaches_pdf(client, services, monkeypatch):
     assert delivered[0]["To"] == "recruiter@example.com"
     attachments = list(delivered[0].iter_attachments())
     assert len(attachments) == 1
-    assert attachments[0].get_filename() == "Omkar_Mahabdi_Resume.pdf"
+    assert attachments[0].get_filename() == "OmkarMahabdi_AIML.pdf"
 
 
 def test_contact_notification_sets_reply_to(client, services, monkeypatch):

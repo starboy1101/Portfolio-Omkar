@@ -11,8 +11,8 @@ import Skills from '../components/Skills';
 const HomePage = () => (
   <>
     <Seo
-      title="Omkar Mahabdi | AI/ML Engineer & Python Developer"
-      description="Explore Omkar Mahabdi's production-oriented AI, RAG, semantic search, Python, FastAPI, and full-stack engineering work."
+      title="Omkar Mahabdi | AI/ML Engineer & Data Analytics Portfolio"
+      description="Explore Omkar Mahabdi's AI/ML engineering, RAG, Python, FastAPI, SQL, data analytics, and business-intelligence project evidence."
       path="/"
     />
     <main id="portfolio-content">

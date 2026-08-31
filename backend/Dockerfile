@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY backend /app/backend
 COPY data /app/data
-COPY src/assets/Resume.pdf /app/src/assets/Resume.pdf
+COPY public/resumes/OmkarMahabdi_AIML.pdf /app/public/resumes/OmkarMahabdi_AIML.pdf
 
 RUN useradd --create-home --uid 1000 appuser && chown -R appuser:appuser /app
 USER appuser

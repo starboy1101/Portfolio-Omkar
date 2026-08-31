@@ -17,11 +17,16 @@ import {
 import SplitText from './SplitText';
 
 const PROJECT_ORDER = [
+  'ai-chat-application',
+  'llm-powered-sql-query-generator',
+  'llm-evaluation-red-teaming-framework',
+  'multimodal-image-text-classifier',
   'portfolio-website',
   'weather-dashboard',
-  'ai-chat-application',
   'loan-onboarding-system',
   'rideasy-bike-booking',
+  'flipkart-price-analysis',
+  'supply-chain-inventory-analytics',
 ] as const;
 
 const PROJECT_RANK = new Map<string, number>(

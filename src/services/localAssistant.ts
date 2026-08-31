@@ -11,8 +11,8 @@ import type {
 export const DEFAULT_ASSISTANT_SUGGESTIONS = [
   'Tell me about Omkar',
   'What AI/ML projects has he built?',
+  'Show his data analytics projects',
   'Explain his RAG experience',
-  'How well does he match my job description?',
 ];
 
 const OFFLINE_LEAD =
@@ -178,6 +178,27 @@ export const getLocalAssistantResponse = (
 
   if (
     includesAny(query, [
+      'data analyst role',
+      'data analytics role',
+      'business intelligence role',
+      'analytics role',
+    ]) &&
+    includesAny(query, ['suitable for', 'fit for', 'good fit', 'role'])
+  ) {
+    return response(
+      'Data analytics is Omkar’s secondary track. Direct evidence includes a Data Analyst internship plus Python, SQL, Pandas, DuckDB, Tableau, and Streamlit work in the Flipkart Price Analysis and Supply Chain and Inventory Analytics projects. Recruiter mode can compare this evidence with the role’s exact requirements without overstating his primary AI/ML experience.',
+      [
+        source('experience', 'vidyarthimitra-data-analyst-intern', 'Data Analyst Intern'),
+        source('project', 'flipkart-price-analysis', 'Flipkart Price Analysis'),
+        source('project', 'supply-chain-inventory-analytics', 'Supply Chain and Inventory Analytics'),
+      ],
+      [action('ANALYZE_JD')],
+      ['Paste a Data Analyst job description', 'Show data analytics projects', 'Explain his SQL evidence'],
+    );
+  }
+
+  if (
+    includesAny(query, [
       'ignore previous',
       'system prompt',
       'environment variable',
@@ -229,10 +250,12 @@ export const getLocalAssistantResponse = (
     ])
   ) {
     return response(
-      'The verified portfolio shows direct evidence in Python, RAG, FastAPI, React, and an AI Chat Application, alongside resume-backed software engineering experience. A responsible fit assessment needs the role’s actual requirements, so Recruiter mode compares a pasted job description without inferring missing skills.',
+      'The verified portfolio shows direct evidence across the AI Chat Application, a fine-tuned text-to-SQL system, an LLM evaluation and red-teaming framework, and a multimodal classifier, alongside Python, RAG, FastAPI, and resume-backed software engineering experience. A responsible fit assessment needs the role’s actual requirements, so Recruiter mode compares a pasted job description without inferring missing skills.',
       [
         source('profile', portfolio.profile.id, portfolio.profile.display_name),
         source('project', 'ai-chat-application', 'AI Chat Application'),
+        source('project', 'llm-powered-sql-query-generator', 'LLM-Powered SQL Query Generator'),
+        source('project', 'multimodal-image-text-classifier', 'Multimodal Image + Text Classifier'),
       ],
       [action('ANALYZE_JD')],
       ['Paste a job description', 'Explain his RAG experience', 'Show his experience'],
@@ -283,16 +306,14 @@ export const getLocalAssistantResponse = (
   }
 
   if (asksForProject) {
-    if (includesAny(query, ['computer vision', 'opencv'])) {
-      return response(
-        'OpenCV is listed in Omkar’s supplied technical skills, but a specific OpenCV project is not mapped yet. I can show his documented RAG, Python backend, frontend, and full-stack projects instead.',
-        [],
-        [action('NAVIGATE', 'projects')],
-        ['Show his RAG project', 'Which project demonstrates Python?', 'Show all projects'],
-      );
-    }
-
     const wantsAi = includesAny(query, ['ai', 'machine learning', 'generative', 'rag', 'llm']);
+    const wantsData = includesAny(query, [
+      'data analyst',
+      'data analytics',
+      'analytics',
+      'business intelligence',
+      'dashboard',
+    ]);
     const rankedProjects = portfolio.projects
       .map((project) => ({
         project,
@@ -304,7 +325,9 @@ export const getLocalAssistantResponse = (
       .sort((left, right) => right.score - left.score);
     const projects = rankedProjects.length
       ? rankedProjects.map(({ project }) => project)
-      : wantsAi
+      : wantsData
+        ? portfolio.projects.filter((project) => project.categories.includes('Data Analytics'))
+        : wantsAi
         ? portfolio.projects.filter((project) =>
             project.categories.some((category) =>
               ['AI/ML', 'Generative AI', 'RAG'].includes(category),
@@ -321,11 +344,13 @@ export const getLocalAssistantResponse = (
     }
 
     const names = projects.map((project) => project.title).join(', ');
-    const requestedCategory = portfolio.projects
-      .flatMap((project) => project.categories)
-      .find((category, index, categories) =>
-        categories.indexOf(category) === index && query.includes(normalize(category)),
-      );
+    const requestedCategory = wantsData
+      ? 'Data Analytics'
+      : portfolio.projects
+          .flatMap((project) => project.categories)
+          .find((category, index, categories) =>
+            categories.indexOf(category) === index && query.includes(normalize(category)),
+          );
     const projectActions =
       projects.length === 1
         ? [action('OPEN_PROJECT', projects[0].id)]
@@ -334,13 +359,15 @@ export const getLocalAssistantResponse = (
           : [action('NAVIGATE', 'projects')];
     return response(
       `The strongest verified matches are ${names}. ${
-        wantsAi
+        wantsData
+          ? 'These projects provide direct evidence of SQL analysis, data preparation, and interactive dashboarding.'
+          : wantsAi
           ? 'The AI Chat Application is the clearest direct evidence of RAG and generative-AI engineering.'
           : 'Each project card links only to demos or repositories present in the verified data.'
       }`,
       projects.map((project) => source('project', project.id, project.title)),
       projectActions,
-      ['Explain the AI Chat Application', 'Which project shows Python?', 'Start a guided tour'],
+      ['Explain the AI Chat Application', 'Show data analytics projects', 'Which project shows Python?'],
     );
   }
 
@@ -371,7 +398,7 @@ export const getLocalAssistantResponse = (
   if (includesAny(query, ['education', 'degree', 'university', 'college', 'cgpa'])) {
     const degree = portfolio.education[0];
     return response(
-      `${degree.qualification} from ${degree.institution}, completed in ${degree.completion_year}, with ${degree.score}. The two school qualification labels are reproduced from the resume and are flagged for confirmation rather than inferred.`,
+      `${degree.qualification} from ${degree.institution}, completed in ${degree.completion_year}, with ${degree.score}. The updated education section also lists CBSE Class XII in the Science stream and CBSE Class X at Army Public School.`,
       [source('profile', degree.id, degree.institution)],
       [action('NAVIGATE', 'about')],
       ['Tell me about Omkar', 'Show experience', 'View resume'],
@@ -380,7 +407,7 @@ export const getLocalAssistantResponse = (
 
   if (includesAny(query, ['resume', 'cv'])) {
     return response(
-      'Omkar’s verified resume is available to view or download. I can also answer portfolio-grounded questions about it or show the secure email form if you ask me to email it.',
+      'Omkar’s role-specific AI/ML and Data Analyst résumés are available to view or download. The AI/ML résumé is the primary copy used by the secure email flow.',
       [source('resume', 'resume', 'Resume')],
       [action('OPEN_RESUME')],
       ['Email me the resume', 'Summarize his experience', 'How can I contact him?'],
@@ -415,7 +442,7 @@ export const getLocalAssistantResponse = (
     );
   }
 
-  if (includesAny(query, ['skill', 'technology', 'python', 'backend', 'frontend', 'ai ml'])) {
+  if (includesAny(query, ['skill', 'technology', 'python', 'backend', 'frontend', 'ai ml', 'data analyst', 'data analytics', 'sql', 'tableau', 'pandas'])) {
     const categories = portfolio.skill_categories.map((category) => category.label).join(', ');
     return response(
       `His verified skill groups are ${categories}. The strongest portfolio evidence for AI work is the AI Chat Application; Python is documented in both the resume and project data.`,
@@ -474,6 +501,25 @@ const COMMON_REQUIREMENTS: RequirementTerm[] = [
   { label: 'PyTorch', aliases: ['pytorch'] },
   { label: 'TensorFlow', aliases: ['tensorflow'] },
   { label: 'Computer Vision', aliases: ['computer vision'] },
+  { label: 'CLIP', aliases: ['clip'] },
+  { label: 'QLoRA', aliases: ['qlora'] },
+  { label: 'Text-to-SQL', aliases: ['text to sql', 'text-to-sql'] },
+  { label: 'LLM Evaluation', aliases: ['llm evaluation'] },
+  { label: 'DeepEval', aliases: ['deepeval'] },
+  { label: 'LangSmith', aliases: ['langsmith'] },
+  { label: 'Pandas', aliases: ['pandas'] },
+  { label: 'DuckDB', aliases: ['duckdb'] },
+  { label: 'Advanced SQL', aliases: ['advanced sql'] },
+  { label: 'Common Table Expressions (CTEs)', aliases: ['cte', 'ctes', 'common table expression'] },
+  { label: 'Window Functions', aliases: ['window function', 'window functions'] },
+  { label: 'Tableau', aliases: ['tableau'] },
+  { label: 'Power BI', aliases: ['power bi', 'powerbi'] },
+  { label: 'Streamlit', aliases: ['streamlit'] },
+  { label: 'Advanced Excel', aliases: ['excel', 'advanced excel'] },
+  { label: 'Exploratory Data Analysis (EDA)', aliases: ['exploratory data analysis', 'eda'] },
+  { label: 'Statistical Analysis', aliases: ['statistical analysis'] },
+  { label: 'Business Intelligence', aliases: ['business intelligence', 'bi'] },
+  { label: 'Data Analytics', aliases: ['data analytics', 'data analyst'] },
 ];
 
 const documentedTerms = new Set(
@@ -517,7 +563,7 @@ const hasDocumentedTerm = (term: RequirementTerm) =>
     );
   });
 
-const partialEvidence = new Set(['machine learning', 'llms', 'sql', 'google cloud']);
+const partialEvidence = new Set(['machine learning', 'llms', 'google cloud']);
 
 const rankRelevantProjects = (normalizedDescription: string): string[] =>
   portfolio.projects

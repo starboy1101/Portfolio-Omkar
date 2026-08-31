@@ -26,8 +26,8 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
 
     portfolio_data_path: Path = REPOSITORY_ROOT / "data" / "portfolio.json"
-    resume_path: Path = REPOSITORY_ROOT / "src" / "assets" / "Resume.pdf"
-    public_resume_url: str = "/assets/Resume.pdf"
+    resume_path: Path = REPOSITORY_ROOT / "public" / "resumes" / "OmkarMahabdi_AIML.pdf"
+    public_resume_url: str = "/resumes/OmkarMahabdi_AIML.pdf"
     portfolio_url: str = "http://localhost:5173"
 
     cors_origins: str = "http://localhost:5173,http://127.0.0.1:5173"

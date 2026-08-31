@@ -85,6 +85,16 @@ class PortfolioToolRegistry:
                 aliases["loan onboarding"] = project["id"]
             if project["id"] == "weather-dashboard":
                 aliases["weather app"] = project["id"]
+            if project["id"] == "llm-powered-sql-query-generator":
+                aliases.update({"sql generator": project["id"], "text-to-sql": project["id"], "text to sql": project["id"]})
+            if project["id"] == "llm-evaluation-red-teaming-framework":
+                aliases.update({"llm evaluation": project["id"], "red-teaming framework": project["id"], "red teaming framework": project["id"]})
+            if project["id"] == "multimodal-image-text-classifier":
+                aliases.update({"multimodal classifier": project["id"], "image text classifier": project["id"], "computer vision project": project["id"]})
+            if project["id"] == "flipkart-price-analysis":
+                aliases.update({"flipkart analysis": project["id"], "price analysis": project["id"]})
+            if project["id"] == "supply-chain-inventory-analytics":
+                aliases.update({"supply chain analytics": project["id"], "inventory analytics": project["id"]})
         return aliases
 
     def mentioned_project(self, message: str) -> str | None:
@@ -121,6 +131,14 @@ class PortfolioToolRegistry:
             "ai ml": "AI/ML",
             "rag": "RAG",
             "python": "Python",
+            "data analyst": "Data Analytics",
+            "data analytics": "Data Analytics",
+            "analytics": "Data Analytics",
+            "business intelligence": "Business Intelligence",
+            "computer vision": "Computer Vision",
+            "llm evaluation": "LLM Evaluation",
+            "nlp": "NLP",
+            "sql": "SQL",
         }
         return next((value for alias, value in category_aliases.items() if alias in folded), None)
 

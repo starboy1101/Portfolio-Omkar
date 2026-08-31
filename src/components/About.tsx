@@ -1,4 +1,4 @@
-import { ArrowRight, Award, CheckCircle2, MapPin } from 'lucide-react';
+import { ArrowRight, Award, BarChart3, CheckCircle2, MapPin } from 'lucide-react';
 import { openPortfolioAssistant } from '../data/assistantEvents';
 import { portfolio, PROFILE_PORTRAIT } from '../data/portfolio';
 
@@ -44,15 +44,29 @@ const About = () => {
             </h2>
             <p className="section-copy">{profile.summary}</p>
 
-            <div className="mt-8 rounded-2xl border border-brand-200 bg-brand-50 p-5 dark:border-brand-500/30 dark:bg-brand-500/10">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-brand-600 dark:text-brand-400" aria-hidden="true" />
-                <div>
-                  <h3 className="font-semibold text-foreground">Measured AI outcomes</h3>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                    Document retrieval latency was reduced from 45 seconds to under 500 milliseconds,
-                    with semantic retrieval accuracy improved to 92%+ through embedding and vector-search optimization.
-                  </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-brand-200 bg-brand-50 p-5 dark:border-brand-500/30 dark:bg-brand-500/10">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-brand-600 dark:text-brand-400" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Measured AI outcomes</h3>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      Reduced document retrieval latency from 45 seconds to under 500 milliseconds and improved
+                      semantic retrieval accuracy to 92%+.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-violet-200 bg-violet-50 p-5 dark:border-violet-500/30 dark:bg-violet-500/10">
+                <div className="flex items-start gap-3">
+                  <BarChart3 className="mt-0.5 size-5 shrink-0 text-violet-600 dark:text-violet-400" aria-hidden="true" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Secondary analytics track</h3>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                      Applies Python, SQL, Pandas, DuckDB, Tableau, and Streamlit to data preparation, EDA,
+                      dashboarding, and business insight generation.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
