@@ -66,10 +66,10 @@ const Hero = () => {
               View projects
               <ArrowRight className="size-4" aria-hidden="true" />
             </a>
-            <a href="#resume" className="button-secondary">
+            <a href="#resume" className="button-secondary hidden sm:inline-flex">
               View resume
             </a>
-            <a href="#contact" className="button-secondary">
+            <a href="#contact" className="button-secondary hidden sm:inline-flex">
               Contact me
             </a>
           </div>

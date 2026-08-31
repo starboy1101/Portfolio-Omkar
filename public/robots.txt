@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you
+
+Sitemap: https://omkar-mahabdi-portfolio.onrender.com/sitemap.xml

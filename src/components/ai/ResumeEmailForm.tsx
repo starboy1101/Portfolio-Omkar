@@ -1,5 +1,5 @@
 import { CheckCircle2, Loader2, Mail, X } from 'lucide-react';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useAssistant } from '../../contexts/AssistantContext';
 
 export const ResumeEmailForm = () => {
@@ -13,9 +13,15 @@ export const ResumeEmailForm = () => {
   const [recipientName, setRecipientName] = useState('');
   const [company, setCompany] = useState('');
   const [website, setWebsite] = useState('');
+  const outcomeRef = useRef<HTMLParagraphElement>(null);
 
   const isSending = resumeEmailState.status === 'sending';
   const isSuccess = resumeEmailState.status === 'success';
+  const isError = resumeEmailState.status === 'error';
+
+  useEffect(() => {
+    if (isSuccess || isError) outcomeRef.current?.focus();
+  }, [isError, isSuccess]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,7 +35,14 @@ export const ResumeEmailForm = () => {
           <CheckCircle2 aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-emerald-700 dark:text-emerald-300" />
           <div className="min-w-0 flex-1">
             <h3 className="font-semibold text-emerald-950 dark:text-emerald-100">Resume request accepted</h3>
-            <p role="status" className="mt-1 text-sm leading-6 text-emerald-900 dark:text-emerald-200">
+            <p
+              ref={outcomeRef}
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              tabIndex={-1}
+              className="mt-1 rounded text-sm leading-6 text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 dark:text-emerald-200 dark:focus-visible:ring-offset-emerald-950"
+            >
               {resumeEmailState.message ?? 'Check the recipient inbox shortly.'}
             </p>
           </div>
@@ -68,7 +81,12 @@ export const ResumeEmailForm = () => {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-3"
+        noValidate
+        aria-busy={isSending}
+      >
         <div>
           <label htmlFor="resume-recipient-email" className="mb-1 block text-sm font-medium text-gray-800 dark:text-gray-100">
             Recipient email <span aria-hidden="true">*</span>
@@ -85,7 +103,8 @@ export const ResumeEmailForm = () => {
               setRecipientEmail(event.target.value);
               if (resumeEmailState.status === 'error') resetResumeEmailState();
             }}
-            aria-describedby={resumeEmailState.status === 'error' ? 'resume-email-error' : undefined}
+            aria-invalid={isError}
+            aria-describedby={isError ? 'resume-email-error' : undefined}
             className="min-h-11 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-base text-gray-950 shadow-sm transition-colors placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
             placeholder="recruiter@company.com"
           />
@@ -134,8 +153,15 @@ export const ResumeEmailForm = () => {
           />
         </div>
 
-        {resumeEmailState.status === 'error' && (
-          <p id="resume-email-error" role="alert" className="text-sm text-red-700 dark:text-red-300">
+        {isError && (
+          <p
+            ref={outcomeRef}
+            id="resume-email-error"
+            role="alert"
+            aria-atomic="true"
+            tabIndex={-1}
+            className="rounded text-sm text-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 dark:text-red-300 dark:focus-visible:ring-offset-blue-950"
+          >
             {resumeEmailState.message}
           </p>
         )}

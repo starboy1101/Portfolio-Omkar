@@ -50,7 +50,14 @@ const CertificationScrollStack = () => {
       >
         <ScrollStackItem itemClassName="scroll-stack-card-demo ssc-demo-1">
           <div className="stack-img-container">
-            <img src={GENAI}/>
+            <img
+              src={GENAI}
+              width={255}
+              height={276}
+              alt="OCI Generative AI Professional credential badge"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="card-content">
             <h3>OCI Generative AI Professional</h3>
@@ -60,7 +67,14 @@ const CertificationScrollStack = () => {
 
         <ScrollStackItem itemClassName="scroll-stack-card-demo ssc-demo-2">
           <div className="stack-img-container">
-            <img src={DATASCIENCE}/>
+            <img
+              src={DATASCIENCE}
+              width={253}
+              height={276}
+              alt="OCI Data Science Professional credential badge"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="card-content">
             <h3>OCI Data Science Professional</h3>
@@ -70,7 +84,14 @@ const CertificationScrollStack = () => {
 
         <ScrollStackItem itemClassName="scroll-stack-card-demo ssc-demo-3">
           <div className="stack-img-container">
-            <img src={VECTOR}/>
+            <img
+              src={VECTOR}
+              width={249}
+              height={276}
+              alt="Oracle AI Vector Search Professional credential badge"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="card-content">
             <h3>Oracle AI Vector Search Professional</h3>
@@ -80,7 +101,14 @@ const CertificationScrollStack = () => {
 
         <ScrollStackItem itemClassName="scroll-stack-card-demo ssc-demo-4">
           <div className="stack-img-container">
-            <img src={GENAI}/>
+            <img
+              src={GENAI}
+              width={255}
+              height={276}
+              alt="OCI Generative AI credential badge"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="card-content">
             <h3>OCI AI Foundations Associate</h3>
@@ -90,7 +118,14 @@ const CertificationScrollStack = () => {
 
         <ScrollStackItem itemClassName="scroll-stack-card-demo ssc-demo-3">
           <div className="stack-img-container">
-            <img src={HACKERRANK}/>
+            <img
+              src={HACKERRANK}
+              width={360}
+              height={360}
+              alt="HackerRank Software Engineer certificate badge"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="card-content">
             <h3>Software Engineer Certificate</h3>

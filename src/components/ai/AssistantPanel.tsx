@@ -229,6 +229,9 @@ const AssistantPanel = () => {
   const panelRef = useRef<HTMLElement>(null);
   const chatInputRef = useRef<HTMLTextAreaElement>(null);
   const jdInputRef = useRef<HTMLTextAreaElement>(null);
+  const recruiterErrorRef = useRef<HTMLParagraphElement>(null);
+  const recruiterResultRef = useRef<HTMLDivElement>(null);
+  const previousRecruiterStatusRef = useRef(recruiterAnalysis.status);
   const initialModeRef = useRef(mode);
   const logRef = useRef<HTMLDivElement>(null);
   const logEndRef = useRef<HTMLDivElement>(null);
@@ -303,6 +306,15 @@ const AssistantPanel = () => {
     chatInputRef.current.style.height = 'auto';
     chatInputRef.current.style.height = `${Math.min(chatInputRef.current.scrollHeight, 144)}px`;
   }, [draft]);
+
+  useEffect(() => {
+    const previousStatus = previousRecruiterStatusRef.current;
+    previousRecruiterStatusRef.current = recruiterAnalysis.status;
+    if (mode !== 'recruiter' || previousStatus === recruiterAnalysis.status) return;
+
+    if (recruiterAnalysis.status === 'error') recruiterErrorRef.current?.focus();
+    if (recruiterAnalysis.status === 'success') recruiterResultRef.current?.focus();
+  }, [mode, recruiterAnalysis.status]);
 
   const lastMessage = messages[messages.length - 1];
   useEffect(() => {
@@ -580,6 +592,7 @@ const AssistantPanel = () => {
             id="assistant-recruiter-panel"
             role="tabpanel"
             aria-labelledby="assistant-recruiter-tab"
+            aria-busy={recruiterAnalysis.status === 'loading'}
             className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4"
           >
             <div className="mb-4 rounded-2xl border border-purple-200 bg-purple-50/70 p-4 dark:border-purple-900 dark:bg-purple-950/30">
@@ -603,7 +616,12 @@ const AssistantPanel = () => {
               value={jobDescription}
               onChange={(event) => setJobDescription(event.target.value)}
               disabled={recruiterAnalysis.status === 'loading'}
-              aria-describedby="assistant-jd-help"
+              aria-invalid={recruiterAnalysis.status === 'error'}
+              aria-describedby={
+                recruiterAnalysis.status === 'error'
+                  ? 'assistant-jd-help assistant-jd-error'
+                  : 'assistant-jd-help'
+              }
               placeholder="Paste the role responsibilities and required skills here…"
               className="min-h-48 w-full resize-y rounded-2xl border border-gray-300 bg-white px-3 py-3 text-base leading-6 text-gray-950 shadow-sm placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-400"
             />
@@ -614,8 +632,12 @@ const AssistantPanel = () => {
 
             {recruiterAnalysis.error && (
               <p
+                ref={recruiterErrorRef}
+                id="assistant-jd-error"
                 role={recruiterAnalysis.status === 'error' ? 'alert' : 'status'}
-                className={`mt-3 flex items-start gap-2 rounded-xl border px-3 py-2.5 text-sm ${
+                aria-atomic="true"
+                tabIndex={-1}
+                className={`mt-3 flex items-start gap-2 rounded-xl border px-3 py-2.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950 ${
                   recruiterAnalysis.status === 'error'
                     ? 'border-red-200 bg-red-50 text-red-900 dark:border-red-900 dark:bg-red-950/30 dark:text-red-200'
                     : 'border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-200'
@@ -664,7 +686,19 @@ const AssistantPanel = () => {
             </div>
 
             {recruiterAnalysis.status === 'success' && recruiterAnalysis.result && (
-              <div className="mt-5">
+              <div
+                ref={recruiterResultRef}
+                role="region"
+                aria-labelledby="assistant-job-results-heading"
+                tabIndex={-1}
+                className="mt-5 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-950"
+              >
+                <h3 id="assistant-job-results-heading" className="sr-only">
+                  Job analysis complete
+                </h3>
+                <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+                  Evidence comparison results are ready.
+                </p>
                 <JobMatchCard
                   result={recruiterAnalysis.result}
                   usedFallback={recruiterAnalysis.usedFallback}

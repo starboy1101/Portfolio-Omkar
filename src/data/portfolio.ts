@@ -1,15 +1,17 @@
 import portfolioRaw from '../../data/portfolio.json?raw';
-import aiChatImage from '../assets/AIchat.png';
-import bikeImage from '../assets/Bikeimg.png';
-import dataScienceBadge from '../assets/Datascience.png';
-import generativeAiBadge from '../assets/Genai.png';
-import loanImage from '../assets/LOS.png';
-import portfolioImage from '../assets/Portfolioimg.png';
-import profilePortrait from '../assets/Person.png';
+import aiChatImage480 from '../assets/AIchat-480.webp';
+import aiChatImage960 from '../assets/AIchat-960.webp';
+import bikeImage470 from '../assets/Bikeimg-470.webp';
+import bikeImage940 from '../assets/Bikeimg-940.webp';
+import loanImage480 from '../assets/LOS-480.webp';
+import loanImage960 from '../assets/LOS-960.webp';
+import portfolioImage480 from '../assets/Portfolioimg-480.webp';
+import portfolioImage960 from '../assets/Portfolioimg-960.webp';
+import profilePortrait426 from '../assets/Person-426.webp';
+import profilePortrait768 from '../assets/Person-768.webp';
 import resumeUrl from '../assets/Resume.pdf';
-import vectorSearchBadge from '../assets/vector.png';
-import weatherImage from '../assets/Weatherimg.png';
-import aiFoundationsBadge from '../assets/associate.jpeg';
+import weatherImage480 from '../assets/Weatherimg-480.webp';
+import weatherImage960 from '../assets/Weatherimg-960.webp';
 
 export interface SocialLink {
   id: 'github' | 'linkedin' | 'instagram' | string;
@@ -129,6 +131,8 @@ export interface PortfolioData {
 
 export interface ImageAsset {
   src: string;
+  srcSet: string;
+  sizes: string;
   width: number;
   height: number;
 }
@@ -178,22 +182,56 @@ export const PROJECT_CATEGORIES = [
 ];
 
 export const RESUME_URL = resumeUrl;
-export const PROFILE_PORTRAIT: ImageAsset = { src: profilePortrait, width: 426, height: 586 };
+export const PROFILE_PORTRAIT: ImageAsset = {
+  src: profilePortrait426,
+  srcSet: `${profilePortrait426} 426w, ${profilePortrait768} 768w`,
+  sizes: '(min-width: 640px) 384px, calc(100vw - 72px)',
+  width: 426,
+  height: 539,
+};
+
+const PROJECT_IMAGE_SIZES =
+  '(min-width: 1280px) 380px, (min-width: 768px) 32vw, 80vw';
 
 const projectImages: Record<string, ImageAsset> = {
-  'ai-chat-application': { src: aiChatImage, width: 1919, height: 903 },
-  'portfolio-website': { src: portfolioImage, width: 1891, height: 931 },
-  'weather-dashboard': { src: weatherImage, width: 1917, height: 1074 },
-  'rideasy-bike-booking': { src: bikeImage, width: 940, height: 529 },
-  'loan-onboarding-system': { src: loanImage, width: 1892, height: 882 },
+  'ai-chat-application': {
+    src: aiChatImage480,
+    srcSet: `${aiChatImage480} 480w, ${aiChatImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 226,
+  },
+  'portfolio-website': {
+    src: portfolioImage480,
+    srcSet: `${portfolioImage480} 480w, ${portfolioImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 236,
+  },
+  'weather-dashboard': {
+    src: weatherImage480,
+    srcSet: `${weatherImage480} 480w, ${weatherImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 269,
+  },
+  'rideasy-bike-booking': {
+    src: bikeImage470,
+    srcSet: `${bikeImage470} 470w, ${bikeImage940} 940w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 470,
+    height: 264,
+  },
+  'loan-onboarding-system': {
+    src: loanImage480,
+    srcSet: `${loanImage480} 480w, ${loanImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 224,
+  },
 };
 
-const certificationAssets: Record<string, ImageAsset> = {
-  'src/assets/Genai.png': { src: generativeAiBadge, width: 255, height: 276 },
-  'src/assets/Datascience.png': { src: dataScienceBadge, width: 253, height: 276 },
-  'src/assets/vector.png': { src: vectorSearchBadge, width: 249, height: 276 },
-  'src/assets/associate.jpeg': { src: aiFoundationsBadge, width: 265, height: 276 },
-};
+const certificationAssets: Readonly<Record<string, ImageAsset>> = {};
 
 export const getProjectImage = (projectId: string): ImageAsset | undefined => projectImages[projectId];
 

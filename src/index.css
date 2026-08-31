@@ -26,6 +26,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6.5rem;
+    scroll-padding-bottom: 6rem;
   }
 
   body {
@@ -48,6 +49,7 @@
   input,
   textarea {
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   :focus-visible {
@@ -57,6 +59,12 @@
 
   ::selection {
     background: rgb(99 102 241 / 0.25);
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-bottom: 0;
   }
 }
 

@@ -1,6 +1,7 @@
-import { Bot, Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Bot, Cookie, Github, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
 import { openPortfolioAssistant } from '../data/assistantEvents';
 import { portfolio, SECTION_LINKS } from '../data/portfolio';
+import { openCookiePreferences } from '../services/analytics';
 
 const socialIcons = {
   github: Github,
@@ -13,7 +14,7 @@ const Footer = () => (
     <div className="section-shell">
       <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div className="max-w-md">
-          <a href="#home" className="inline-flex min-h-11 items-center gap-3 rounded-xl font-bold text-white">
+          <a href="/" className="inline-flex min-h-11 items-center gap-3 rounded-xl font-bold text-white">
             <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-violet-500 text-sm" aria-hidden="true">
               OM
             </span>
@@ -40,7 +41,7 @@ const Footer = () => (
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 lg:grid-cols-1">
             {SECTION_LINKS.map((link) => (
               <li key={link.id}>
-                <a href={`#${link.id}`} className="inline-flex min-h-7 items-center text-sm text-slate-300 transition hover:text-white">
+                <a href={`/#${link.id}`} className="inline-flex min-h-11 items-center text-sm text-slate-300 transition hover:text-white">
                   {link.label}
                 </a>
               </li>
@@ -77,13 +78,32 @@ const Footer = () => (
                 Email
               </a>
             </li>
+            <li className="flex min-h-11 items-center gap-2 text-sm text-slate-300">
+              <MapPin className="size-4 shrink-0" aria-hidden="true" />
+              {portfolio.profile.location.city}, {portfolio.profile.location.state}{' '}
+              {portfolio.profile.location.postal_code}, {portfolio.profile.location.country}
+            </li>
           </ul>
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-2 border-t border-slate-800 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} {portfolio.profile.display_name}. All rights reserved.</p>
-        <p>Built with React, TypeScript, Python, and an evidence-first AI assistant.</p>
+      <div className="mt-10 border-t border-slate-800 pt-6 text-xs text-slate-400">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+          <a href="/privacy" className="inline-flex min-h-11 items-center transition hover:text-white">Privacy</a>
+          <a href="/terms" className="inline-flex min-h-11 items-center transition hover:text-white">Terms</a>
+          <button
+            type="button"
+            onClick={openCookiePreferences}
+            className="inline-flex min-h-11 items-center gap-2 text-left transition hover:text-white"
+          >
+            <Cookie className="size-4" aria-hidden="true" />
+            Cookie preferences
+          </button>
+        </div>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} {portfolio.profile.display_name}. All rights reserved.</p>
+          <p>Built with React, TypeScript, Python, and an evidence-first AI assistant.</p>
+        </div>
       </div>
     </div>
   </footer>

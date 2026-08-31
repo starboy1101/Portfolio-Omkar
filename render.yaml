@@ -10,6 +10,10 @@ services:
           type: web
           name: omkar-mahabdi-portfolio-api
           envVarKey: RENDER_EXTERNAL_URL
+      - key: VITE_SITE_URL
+        value: https://omkar-mahabdi-portfolio.onrender.com
+      - key: VITE_GA_MEASUREMENT_ID
+        sync: false
     routes:
       - type: rewrite
         source: /*

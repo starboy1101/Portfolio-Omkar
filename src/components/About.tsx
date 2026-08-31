@@ -17,6 +17,8 @@ const About = () => {
             <div className="surface-card relative overflow-hidden bg-gradient-to-b from-brand-50 to-violet-100 p-5 dark:from-slate-800 dark:to-slate-900">
               <img
                 src={PROFILE_PORTRAIT.src}
+                srcSet={PROFILE_PORTRAIT.srcSet}
+                sizes={PROFILE_PORTRAIT.sizes}
                 width={PROFILE_PORTRAIT.width}
                 height={PROFILE_PORTRAIT.height}
                 alt={`Portrait of ${profile.full_name}`}

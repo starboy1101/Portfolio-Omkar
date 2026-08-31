@@ -22,7 +22,7 @@ export const AssistantTrigger = () => {
       whileHover={reduceMotion || isHidden ? undefined : { y: -2 }}
       whileTap={reduceMotion || isHidden ? undefined : { scale: 0.98 }}
       transition={{ duration: reduceMotion ? 0 : 0.2 }}
-      className={`fixed bottom-5 right-4 z-[70] inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-xl shadow-blue-900/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 sm:bottom-6 sm:right-6 ${
+      className={`fixed bottom-5 right-4 z-[70] hidden min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-xl shadow-blue-900/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 md:inline-flex md:bottom-6 md:right-6 ${
         isHidden ? 'pointer-events-none' : 'hover:shadow-2xl'
       }`}
       style={{ bottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}

@@ -292,8 +292,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             <img
               className="avatar"
               src={avatarUrl}
-              alt={`${name || 'User'} avatar`}
+              alt={`${name || 'User'} portrait`}
               loading="lazy"
+              decoding="async"
               onError={e => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
@@ -305,8 +306,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   <div className="pc-mini-avatar">
                     <img
                       src={miniAvatarUrl || avatarUrl}
-                      alt={`${name || 'User'} mini avatar`}
+                      alt=""
+                      aria-hidden="true"
                       loading="lazy"
+                      decoding="async"
                       onError={e => {
                         const target = e.target as HTMLImageElement;
                         target.style.opacity = '0.5';

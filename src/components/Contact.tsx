@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   AlertCircle,
-  CheckCircle2,
   Github,
   Instagram,
   Linkedin,
+  LoaderCircle,
   Mail,
   MapPin,
   Phone,
@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { portfolio } from '../data/portfolio';
 import { ApiError, sendContact } from '../services/aiApi';
+import { trackEvent } from '../services/analytics';
 
 interface ContactFormData {
   name: string;
@@ -26,8 +27,19 @@ interface ContactFormData {
 
 type SubmissionState =
   | { status: 'idle' }
-  | { status: 'success'; message: string }
   | { status: 'error'; message: string };
+
+const errorFields: ReadonlyArray<{
+  name: Exclude<keyof ContactFormData, 'website'>;
+  label: string;
+}> = [
+  { name: 'name', label: 'Name' },
+  { name: 'email', label: 'Email' },
+  { name: 'company', label: 'Company' },
+  { name: 'role', label: 'Role or opportunity' },
+  { name: 'subject', label: 'Subject' },
+  { name: 'message', label: 'Message' },
+];
 
 const socialIcons = {
   github: Github,
@@ -41,6 +53,7 @@ const inputClassName =
 const Contact = () => {
   const { profile } = portfolio;
   const [submission, setSubmission] = useState<SubmissionState>({ status: 'idle' });
+  const errorSummaryRef = useRef<HTMLDivElement>(null);
   const {
     register,
     handleSubmit,
@@ -49,6 +62,11 @@ const Contact = () => {
   } = useForm<ContactFormData>({
     mode: 'onBlur',
     defaultValues: { name: '', email: '', company: '', role: '', subject: '', message: '', website: '' },
+  });
+
+  const validationErrors = errorFields.flatMap(({ name, label }) => {
+    const message = errors[name]?.message;
+    return typeof message === 'string' ? [{ name, label, message }] : [];
   });
 
   const onSubmit = async (form: ContactFormData) => {
@@ -64,8 +82,15 @@ const Contact = () => {
         message: form.message.trim(),
         website: form.website,
       });
-      setSubmission({ status: 'success', message: response.message || 'Your message was sent successfully.' });
+      const message = response.message || 'Your message was sent successfully.';
       reset();
+      try {
+        window.sessionStorage.setItem('portfolio-contact-success', message);
+      } catch {
+        // The thank-you page has a generic fallback when session storage is unavailable.
+      }
+      void trackEvent('contact_submit_success');
+      window.location.assign('/thank-you');
     } catch (error) {
       const message =
         error instanceof ApiError
@@ -76,6 +101,11 @@ const Contact = () => {
         message: `${message} Your message was not sent; please retry or use the direct email link.`,
       });
     }
+  };
+
+  const onInvalid = () => {
+    setSubmission({ status: 'idle' });
+    window.setTimeout(() => errorSummaryRef.current?.focus(), 0);
   };
 
   return (
@@ -114,7 +144,8 @@ const Contact = () => {
                 <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400">
                   <MapPin className="size-5" aria-hidden="true" />
                 </span>
-                {profile.location.city}, {profile.location.state}, {profile.location.country}
+                {profile.location.city}, {profile.location.state} {profile.location.postal_code},{' '}
+                {profile.location.country}
               </div>
             </address>
 
@@ -144,10 +175,31 @@ const Contact = () => {
               Fields marked with an asterisk are required. The form submits through the configured portfolio backend.
             </p>
 
-            {submission.status === 'success' && (
-              <div className="mt-6 flex items-start gap-3 rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-sm text-emerald-900 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-100" role="status" aria-live="polite">
-                <CheckCircle2 className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
-                {submission.message}
+            {validationErrors.length > 0 && (
+              <div
+                ref={errorSummaryRef}
+                tabIndex={-1}
+                className="mt-6 rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-900 focus:outline-none focus:ring-4 focus:ring-red-500/20 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-100"
+                role="alert"
+                aria-labelledby="contact-error-summary-title"
+              >
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
+                  <div>
+                    <h4 id="contact-error-summary-title" className="font-bold">
+                      Please correct {validationErrors.length === 1 ? 'this field' : 'these fields'}
+                    </h4>
+                    <ul className="mt-2 list-disc space-y-1 pl-5">
+                      {validationErrors.map((error) => (
+                        <li key={error.name}>
+                          <a href={`#contact-${error.name}`} className="font-semibold underline underline-offset-4">
+                            {error.label}: {error.message}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             )}
             {submission.status === 'error' && (
@@ -164,7 +216,12 @@ const Contact = () => {
               </div>
             )}
 
-            <form className="mt-7 space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form
+              className="mt-7 space-y-5"
+              onSubmit={handleSubmit(onSubmit, onInvalid)}
+              noValidate
+              aria-busy={isSubmitting}
+            >
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="contact-name" className="mb-2 block text-sm font-semibold text-foreground">
@@ -182,7 +239,7 @@ const Contact = () => {
                       maxLength: { value: 100, message: 'Name must be 100 characters or fewer.' },
                     })}
                   />
-                  {errors.name && <p id="contact-name-error" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>}
+                  {errors.name && <p id="contact-name-error" role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.name.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-email" className="mb-2 block text-sm font-semibold text-foreground">
@@ -203,7 +260,7 @@ const Contact = () => {
                       maxLength: { value: 254, message: 'Email must be 254 characters or fewer.' },
                     })}
                   />
-                  {errors.email && <p id="contact-email-error" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.email.message}</p>}
+                  {errors.email && <p id="contact-email-error" role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.email.message}</p>}
                 </div>
               </div>
 
@@ -218,7 +275,7 @@ const Contact = () => {
                     aria-describedby={errors.company ? 'contact-company-error' : undefined}
                     {...register('company', { maxLength: { value: 120, message: 'Company must be 120 characters or fewer.' } })}
                   />
-                  {errors.company && <p id="contact-company-error" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.company.message}</p>}
+                  {errors.company && <p id="contact-company-error" role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.company.message}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-role" className="mb-2 block text-sm font-semibold text-foreground">Role or opportunity</label>
@@ -230,7 +287,7 @@ const Contact = () => {
                     aria-describedby={errors.role ? 'contact-role-error' : undefined}
                     {...register('role', { maxLength: { value: 120, message: 'Role must be 120 characters or fewer.' } })}
                   />
-                  {errors.role && <p id="contact-role-error" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>}
+                  {errors.role && <p id="contact-role-error" role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>}
                 </div>
               </div>
 
@@ -243,7 +300,7 @@ const Contact = () => {
                   aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
                   {...register('subject', { maxLength: { value: 160, message: 'Subject must be 160 characters or fewer.' } })}
                 />
-                {errors.subject && <p id="contact-subject-error" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>}
+                {errors.subject && <p id="contact-subject-error" role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.subject.message}</p>}
               </div>
 
               <div>
@@ -256,7 +313,7 @@ const Contact = () => {
                   rows={6}
                   className={`${inputClassName} resize-y`}
                   aria-invalid={Boolean(errors.message)}
-                  aria-describedby={errors.message ? 'contact-message-error' : 'contact-message-help'}
+                  aria-describedby={errors.message ? 'contact-message-help contact-message-error' : 'contact-message-help'}
                   {...register('message', {
                     required: 'Enter a message.',
                     minLength: { value: 10, message: 'Please add a little more detail.' },
@@ -264,7 +321,7 @@ const Contact = () => {
                   })}
                 />
                 <p id="contact-message-help" className="mt-2 text-xs text-muted-foreground">Do not include confidential or sensitive information.</p>
-                {errors.message && <p id="contact-message-error" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>}
+                {errors.message && <p id="contact-message-error" role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.message.message}</p>}
               </div>
 
               <div className="sr-only" aria-hidden="true">
@@ -273,7 +330,11 @@ const Contact = () => {
               </div>
 
               <button type="submit" className="button-primary w-full sm:w-auto" disabled={isSubmitting}>
-                <Send className="size-4" aria-hidden="true" />
+                {isSubmitting ? (
+                  <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+                ) : (
+                  <Send className="size-4" aria-hidden="true" />
+                )}
                 {isSubmitting ? 'Sending…' : 'Send message'}
               </button>
             </form>

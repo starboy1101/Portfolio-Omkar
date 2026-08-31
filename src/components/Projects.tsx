@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Bot } from 'lucide-react';
-import mockup from '../assets/mockup.png';
+import mockup450 from '../assets/mockup-450.webp';
+import mockup900 from '../assets/mockup-900.webp';
 import {
   openPortfolioAssistant,
   PROJECTS_FILTER_EVENT,
@@ -268,9 +269,11 @@ const Projects = () => {
                     <div className="absolute left-1/2 top-1 h-[74%] w-[80%] -translate-x-1/2 overflow-hidden rounded-md sm:left-4 sm:top-1 sm:h-[70%] sm:w-[82%] sm:translate-x-0 md:left-[10%] md:top-[2%] md:h-[72%] md:w-[81%]">
                       <img
                         src={screenshot.src}
+                        srcSet={screenshot.srcSet}
+                        sizes={screenshot.sizes}
                         width={screenshot.width}
                         height={screenshot.height}
-                        alt={`Screenshot of ${project.title}`}
+                        alt={`${project.title} interface preview`}
                         loading="lazy"
                         decoding="async"
                         className="h-full w-full object-cover"
@@ -278,7 +281,11 @@ const Projects = () => {
                     </div>
                   )}
                   <img
-                    src={mockup}
+                    src={mockup450}
+                    srcSet={`${mockup450} 450w, ${mockup900} 900w`}
+                    sizes="(min-width: 1280px) 450px, (min-width: 768px) 38vw, calc(100vw - 32px)"
+                    width={450}
+                    height={326}
                     alt=""
                     aria-hidden="true"
                     loading="lazy"

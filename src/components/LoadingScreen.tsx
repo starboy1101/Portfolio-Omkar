@@ -1,80 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Code2 } from 'lucide-react';
-import SplitText from "./SplitText";
+import { LoaderCircle, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 
-interface LoadingScreenProps {
-  onLoadingComplete: () => void;
-}
-
-const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(onLoadingComplete, 500);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 50);
-
-    return () => clearInterval(timer);
-  }, [onLoadingComplete]);
+const LoadingScreen = () => {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-white dark:bg-gray-900 flex items-center justify-center"
+    <main
+      id="portfolio-content"
+      className="grid min-h-dvh place-items-center bg-background px-5 pb-24 pt-28 text-foreground"
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
     >
-      <div className="text-center">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-16 h-16 mx-auto mb-8 text-blue-600 dark:text-blue-400"
-        >
-          <Code2 size={64} />
-        </motion.div>
-        
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="text-3xl font-semibold text-center text-gray-900 dark:text-white mb-4"
-        >
-          <SplitText
-            text="Loading wait..."
-            className="inline-block"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 20 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-        </motion.h1>
-        
-        <div className="w-64 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.1 }}
-          />
+      <div className="w-full max-w-md text-center">
+        <div className="relative mx-auto grid size-20 place-items-center rounded-3xl border border-brand-200 bg-surface shadow-xl shadow-brand-950/10 dark:border-brand-500/30">
+          <span className="bg-gradient-to-br from-brand-600 to-violet-600 bg-clip-text text-2xl font-bold text-transparent">
+            OM
+          </span>
+          <Sparkles className="absolute -right-2 -top-2 size-6 text-brand-500" aria-hidden="true" />
         </div>
-        
-        <p className="text-gray-600 dark:text-gray-400 mt-4">
-          {progress}%
+        <h1 className="mt-7 text-2xl font-bold tracking-tight sm:text-3xl">Preparing Omkar's portfolio</h1>
+        <p className="mt-3 leading-7 text-muted-foreground">
+          Loading verified experience, project evidence, and the portfolio assistant.
         </p>
+        <div className="mx-auto mt-7 flex w-fit items-center gap-3 rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold text-muted-foreground">
+          <motion.span
+            animate={reduceMotion ? undefined : { rotate: 360 }}
+            transition={reduceMotion ? undefined : { duration: 1, repeat: Infinity, ease: 'linear' }}
+          >
+            <LoaderCircle className="size-5 text-brand-500" aria-hidden="true" />
+          </motion.span>
+          Loading securely…
+        </div>
       </div>
-    </motion.div>
+    </main>
   );
 };
 

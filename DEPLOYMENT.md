@@ -50,6 +50,8 @@ Push this repository to GitHub, GitLab, or Bitbucket. In Render:
 
    - `HF_GRADIO_SPACE_ID`: `YOUR_HF_USERNAME/omkar-qwen3-4b`
    - `HF_TOKEN`: the backend-only Hugging Face read token
+   - `VITE_GA_MEASUREMENT_ID`: an optional GA4 ID such as `G-XXXXXXXXXX`;
+     leave analytics unconfigured if you do not have a GA4 property yet
 
 4. Apply the Blueprint. It creates:
 
@@ -88,12 +90,15 @@ Wait for both services to finish, then check:
    request goes only to the Render backend, not directly to `hf.space`.
 5. Temporarily pausing the Space should still produce a grounded fallback after
    the configured timeout.
+6. If analytics is configured, open a private browser window and confirm that no
+   Google Analytics request occurs before a cookie choice. Allow analytics, then
+   verify the current page appears in GA4 Realtime.
 
 After Render assigns the final frontend URL, replace the old deployment URL in
-`index.html` canonical/Open Graph metadata and in the audited portfolio
-`portfolio_url`/Portfolio Website live link if Render is now the canonical host.
-Commit that factual URL and let the Blueprint redeploy both services; do not
-guess it before Render creates the site.
+`render.yaml` (`VITE_SITE_URL`), `index.html`, `public/robots.txt`,
+`public/sitemap.xml`, and the audited portfolio `portfolio_url` if it differs
+from `https://omkar-mahabdi-portfolio.onrender.com`. Commit that factual URL and
+let the Blueprint redeploy both services.
 
 ## Custom domains
 
@@ -156,3 +161,5 @@ Official references:
 - [Render Blueprint specification](https://render.com/docs/blueprint-spec)
 - [Render FastAPI deployment](https://render.com/docs/deploy-fastapi)
 - [Render free services](https://render.com/docs/free)
+- [Google consent mode](https://developers.google.com/tag-platform/security/concepts/consent-mode)
+- [Google Analytics SPA measurement](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications)

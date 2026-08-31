@@ -60,7 +60,7 @@ frontend actions.
 |   `-- tests/
 |-- render.yaml                  # frontend + backend Blueprint
 |-- DEPLOYMENT.md
-`-- .env.example                 # frontend API origin
+`-- .env.example                 # frontend API, canonical URL, and analytics
 ```
 
 ## Local development
@@ -99,6 +99,14 @@ npm run dev
 
 The frontend defaults to `http://localhost:7860` through `.env.example`. Useful
 backend URLs are `/docs`, `/health`, and `/ready`.
+
+Frontend build variables:
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_AI_API_URL` | Public Render backend origin |
+| `VITE_SITE_URL` | Canonical public frontend origin, without a trailing slash |
+| `VITE_GA_MEASUREMENT_ID` | Optional GA4 ID; the tag loads only after explicit consent |
 
 The dedicated Qwen Space is not required for local correctness. Leave
 `HF_GRADIO_SPACE_ID` blank to exercise the no-model fallback. ZeroGPU itself is

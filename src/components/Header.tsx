@@ -7,10 +7,13 @@ import GlassSurface from './GlassSurface';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
+  const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState(isHomePage ? 'home' : '');
 
   useEffect(() => {
+    if (!isHomePage) return undefined;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -27,7 +30,7 @@ const Header = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isHomePage]);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -52,7 +55,7 @@ const Header = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-3 sm:px-5" aria-label="Site header">
       <a
-        href="#home"
+        href="#portfolio-content"
         className="sr-only rounded-lg bg-surface px-4 py-3 font-semibold text-foreground shadow-lg focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
       >
         Skip to portfolio content
@@ -73,7 +76,7 @@ const Header = () => {
         >
           <div className="flex h-full w-full items-center gap-3 px-2 sm:px-3">
             <a
-              href="#home"
+              href="/"
               className="flex min-h-11 min-w-0 items-center gap-3 rounded-xl font-semibold text-foreground"
               aria-label={`${portfolio.profile.display_name}, home`}
             >
@@ -90,8 +93,8 @@ const Header = () => {
               {SECTION_LINKS.map((item) => (
                 <a
                   key={item.id}
-                  href={`#${item.id}`}
-                  aria-current={activeSection === item.id ? 'location' : undefined}
+                  href={`/#${item.id}`}
+                  aria-current={isHomePage && activeSection === item.id ? 'location' : undefined}
                   className={`rounded-lg px-2.5 py-2 text-sm font-medium transition ${
                     activeSection === item.id
                       ? 'bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300'
@@ -161,8 +164,8 @@ const Header = () => {
                 {SECTION_LINKS.map((item) => (
                   <a
                     key={item.id}
-                    href={`#${item.id}`}
-                    aria-current={activeSection === item.id ? 'location' : undefined}
+                    href={`/#${item.id}`}
+                    aria-current={isHomePage && activeSection === item.id ? 'location' : undefined}
                     className={`flex min-h-11 items-center rounded-xl px-3 py-2 text-sm font-medium ${
                       activeSection === item.id
                         ? 'bg-brand-50 text-brand-700 dark:bg-brand-500/10 dark:text-brand-300'
