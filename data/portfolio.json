@@ -365,13 +365,15 @@
       "aliases": ["Multimodal Classifier", "Image and Text Classifier", "Computer Vision Classifier"],
       "short_description": "A CLIP-based multimodal classification system that combines image and text signals to categorize product listings and flag low-quality content.",
       "highlights": [
-        "Trained and evaluated the classifier on 100,000 product listings, reaching 89% classification accuracy.",
-        "Combined visual and textual representations to improve product categorization.",
-        "Reduced manual tagging effort by 64% and flagged low-quality listings four times faster."
+        "The plan is to train and evaluate the classifier on up to 100,000 product listings, targeting 89% classification accuracy.",
+        "The proposed architecture combines visual and textual representations to improve product categorization.",
+        "The target outcome is to reduce manual tagging effort and flag low-quality listings more quickly."
       ],
       "technologies": ["Python", "CLIP", "Computer Vision", "NLP", "Image Classification", "Text Classification"],
       "categories": ["AI/ML", "Computer Vision", "NLP", "Python"],
       "links": {},
+      "status": "in-development",
+      "status_note": "The imagery and project details reflect the current plan, not a finished product. The production version may differ as development continues.",
       "source": "updated_ai_ml_resume"
     },
     {
@@ -429,12 +431,14 @@
       "aliases": ["Bike Ride Booking App"],
       "short_description": "An online test-bike-ride booking application built around a MERN architecture.",
       "highlights": [
-        "Developed a user-centered booking application with React, Tailwind CSS, Node.js, Express.js, and MongoDB.",
-        "The resume cites React Fiber for rendering and an agile, iterative development process."
+        "The plan centers on a user-friendly discovery and test-ride booking experience.",
+        "The proposed implementation uses React, Tailwind CSS, Node.js, Express.js, and MongoDB in an iterative delivery process."
       ],
       "technologies": ["Vite", "React.js", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "React Fiber"],
       "categories": ["Full Stack"],
       "links": {},
+      "status": "in-development",
+      "status_note": "The imagery and project details reflect the current plan, not a finished product. The production version may differ as development continues.",
       "source": "resume",
       "source_note": "Placeholder GitHub and live URLs from the old component were excluded."
     },
@@ -444,13 +448,15 @@
       "aliases": ["Flipkart Analysis"],
       "short_description": "Pricing and discount analysis using advanced SQL, Python, and interactive dashboards to surface product and customer-rating trends.",
       "highlights": [
-        "Analyzed product pricing, discounts, customer ratings, and product segments using Python, Pandas, SQL, and DuckDB.",
-        "Applied window functions, percentiles, ranking functions, aggregations, and comparative analysis to identify meaningful business trends.",
-        "Developed Tableau and Streamlit dashboards to evaluate pricing strategies and competitive-pricing opportunities."
+        "The analysis plan covers product pricing, discounts, customer ratings, and product segments using Python, Pandas, SQL, and DuckDB.",
+        "The proposed workflow applies window functions, percentiles, ranking, aggregation, and comparative analysis to surface business trends.",
+        "Planned Tableau and Streamlit dashboards will explore pricing strategy and competitive-pricing opportunities."
       ],
       "technologies": ["SQL", "Python", "DuckDB", "Pandas", "Tableau", "Streamlit"],
       "categories": ["Data Analytics", "SQL", "Python", "Business Intelligence"],
       "links": {},
+      "status": "in-development",
+      "status_note": "The imagery and project details reflect the current plan, not a finished product. The production version may differ as development continues.",
       "source": "updated_data_analyst_resume"
     },
     {
@@ -459,13 +465,15 @@
       "aliases": ["Supply Chain Analytics", "Inventory Analytics"],
       "short_description": "Operational analysis of inventory, suppliers, shipping, and order fulfillment using SQL, Python, and interactive dashboards.",
       "highlights": [
-        "Analyzed inventory levels, supplier performance, delivery performance, shipping modes, and order fulfillment.",
-        "Used SQL aggregations, CTEs, and window functions to identify operational trends, bottlenecks, and performance gaps.",
-        "Created Tableau and Streamlit dashboards and identified First Class as the least reliable shipping mode in the analyzed dataset."
+        "The analysis plan covers inventory levels, supplier performance, delivery performance, shipping modes, and order fulfillment.",
+        "The proposed SQL workflow uses aggregations, CTEs, and window functions to identify operational trends, bottlenecks, and performance gaps.",
+        "Planned Tableau and Streamlit dashboards will compare fulfillment and shipping reliability once the production dataset is validated."
       ],
       "technologies": ["Python", "SQL", "Pandas", "DuckDB", "Tableau", "Streamlit"],
       "categories": ["Data Analytics", "SQL", "Python", "Business Intelligence"],
       "links": {},
+      "status": "in-development",
+      "status_note": "The imagery and project details reflect the current plan, not a finished product. The production version may differ as development continues.",
       "source": "updated_data_analyst_resume"
     }
   ],

@@ -148,7 +148,12 @@ export const executePortfolioAction = (
     case 'OPEN_PROJECT': {
       const projectId = resolveProjectId(action);
       if (!projectId || !projectIds.has(projectId)) return false;
+      const project = portfolio.projects.find((item) => item.id === projectId);
       callbacks.prepareForNavigation();
+      if (project?.status === 'in-development' && typeof window !== 'undefined') {
+        window.location.assign(`/projects/${project.id}`);
+        return true;
+      }
       filterPortfolioProjects({ projectId });
       runNavigation(
         () =>

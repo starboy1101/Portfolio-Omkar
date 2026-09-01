@@ -97,7 +97,8 @@ const describeEvidence = (skill: (typeof allSkills)[number]) => {
           project.highlights.find((highlight) =>
             normalize(highlight).includes(normalize(skill.name)),
           ) ?? project.highlights[0];
-        return `${project.title}, where ${detail.charAt(0).toLowerCase()}${detail.slice(1)}`;
+        const statusLabel = project.status === 'in-development' ? ' (planned, in development)' : '';
+        return `${project.title}${statusLabel}, where ${detail.charAt(0).toLowerCase()}${detail.slice(1)}`;
       }
       if (kind === 'experience') {
         const experience = portfolio.experience.find((entry) => entry.id === id);
@@ -118,11 +119,17 @@ const projectResponse = (
   project: (typeof portfolio.projects)[number],
   requestedTechnology?: string,
 ) => {
+  const isInDevelopment = project.status === 'in-development';
   const technologyNote = requestedTechnology
-    ? ` It includes ${requestedTechnology} among its documented technologies.`
+    ? ` It ${isInDevelopment ? 'plans to use' : 'includes'} ${requestedTechnology}${
+        isInDevelopment ? '.' : ' among its documented technologies.'
+      }`
+    : '';
+  const statusNote = isInDevelopment
+    ? ` This project is still in development. ${project.status_note ?? 'Its imagery and details are planning material, and the production version may differ.'}`
     : '';
   return response(
-    `${project.title} is ${project.short_description.toLowerCase()} ${project.highlights[0]}${technologyNote}`,
+    `${project.title} is ${project.short_description.toLowerCase()} ${project.highlights[0]}${technologyNote}${statusNote}`,
     [source('project', project.id, project.title)],
     [action('OPEN_PROJECT', project.id)],
     ['Explain the architecture', 'Which skills does this demonstrate?', 'Show all projects'],
@@ -186,7 +193,7 @@ export const getLocalAssistantResponse = (
     includesAny(query, ['suitable for', 'fit for', 'good fit', 'role'])
   ) {
     return response(
-      'Data analytics is Omkar’s secondary track. Direct evidence includes a Data Analyst internship plus Python, SQL, Pandas, DuckDB, Tableau, and Streamlit work in the Flipkart Price Analysis and Supply Chain and Inventory Analytics projects. Recruiter mode can compare this evidence with the role’s exact requirements without overstating his primary AI/ML experience.',
+      'Data analytics is Omkar’s secondary track. Delivered evidence includes a Data Analyst internship. The Flipkart Price Analysis and Supply Chain and Inventory Analytics entries show planned Python, SQL, Pandas, DuckDB, Tableau, and Streamlit scope, but both are still in development and are not production proof. Recruiter mode can compare the available evidence with the role’s exact requirements.',
       [
         source('experience', 'vidyarthimitra-data-analyst-intern', 'Data Analyst Intern'),
         source('project', 'flipkart-price-analysis', 'Flipkart Price Analysis'),
@@ -250,7 +257,7 @@ export const getLocalAssistantResponse = (
     ])
   ) {
     return response(
-      'The verified portfolio shows direct evidence across the AI Chat Application, a fine-tuned text-to-SQL system, an LLM evaluation and red-teaming framework, and a multimodal classifier, alongside Python, RAG, FastAPI, and resume-backed software engineering experience. A responsible fit assessment needs the role’s actual requirements, so Recruiter mode compares a pasted job description without inferring missing skills.',
+      'The verified portfolio shows direct evidence across the AI Chat Application, a fine-tuned text-to-SQL system, and an LLM evaluation and red-teaming framework, alongside Python, RAG, FastAPI, and resume-backed software engineering experience. The multimodal classifier is an in-development project plan, not delivered production evidence. A responsible fit assessment needs the role’s actual requirements.',
       [
         source('profile', portfolio.profile.id, portfolio.profile.display_name),
         source('project', 'ai-chat-application', 'AI Chat Application'),
@@ -343,7 +350,12 @@ export const getLocalAssistantResponse = (
       );
     }
 
-    const names = projects.map((project) => project.title).join(', ');
+    const names = projects
+      .map((project) =>
+        project.status === 'in-development' ? `${project.title} (in development)` : project.title,
+      )
+      .join(', ');
+    const includesPlannedWork = projects.some((project) => project.status === 'in-development');
     const requestedCategory = wantsData
       ? 'Data Analytics'
       : portfolio.projects
@@ -358,12 +370,16 @@ export const getLocalAssistantResponse = (
           ? [action('FILTER_PROJECTS', requestedCategory)]
           : [action('NAVIGATE', 'projects')];
     return response(
-      `The strongest verified matches are ${names}. ${
+      `The strongest relevant matches are ${names}. ${
         wantsData
           ? 'These projects provide direct evidence of SQL analysis, data preparation, and interactive dashboarding.'
           : wantsAi
           ? 'The AI Chat Application is the clearest direct evidence of RAG and generative-AI engineering.'
           : 'Each project card links only to demos or repositories present in the verified data.'
+      }${
+        includesPlannedWork
+          ? ' Entries marked in development are planned scope, not delivered production evidence; their final implementation may differ.'
+          : ''
       }`,
       projects.map((project) => source('project', project.id, project.title)),
       projectActions,

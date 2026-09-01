@@ -7,8 +7,10 @@ import LoadingScreen from './components/LoadingScreen';
 import MobileCTA from './components/MobileCTA';
 import { AssistantProvider } from './contexts/AssistantContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { getProjectById, isProjectInDevelopment } from './data/portfolio';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
+const ComingSoonPage = lazy(() => import('./pages/ComingSoonPage'));
 const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const ThankYouPage = lazy(() => import('./pages/ThankYouPage'));
@@ -20,7 +22,17 @@ const normalizedPath = () => {
 };
 
 const CurrentPage = () => {
-  switch (normalizedPath()) {
+  const path = normalizedPath();
+  const projectRoute = path.match(/^\/projects\/([^/]+)$/);
+
+  if (projectRoute) {
+    const project = getProjectById(projectRoute[1]);
+    if (project && isProjectInDevelopment(project)) {
+      return <ComingSoonPage projectId={project.id} />;
+    }
+  }
+
+  switch (path) {
     case '/':
     case '/index.html':
       return <HomePage />;

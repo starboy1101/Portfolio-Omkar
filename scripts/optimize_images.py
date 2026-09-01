@@ -129,6 +129,12 @@ def main() -> None:
         ("LLMEvaluatio.png", "LLMEvaluatio-960.webp", 960, 84),
         ("SQLGenerator.png", "SQLGenerator-480.webp", 480, 84),
         ("SQLGenerator.png", "SQLGenerator-960.webp", 960, 84),
+        ("Flipkartprice.png", "Flipkartprice-480.webp", 480, 84),
+        ("Flipkartprice.png", "Flipkartprice-960.webp", 960, 84),
+        ("Multimodelimage.png", "Multimodelimage-480.webp", 480, 84),
+        ("Multimodelimage.png", "Multimodelimage-960.webp", 960, 84),
+        ("Supplychain.png", "Supplychain-480.webp", 480, 84),
+        ("Supplychain.png", "Supplychain-960.webp", 960, 84),
     )
     for source, output, width, quality in variants:
         resize_to_width(source, output, width, quality)

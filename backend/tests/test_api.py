@@ -52,6 +52,14 @@ def test_projects_exclude_placeholders_and_keep_ai_chat_separate(client):
     ]
     assert by_id["multimodal-image-text-classifier"]["links"] == {}
     assert by_id["flipkart-price-analysis"]["links"] == {}
+    for project_id in (
+        "multimodal-image-text-classifier",
+        "rideasy-bike-booking",
+        "flipkart-price-analysis",
+        "supply-chain-inventory-analytics",
+    ):
+        assert by_id[project_id]["status"] == "in-development"
+        assert "not a finished product" in by_id[project_id]["status_note"]
     assert by_id["portfolio-website"]["links"]["live"].endswith("onrender.com")
     assert "yourusername" not in json.dumps(projects)
 

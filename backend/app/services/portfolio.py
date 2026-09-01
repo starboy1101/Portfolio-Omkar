@@ -171,6 +171,12 @@ class PortfolioRepository:
                         f"Categories: {', '.join(project['categories'])}.",
                         f"Also known as: {aliases}." if aliases else None,
                         f"Links: {links}." if links else None,
+                        (
+                            "Status: in development; this is planned scope, not delivered production evidence."
+                            if project.get("status") == "in-development"
+                            else None
+                        ),
+                        project.get("status_note"),
                         project.get("source_note"),
                     ]
                     if part

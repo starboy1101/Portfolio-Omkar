@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { Bot } from 'lucide-react';
+import { Bot, Construction, TriangleAlert } from 'lucide-react';
 import mockup450 from '../assets/mockup-450.webp';
 import mockup900 from '../assets/mockup-900.webp';
 import {
@@ -10,6 +10,7 @@ import {
 } from '../data/assistantEvents';
 import {
   getProjectImage,
+  isProjectInDevelopment,
   portfolio,
   PROJECT_CATEGORIES,
   slugify,
@@ -253,6 +254,7 @@ const Projects = () => {
 
         {visibleProjects.map((project, index) => {
           const screenshot = getProjectImage(project.id);
+          const isInDevelopment = isProjectInDevelopment(project);
 
           return (
             <motion.article
@@ -270,19 +272,35 @@ const Projects = () => {
                 className="grid items-start gap-10 md:grid-cols-12"
               >
                 <div className="relative mb-6 flex justify-center md:col-span-5 md:mb-0 md:justify-start">
-                  {screenshot && (
+                  {(screenshot || isInDevelopment) && (
                     <div className="absolute left-1/2 top-1 h-[74%] w-[80%] -translate-x-1/2 overflow-hidden rounded-md sm:left-4 sm:top-1 sm:h-[70%] sm:w-[82%] sm:translate-x-0 md:left-[10%] md:top-[2%] md:h-[72%] md:w-[81%]">
-                      <img
-                        src={screenshot.src}
-                        srcSet={screenshot.srcSet}
-                        sizes={screenshot.sizes}
-                        width={screenshot.width}
-                        height={screenshot.height}
-                        alt={`${project.title} interface preview`}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover"
-                      />
+                      {screenshot ? (
+                        <img
+                          src={screenshot.src}
+                          srcSet={screenshot.srcSet}
+                          sizes={screenshot.sizes}
+                          width={screenshot.width}
+                          height={screenshot.height}
+                          alt={`${project.title} ${isInDevelopment ? 'concept' : 'interface'} preview`}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="grid h-full w-full place-items-center bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-950 px-6 text-center text-white">
+                          <div>
+                            <Construction className="mx-auto size-9 text-indigo-300" strokeWidth={1.6} aria-hidden="true" />
+                            <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-indigo-200">
+                              Concept in development
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      {isInDevelopment && (
+                        <span className="absolute left-2 top-2 rounded-full border border-white/25 bg-slate-950/80 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                          Concept preview
+                        </span>
+                      )}
                     </div>
                   )}
                   <img
@@ -300,6 +318,12 @@ const Projects = () => {
                 </div>
 
                 <div className="flex flex-col justify-start px-3 md:col-span-7 md:px-0">
+                  {isInDevelopment && (
+                    <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full bg-amber-500/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-amber-800 dark:text-amber-300">
+                      <Construction className="size-4" aria-hidden="true" />
+                      In development · Coming soon
+                    </div>
+                  )}
                   <SplitText
                     tag="h3"
                     text={project.title}
@@ -314,6 +338,21 @@ const Projects = () => {
                     threshold={0.1}
                     rootMargin="-100px"
                   />
+
+                  {isInDevelopment && (
+                    <div
+                      role="note"
+                      aria-label={`${project.title} concept preview notice`}
+                      className="mb-6 flex gap-3 rounded-2xl border border-amber-400/45 bg-amber-50 p-4 text-sm leading-6 text-amber-950 dark:bg-amber-400/10 dark:text-amber-100"
+                    >
+                      <TriangleAlert className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
+                      <p>
+                        <span className="font-bold">Concept preview:</span>{' '}
+                        {project.status_note ??
+                          'The imagery and details show the current plan, not a finished product. The production version may differ.'}
+                      </p>
+                    </div>
+                  )}
 
                   <ul className="mb-6 max-w-full list-outside list-disc space-y-6 pl-8 text-lg text-muted-foreground dark:text-gray-300">
                     {project.highlights.map((point) => (
@@ -342,6 +381,17 @@ const Projects = () => {
                   )}
 
                   <div className="flex flex-wrap gap-4">
+                    {isInDevelopment && (
+                      <a
+                        href={`/projects/${project.id}`}
+                        className="group/link flex min-h-11 items-center justify-center gap-2 rounded-full border-2 border-brand-600 bg-gradient-to-r from-brand-600 to-violet-600 px-5 py-2.5 text-base font-medium text-white shadow-lg shadow-brand-600/20 transition-all hover:from-brand-700 hover:to-violet-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                      >
+                        <Construction className="size-5 shrink-0" aria-hidden="true" />
+                        Preview the project plan
+                        <ArrowIcon />
+                      </a>
+                    )}
+
                     {project.links.live && (
                       <a
                         href={project.links.live}

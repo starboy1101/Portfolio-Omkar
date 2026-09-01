@@ -132,10 +132,10 @@ class ChatService:
             )
         ) and any(phrase in folded for phrase in ("suitable for", "fit for", "good fit", "role")):
             return (
-                "Data analytics is Omkar's secondary track. Direct evidence includes a Data Analyst internship plus "
-                "Python, SQL, Pandas, DuckDB, Tableau, and Streamlit work in the Flipkart Price Analysis and Supply "
-                "Chain and Inventory Analytics projects. Recruiter mode can compare this evidence with the role's "
-                "exact requirements without overstating his primary AI/ML experience."
+                "Data analytics is Omkar's secondary track. Delivered evidence includes a Data Analyst internship. "
+                "The Flipkart Price Analysis and Supply Chain and Inventory Analytics entries show planned Python, "
+                "SQL, Pandas, DuckDB, Tableau, and Streamlit scope, but both are still in development and are not "
+                "production proof. Recruiter mode can compare the available evidence with the role's requirements."
             )
         if any(
             phrase in folded
@@ -150,10 +150,10 @@ class ChatService:
         ):
             return (
                 "The audited portfolio provides direct evidence across the AI Chat Application, a fine-tuned "
-                "text-to-SQL system, an LLM evaluation and red-teaming framework, and a multimodal classifier, "
-                "alongside Python, RAG, FastAPI, and resume-backed software engineering experience. A responsible "
-                "role-fit assessment depends on the job's explicit requirements; Recruiter mode compares those "
-                "requirements without inferring missing skills."
+                "text-to-SQL system, and an LLM evaluation and red-teaming framework, alongside Python, RAG, "
+                "FastAPI, and resume-backed software engineering experience. The multimodal classifier is an "
+                "in-development project plan, not delivered production evidence. A responsible role-fit assessment "
+                "depends on the job's explicit requirements."
             )
         if any(term in folded for term in ("guided tour", "portfolio tour", "start tour", "show me around")):
             return (

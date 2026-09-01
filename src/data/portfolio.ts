@@ -15,6 +15,12 @@ import profilePortrait426 from '../assets/Person-426.webp';
 import profilePortrait768 from '../assets/Person-768.webp';
 import weatherImage480 from '../assets/Weatherimg-480.webp';
 import weatherImage960 from '../assets/Weatherimg-960.webp';
+import flipkartPriceImage480 from '../assets/Flipkartprice-480.webp';
+import flipkartPriceImage960 from '../assets/Flipkartprice-960.webp';
+import multimodalImage480 from '../assets/Multimodelimage-480.webp';
+import multimodalImage960 from '../assets/Multimodelimage-960.webp';
+import supplyChainImage480 from '../assets/Supplychain-480.webp';
+import supplyChainImage960 from '../assets/Supplychain-960.webp';
 
 export interface SocialLink {
   id: 'github' | 'linkedin' | 'instagram' | string;
@@ -102,6 +108,8 @@ export interface PortfolioProject {
     github?: string;
     live?: string;
   };
+  status?: 'in-development';
+  status_note?: string;
   source: string;
   source_note?: string;
 }
@@ -250,11 +258,41 @@ const projectImages: Record<string, ImageAsset> = {
     width: 480,
     height: 224,
   },
+  'flipkart-price-analysis': {
+    src: flipkartPriceImage480,
+    srcSet: `${flipkartPriceImage480} 480w, ${flipkartPriceImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 240,
+  },
+  'multimodal-image-text-classifier': {
+    src: multimodalImage480,
+    srcSet: `${multimodalImage480} 480w, ${multimodalImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 359,
+  },
+  'supply-chain-inventory-analytics': {
+    src: supplyChainImage480,
+    srcSet: `${supplyChainImage480} 480w, ${supplyChainImage960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 360,
+  },
 };
 
 const certificationAssets: Readonly<Record<string, ImageAsset>> = {};
 
 export const getProjectImage = (projectId: string): ImageAsset | undefined => projectImages[projectId];
+
+export const getProjectById = (projectId: string): PortfolioProject | undefined =>
+  portfolio.projects.find((project) => project.id === projectId);
+
+export const isProjectInDevelopment = (project: PortfolioProject): boolean =>
+  project.status === 'in-development';
+
+export const GITHUB_PROFILE_URL =
+  portfolio.profile.social_links.find((social) => social.id === 'github')?.url ?? '';
 
 export const getCertificationAsset = (assetPath: string): ImageAsset | undefined => certificationAssets[assetPath];
 
