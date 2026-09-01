@@ -5,8 +5,12 @@ import bikeImage470 from '../assets/Bikeimg-470.webp';
 import bikeImage940 from '../assets/Bikeimg-940.webp';
 import loanImage480 from '../assets/LOS-480.webp';
 import loanImage960 from '../assets/LOS-960.webp';
-import portfolioImage480 from '../assets/Portfolioimg-480.webp';
-import portfolioImage960 from '../assets/Portfolioimg-960.webp';
+import AIPortfolio480 from '../assets/AIPortfolio-480.webp';
+import AIPortfolio960 from '../assets/AIPortfolio-960.webp';
+import SQLGenerator480 from '../assets/SQLGenerator-480.webp';
+import SQLGenerator960 from '../assets/SQLGenerator-960.webp';
+import LLMEvaluatio480 from '../assets/LLMEvaluatio-480.webp';
+import LLMEvaluatio960 from '../assets/LLMEvaluatio-960.webp';
 import profilePortrait426 from '../assets/Person-426.webp';
 import profilePortrait768 from '../assets/Person-768.webp';
 import weatherImage480 from '../assets/Weatherimg-480.webp';
@@ -204,9 +208,23 @@ const projectImages: Record<string, ImageAsset> = {
     width: 480,
     height: 226,
   },
+  'llm-powered-sql-query-generator': {
+    src: SQLGenerator480,
+    srcSet: `${SQLGenerator480} 480w, ${SQLGenerator960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 236,
+  },
+  'llm-evaluation-red-teaming-framework': {
+    src: LLMEvaluatio480,
+    srcSet: `${LLMEvaluatio480} 480w, ${LLMEvaluatio960} 960w`,
+    sizes: PROJECT_IMAGE_SIZES,
+    width: 480,
+    height: 236,
+  },
   'portfolio-website': {
-    src: portfolioImage480,
-    srcSet: `${portfolioImage480} 480w, ${portfolioImage960} 960w`,
+    src: AIPortfolio480,
+    srcSet: `${AIPortfolio480} 480w, ${AIPortfolio960} 960w`,
     sizes: PROJECT_IMAGE_SIZES,
     width: 480,
     height: 236,

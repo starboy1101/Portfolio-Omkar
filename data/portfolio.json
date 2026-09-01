@@ -335,7 +335,10 @@
       ],
       "technologies": ["Python", "LLM", "CodeLlama-7B", "QLoRA", "Text-to-SQL", "FastAPI", "SQL"],
       "categories": ["AI/ML", "Generative AI", "Python", "Backend", "SQL"],
-      "links": {},
+      "links": {
+        "github": "https://github.com/starboy1101/SQL_Query_Generator",
+        "live": "https://omkar-mahabdi-portfolio.onrender.com/"
+      },
       "source": "updated_ai_ml_resume"
     },
     {
@@ -344,13 +347,16 @@
       "aliases": ["LLM Evaluation Framework", "Red-Teaming Framework"],
       "short_description": "An automated evaluation framework for measuring hallucination, bias, failure modes, and unsafe behavior in LLM responses.",
       "highlights": [
-        "Built an evaluation workflow with DeepEval and LangSmith for repeatable LLM quality and safety testing.",
+        "Built an evaluation workflow 'reliability-observatory' with DeepEval and LangSmith for repeatable LLM quality and safety testing.",
         "Created more than 500 adversarial prompts across six failure categories.",
         "Identified a 23% hallucination rate on edge cases and used targeted fine-tuning to reduce violations by 61%."
       ],
       "technologies": ["Python", "DeepEval", "LangSmith", "LLM Evaluation", "Red-Teaming", "Prompt Engineering"],
       "categories": ["AI/ML", "Generative AI", "Python", "LLM Evaluation"],
-      "links": {},
+      "links": {
+        "github": "https://github.com/starboy1101/Reliability_Observatory",
+        "live": "https://reliability-observatory.onrender.com/"
+      },
       "source": "updated_ai_ml_resume"
     },
     {
