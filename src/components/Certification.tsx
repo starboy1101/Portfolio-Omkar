@@ -40,8 +40,8 @@ const Certification = () => {
               Certifications across AI, data, Python, and cloud technologies.
             </h2>
             <p className="section-copy">
-              Browse the current certification list. Image spaces are reserved for credential
-              artwork that will be added later.
+              Explore my certifications and continued learning across AI, data, Python, and
+              cloud technologies.
             </p>
           </div>
           <button
@@ -89,7 +89,7 @@ const Certification = () => {
                             alt={`${certification.title} certificate`}
                             loading="lazy"
                             decoding="async"
-                            className="h-44 w-auto object-contain"
+                            className="h-44 w-full object-contain"
                           />
                         )}
                       </div>

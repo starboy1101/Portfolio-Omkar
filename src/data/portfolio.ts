@@ -21,6 +21,17 @@ import multimodalImage480 from '../assets/Multimodelimage-480.webp';
 import multimodalImage960 from '../assets/Multimodelimage-960.webp';
 import supplyChainImage480 from '../assets/Supplychain-480.webp';
 import supplyChainImage960 from '../assets/Supplychain-960.webp';
+import ociDataScienceCertificate from '../assets/OCI25DSOCP.png';
+import pythonEssentialsCertificate from '../assets/PythonEssential2.png';
+import freeCodeCampCertificate from '../assets/Freecode.png';
+import dataScienceEssentialsCertificate from '../assets/DataScienceEssentials.png';
+import dataAnalyticsEssentialsCertificate from '../assets/DataAnalyticsEssential.png';
+import aiFundamentalsCertificate from '../assets/AIFundamentals.png';
+import ociGenerativeAiCertificate from '../assets/OCI25GAIOCP.png';
+import ociAiFoundationsCertificate from '../assets/OCI25AICFAV1.png';
+import oracleVectorSearchCertificate from '../assets/vector.png';
+import deloitteAnalyticsCertificate from '../assets/DataAnalyticsJob.png';
+import cs50PythonCertificate from '../assets/Pythoncs50.png';
 
 export interface SocialLink {
   id: 'github' | 'linkedin' | 'instagram' | string;
@@ -281,7 +292,23 @@ const projectImages: Record<string, ImageAsset> = {
   },
 };
 
-const certificationAssets: Readonly<Record<string, ImageAsset>> = {};
+type CertificationImageAsset = Pick<ImageAsset, 'src' | 'width' | 'height'>;
+
+// Keep these keys identical to the case-sensitive asset paths in portfolio.json.
+// Imports let Vite include the images and generate their production URLs.
+const certificationAssets: Readonly<Record<string, CertificationImageAsset>> = {
+  'src/assets/OCI25DSOCP.png': { src: ociDataScienceCertificate, width: 552, height: 276 },
+  'src/assets/PythonEssential2.png': { src: pythonEssentialsCertificate, width: 2048, height: 2048 },
+  'src/assets/Freecode.png': { src: freeCodeCampCertificate, width: 245, height: 148 },
+  'src/assets/DataScienceEssentials.png': { src: dataScienceEssentialsCertificate, width: 600, height: 600 },
+  'src/assets/DataAnalyticsEssential.png': { src: dataAnalyticsEssentialsCertificate, width: 680, height: 680 },
+  'src/assets/AIFundamentals.png': { src: aiFundamentalsCertificate, width: 600, height: 600 },
+  'src/assets/OCI25GAIOCP.png': { src: ociGenerativeAiCertificate, width: 552, height: 276 },
+  'src/assets/OCI25AICFAV1.png': { src: ociAiFoundationsCertificate, width: 552, height: 276 },
+  'src/assets/vector.png': { src: oracleVectorSearchCertificate, width: 249, height: 276 },
+  'src/assets/DataAnalyticsJob.png': { src: deloitteAnalyticsCertificate, width: 800, height: 149 },
+  'src/assets/Pythoncs50.png': { src: cs50PythonCertificate, width: 192, height: 192 },
+};
 
 export const getProjectImage = (projectId: string): ImageAsset | undefined => projectImages[projectId];
 
@@ -294,7 +321,7 @@ export const isProjectInDevelopment = (project: PortfolioProject): boolean =>
 export const GITHUB_PROFILE_URL =
   portfolio.profile.social_links.find((social) => social.id === 'github')?.url ?? '';
 
-export const getCertificationAsset = (assetPath: string): ImageAsset | undefined => certificationAssets[assetPath];
+export const getCertificationAsset = (assetPath: string): CertificationImageAsset | undefined => certificationAssets[assetPath];
 
 export const slugify = (value: string) =>
   value

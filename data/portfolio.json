@@ -483,63 +483,70 @@
       "title": "OCI Certified Data Science Professional",
       "issuer": "Oracle",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/OCI25DSOCP.png"
     },
     {
       "id": "python-essentials-2",
       "title": "Python Essentials 2",
       "issuer": "Cisco",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/PythonEssential2.png"
     },
     {
       "id": "data-analysis-with-python",
       "title": "Data Analysis with Python",
       "issuer": "freeCodeCamp",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/Freecode.png"
     },
     {
       "id": "data-science-essentials-with-python",
       "title": "Data Science Essentials With Python",
       "issuer": "Cisco",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/DataScienceEssentials.png"
     },
     {
       "id": "data-analytics-essentials",
       "title": "Data Analytics Essentials",
       "issuer": "Cisco",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/DataAnalyticsEssential.png"
     },
     {
       "id": "artificial-intelligence-fundamentals",
       "title": "Artificial Intelligence Fundamentals",
       "issuer": "IBM",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/AIFundamentals.png"
     },
     {
       "id": "oci-generative-ai-professional",
       "title": "OCI Generative AI Professional",
       "issuer": "Oracle",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/OCI25GAIOCP.png"
+    },
+    {
+      "id": "AI-Foundations-Associate",
+      "title": "AI Foundations Associate",
+      "issuer": "Oracle",
+      "year": null,
+      "asset": "src/assets/OCI25AICFAV1.png"
     },
     {
       "id": "oracle-ai-vector-search-professional",
       "title": "Oracle AI Vector Search Professional",
       "issuer": "Oracle",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/vector.png"
     },
     {
       "id": "deloitte-australia-data-analytics-job-simulation",
       "title": "Deloitte Australia — Data Analytics Job Simulation",
       "issuer": "Deloitte Australia",
       "year": null,
-      "asset": ""
+      "asset": "src/assets/DataAnalyticsJob.png"
     },
     {
       "id": "programming-with-python-3x",
@@ -547,6 +554,13 @@
       "issuer": "SkillUp",
       "year": null,
       "asset": ""
+    },
+    {
+      "id": "CS50-python-programming",
+      "title": "Python Programming",
+      "issuer": "Harvard University (CS50)",
+      "year": null,
+      "asset": "src/assets/Pythoncs50.png"
     }
   ],
   "known_unknowns": [

@@ -146,6 +146,16 @@ web service; lexical retrieval is always available.
 | `POST` | `/api/jd/analyze` | Evidence-based job-description comparison |
 | `POST` | `/api/resume/email`, `/api/contact` | Validated delivery flows |
 
+## Adding certification images
+
+Add the image to `src/assets/` and set the certificate's `asset` in
+`data/portfolio.json` to its exact, case-sensitive path (for example,
+`src/assets/Freecode.png`). Import the image and register that same path with
+its original width and height in `certificationAssets` in `src/data/portfolio.ts`.
+The import includes the image in the production build. Leave `asset` empty
+when no image is available. Commit new image files along with the data and
+mapping changes before redeploying.
+
 ## Verification
 
 ```bash
